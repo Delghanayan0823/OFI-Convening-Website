@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Prioritizing What Makes Us Human — Convening (June 16–18)</title>
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --panel: #0f1722;
+      --text: #e7edf6;
+      --muted: #b6c2d2;
+      --line: rgba(231, 237, 246, .12);
+      --accent: #7dd3fc;
+      --accent2: #a78bfa;
+      --good: #34d399;
+      --warn: #fbbf24;
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1000px 600px at 12% 8%, rgba(167,139,250,.22), transparent 60%),
+        radial-gradient(900px 560px at 88% 18%, rgba(125,211,252,.18), transparent 55%),
+        radial-gradient(1200px 700px at 40% 95%, rgba(52,211,153,.10), transparent 60%),
+        var(--bg);
+      line-height: 1.45;
+    }
+    a{color:inherit}
+    .wrap{max-width: var(--max); margin:0 auto; padding: 22px 18px 64px;}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 14px;
+      padding: 12px 0 18px;
+    }
+    .brand{
+      display:flex; align-items:center; gap: 10px; text-decoration:none;
+    }
+    .logo{
+      width: 38px; height: 38px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(125,211,252,.9), rgba(167,139,250,.85));
+      box-shadow: 0 12px 25px rgba(167,139,250,.16);
+    }
+    .brand strong{font-weight:700; letter-spacing:.2px;}
+    .brand span{display:block; font-size: 12px; color: var(--muted); margin-top:2px;}
+    .navlinks{
+      display:flex; align-items:center; gap: 14px; flex-wrap:wrap;
+    }
+    .navlinks a{
+      text-decoration:none;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+    .navlinks a:hover{
+      border-color: var(--line);
+      color: var(--text);
+      background: rgba(255,255,255,.03);
+    }
+    .btn{
+      appearance:none; border:1px solid var(--line); cursor:pointer;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-weight: 650;
+      letter-spacing:.2px;
+      transition: transform .08s ease, border-color .12s ease, background .12s ease;
+    }
+    .btn:hover{border-color: rgba(125,211,252,.45); background: rgba(125,211,252,.08);}
+    .btn:active{transform: translateY(1px);}
+    .btn.primary{
+      border-color: rgba(125,211,252,.55);
+      background: linear-gradient(135deg, rgba(125,211,252,.22), rgba(167,139,250,.18));
+    }
+    .hero{
+      margin-top: 8px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      padding: 26px 22px;
+      overflow:hidden;
+      position:relative;
+    }
+    .pillrow{display:flex; gap:10px; flex-wrap:wrap; margin-bottom: 14px;}
+    .pill{
+      font-size: 12px; color: var(--muted);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    .hero h1{
+      font-size: clamp(26px, 3.2vw, 44px);
+      margin: 6px 0 10px;
+      line-height: 1.08;
+      letter-spacing: -.6px;
+    }
+    .hero p{
+      margin: 0 0 16px;
+      color: var(--muted);
+      max-width: 70ch;
+      font-size: 15.5px;
+    }
+    .ctarow{
+      display:flex; gap: 10px; align-items:center; flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    .hint{
+      font-size: 12.5px; color: var(--muted);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    @media (max-width: 920px){ .grid{grid-template-columns: 1fr; } }
+    .card{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.25);
+    }
+    .card h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .card p{margin: 0 0 10px; color: var(--muted);}
+    .meta{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .metaitem{
+      padding: 12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+    }
+    .metaitem .k{
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .badge{
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+      white-space:nowrap;
+    }
+    .metaitem .v{
+      font-size: 14.5px;
+      color: var(--text);
+    }
+    .list{
+      display:grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .li{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 12px;
+      background: rgba(255,255,255,.02);
+    }
+    .li strong{display:block; margin-bottom: 6px;}
+    .li span{color: var(--muted); font-size: 13.5px;}
+    .faq details{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 12px;
+      background: rgba(255,255,255,.02);
+    }
+    .faq details + details{margin-top: 10px;}
+    .faq summary{
+      cursor:pointer;
+      font-weight: 650;
+      list-style:none;
+    }
+    .faq summary::-webkit-details-marker{display:none;}
+    .faq p{margin-top: 8px;}
+    footer{
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 12.5px;
+      padding: 18px 2px 0;
+    }
+
+    /* Modal */
+    .modalback{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.55);
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      padding: 18px;
+      z-index: 50;
+    }
+    .modalback.open{display:flex;}
+    .modal{
+      width: min(860px, 100%);
+      border-radius: 22px;
+      border: 1px solid rgba(231,237,246,.16);
+      background: linear-gradient(180deg, rgba(15,23,34,.95), rgba(10,14,20,.95));
+      box-shadow: 0 25px 90px rgba(0,0,0,.65);
+      overflow:hidden;
+      max-height: 86vh;
+      display:flex;
+      flex-direction:column;
+    }
+    .modalhead{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap: 12px;
+      padding: 16px 16px 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .modalhead h3{margin:0; font-size: 18px;}
+    .modalhead .sub{margin:4px 0 0; color: var(--muted); font-size: 13px;}
+    .close{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      width: 40px; height: 40px;
+      border-radius: 14px;
+      cursor:pointer;
+    }
+    .modalbody{
+      padding: 14px 16px 16px;
+      overflow:auto;
+    }
+    .formgrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 720px){ .formgrid{grid-template-columns: 1fr;} .modalback{align-items:stretch;} }
+    label{display:block; font-size: 12px; color: var(--muted); margin-bottom: 6px;}
+    input, select, textarea{
+      width:100%;
+      padding: 10px 11px;
+      border-radius: 14px;
+      border: 1px solid rgba(231,237,246,.16);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline:none;
+    }
+    textarea{min-height: 96px; resize: vertical;}
+    .full{grid-column: 1/-1;}
+    .row{
+      display:flex; gap: 10px; flex-wrap:wrap; align-items:center;
+      margin-top: 12px;
+    }
+    .note{
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-top: 10px;
+      border-top: 1px dashed rgba(231,237,246,.18);
+      padding-top: 10px;
+    }
+    .tiny{font-size: 12px; color: var(--muted);}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <a class="brand" href="#top">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <strong>Prioritizing What Makes Us Human</strong>
+          <span>Convening • June 16–18</span>
+        </div>
+      </a>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#logistics">Logistics</a>
+        <a href="#agenda">What we’ll do</a>
+        <a href="#faq">FAQs</a>
+        <button class="btn primary" id="openRegTop">Register</button>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="Hero">
+        <div class="pillrow">
+          <div class="pill">Interdisciplinary working group</div>
+          <div class="pill">Field-building convening</div>
+          <div class="pill">Connection to self • others • life</div>
+        </div>
+
+        <h1>Building a shared foundation for what makes us human—<br/>in education, in an age of AI.</h1>
+
+        <p>
+          Education has tilted toward performance, productivity, and measurable outcomes—often framed as “college, career, and success.”
+          This convening is a first step toward re-centering the inner dimensions of development: connection to self, others, and life.
+        </p>
+
+        <div class="ctarow">
+          <button class="btn primary" id="openRegHero">Register</button>
+          <span class="hint">Invite-only working convening (12–15 participants), with broader coalition-building to follow.</span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <section class="card" id="about">
+          <h2>Context & Goals</h2>
+
+          <!-- 3-paragraph blurb -->
+          <p>
+            In an age increasingly defined by artificial intelligence, technological acceleration, and a culture of achievement, education faces a defining challenge:
+            how to nurture what makes us human. While “college, career, and success” matter, their dominance has shifted learning toward outer performance
+            at the expense of the inner dimensions that give life coherence and meaning.
+          </p>
+          <p>
+            We are living through a crisis of connection—reflected in rising anxiety, isolation, and polarization—that signals a developmental gap.
+            Many wellbeing approaches focus on parts (skills, traits, competencies) without engaging the underlying wholeness that is foundational to healthy development.
+            We need shared language and an actionable framework that approaches wholeness concretely through connection to self, others, and life.
+          </p>
+          <p>
+            This initiative places “What Makes Us Human?” at the center of educational thought and practice—advancing a pedagogy of connectedness that engages students’ whole selves.
+            By bringing together educators, researchers, practitioners, and thought leaders, we aim to confirm shared language and intention, identify priority areas for collaboration,
+            and generate momentum for a broader coalition and next steps to shape the field forward.
+          </p>
+
+          <div class="list" aria-label="Core intent">
+            <div class="li">
+              <strong>Vision</strong>
+              <span>A world where education cultivates people deeply connected to themselves, others, and life—acting with wisdom, compassion, and agency.</span>
+            </div>
+            <div class="li">
+              <strong>Mission</strong>
+              <span>Place what makes us human at the center of education by fostering connection to self, others, and life—co-creating frameworks, principles, and actionable guidelines.</span>
+            </div>
+          </div>
+        </section>
+
+        <aside class="card" id="logistics">
+          <h2>Logistics</h2>
+          <div class="meta">
+            <div class="metaitem">
+              <div class="k">Dates <span class="badge">Confirmed</span></div>
+              <div class="v">June 16–18, 2025</div>
+            </div>
+            <div class="metaitem">
+              <div class="k">Location <span class="badge">Confirmed</span></div>
+              <div class="v">Fetzer Institute • Kalamazoo, MI</div>
+            </div>
+            <div class="metaitem">
+              <div class="k">Street address <span class="badge">TBD</span></div>
+              <div class="v">Add full address here (street, city, state, ZIP)</div>
+            </div>
+            <div class="metaitem">
+              <div class="k">Arrival time <span class="badge">TBD</span></div>
+              <div class="v">Suggested arrival window (e.g., Mon 2:00–4:00 PM)</div>
+            </div>
+          </div>
+
+          <div class="list" style="margin-top:14px;">
+            <div class="li">
+              <strong>Convening purpose</strong>
+              <span>Confirm and formalize shared language and intention; identify priority collaborations; plan future steps for the broader coalition.</span>
+            </div>
+            <div class="li">
+              <strong>Who’s in the room</strong>
+              <span>Researchers, mental health experts, educators/students, program leaders, foundations, media, and other stakeholders (invite-only working group).</span>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:14px;">
+            <button class="btn primary" id="openRegSide">Register</button>
+            <span class="tiny">Questions? Add a contact email/phone here.</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="card" id="agenda" style="margin-top:16px;">
+        <h2>What we’re going to do</h2>
+        <p>
+          This is a working convening to align around mission, vision, framework, strategy, approach, and metrics—and to advance the content needed to steward a nascent field.
+        </p>
+
+        <div class="list" aria-label="Workstreams">
+          <div class="li">
+            <strong>1) Align on shared foundation</strong>
+            <span>Stress-test and refine the core framing: connection to self, others, and life (and the agency that animates it).</span>
+          </div>
+          <div class="li">
+            <strong>2) Develop practical content</strong>
+            <span>Review and further develop guiding principles, surface common misconceptions, and draft applications across domains (mental health, character, purpose, belonging, identity, SEL, etc.).</span>
+          </div>
+          <div class="li">
+            <strong>3) Build momentum & coalition</strong>
+            <span>Identify inroads for culture and practice, clarify participant contributions, and map additional partners to involve after the convening.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid" style="margin-top:16px;">
+        <section class="card faq" id="faq">
+          <h2>FAQs</h2>
+
+          <details>
+            <summary>Is this event invite-only?</summary>
+            <p>Yes—this first convening is designed for depth of conversation in a small working group (typically 12–15 people). Future engagement will broaden participation.</p>
+          </details>
+
+          <details>
+            <summary>What should I expect in the sessions?</summary>
+            <p>Working sessions to align on the shared framework, refine language, and co-develop principles and domain applications—plus time to identify collaboration priorities and next steps.</p>
+          </details>
+
+          <details>
+            <summary>Will there be pre-work?</summary>
+            <p><strong>TBD.</strong> If desired, add 1–2 short prompts (e.g., a reflection on “what makes us human” in your context, and one domain application you’d like to strengthen).</p>
+          </details>
+
+          <details>
+            <summary>Travel, lodging, and meals?</summary>
+            <p><strong>TBD.</strong> Add guidance on recommended airports, lodging blocks, ground transportation, and dietary accommodations once finalized.</p>
+          </details>
+
+          <details>
+            <summary>Accessibility needs?</summary>
+            <p>We will accommodate accessibility needs. Please share requests in the registration form so we can plan ahead.</p>
+          </details>
+        </section>
+
+        <aside class="card">
+          <h2>Quick links</h2>
+          <div class="list">
+            <div class="li">
+              <strong>Register</strong>
+              <span>Submit your details and logistics needs.</span>
+            </div>
+            <div class="li">
+              <strong>Add venue address</strong>
+              <span>Replace the “TBD” address block once confirmed.</span>
+            </div>
+            <div class="li">
+              <strong>Arrival window</strong>
+              <span>Set a recommended arrival time so travel planning is clear.</span>
+            </div>
+          </div>
+          <div class="row" style="margin-top:14px;">
+            <button class="btn primary" id="openRegQuick">Open registration</button>
+          </div>
+          <p class="note">
+            Tip: you can embed a map once the street address is confirmed.
+          </p>
+        </aside>
+      </section>
+
+      <footer>
+        <div>Mockup site for the June 16–18 convening. Replace TBD placeholders once logistics are finalized.</div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Registration modal -->
+  <div class="modalback" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="regTitle">
+    <div class="modal">
+      <div class="modalhead">
+        <div>
+          <h3 id="regTitle">Register for the Convening</h3>
+          <div class="sub">June 16–18 • Fetzer Institute (Kalamazoo, MI)</div>
+        </div>
+        <button class="close" id="closeModal" aria-label="Close">✕</button>
+      </div>
+
+      <div class="modalbody">
+        <form id="regForm">
+          <div class="formgrid">
+            <!-- Questions for the registration form -->
+            <div>
+              <label for="fullName">Full name</label>
+              <input id="fullName" name="fullName" placeholder="First Last" required />
+            </div>
+
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="name@org.org" required />
+            </div>
+
+            <div>
+              <label for="org">Organization / affiliation</label>
+              <input id="org" name="org" placeholder="Organization name" />
+            </div>
+
+            <div>
+              <label for="role">Role / title</label>
+              <input id="role" name="role" placeholder="Your role" />
+            </div>
+
+            <div class="full">
+              <label for="stakeholder">Which stakeholder lens best describes you?</label>
+              <select id="stakeholder" name="stakeholder">
+                <option value="">Select one (or closest)</option>
+                <option>Researcher / Academic</option>
+                <option>Mental health / Wellbeing expert</option>
+                <option>Educator / School leader</option>
+                <option>Student / Youth voice</option>
+                <option>Program leader / Practitioner</option>
+                <option>Foundation / Funder</option>
+                <option>Media / Journalism</option>
+                <option>Government / Policy</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="full">
+              <label for="focus">Which domains are you most excited to contribute to?</label>
+              <select id="focus" name="focus">
+                <option value="">Choose one primary area</option>
+                <option>Connection to Self</option>
+                <option>Connection to Others</option>
+                <option>Connection to Life</option>
+                <option>Agency (cross-cutting)</option>
+                <option>Domain application (mental health / SEL / character / purpose / belonging / identity)</option>
+              </select>
+            </div>
+
+            <div class="full">
+              <label for="contribution">What contribution are you most interested in making through this initiative?</label>
+              <textarea id="contribution" name="contribution" placeholder="A few sentences on what you’d like to bring, test, or build with the group."></textarea>
+            </div>
+
+            <div>
+              <label for="arrival">Arrival date & time (local)</label>
+              <input id="arrival" name="arrival" placeholder="e.g., June 16 • 2:30 PM" />
+            </div>
+
+            <div>
+              <label for="departure">Departure date & time (local)</label>
+              <input id="departure" name="departure" placeholder="e.g., June 18 • 4:00 PM" />
+            </div>
+
+            <div>
+              <label for="diet">Dietary needs</label>
+              <input id="diet" name="diet" placeholder="e.g., vegetarian, allergies" />
+            </div>
+
+            <div>
+              <label for="access">Accessibility needs</label>
+              <input id="access" name="access" placeholder="Mobility, sensory, other needs" />
+            </div>
+
+            <div class="full">
+              <label for="notes">Anything else we should know?</label>
+              <textarea id="notes" name="notes" placeholder="Logistics, session needs, or questions."></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <button class="btn primary" type="submit">Submit registration</button>
+            <button class="btn" type="button" id="saveDraft">Save draft (local)</button>
+            <span class="tiny">This mockup stores drafts in your browser only.</span>
+          </div>
+
+          <p class="note">
+            Implementation note: connect this form to your registration system (Airtable, Google Form, Typeform, etc.).
+            For now, “Submit” just validates and shows a success message.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modalBack = document.getElementById("modalBack");
+    const openButtons = [
+      "openRegTop","openRegHero","openRegSide","openRegQuick"
+    ].map(id => document.getElementById(id));
+
+    const closeModal = () => {
+      modalBack.classList.remove("open");
+      document.body.style.overflow = "";
+    };
+    const openModal = () => {
+      modalBack.classList.add("open");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => document.getElementById("fullName")?.focus(), 50);
+    };
+
+    openButtons.forEach(btn => btn && btn.addEventListener("click", openModal));
+    document.getElementById("closeModal").addEventListener("click", closeModal);
+
+    modalBack.addEventListener("click", (e) => {
+      if(e.target === modalBack) closeModal();
+    });
+
+    // Draft save/load (localStorage)
+    const form = document.getElementById("regForm");
+    const key = "convening_reg_draft_v1";
+
+    const getData = () => Object.fromEntries(new FormData(form).entries());
+    const setData = (data) => {
+      for (const [k,v] of Object.entries(data || {})) {
+        const el = form.elements[k];
+        if (el) el.value = v;
+      }
+    };
+
+    // Load any draft automatically
+    try { setData(JSON.parse(localStorage.getItem(key) || "{}")); } catch {}
+
+    document.getElementById("saveDraft").addEventListener("click", () => {
+      localStorage.setItem(key, JSON.stringify(getData()));
+      alert("Draft saved in this browser.");
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = getData();
+      if(!data.fullName || !data.email){
+        alert("Please add your name and email.");
+        return;
+      }
+      localStorage.removeItem(key);
+      alert("Submitted! (Mockup only — connect this to your registration workflow.)");
+      form.reset();
+      closeModal();
+    });
+
+    // ESC to close
+    window.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && modalBack.classList.contains("open")) closeModal();
+    });
+  </script>
+</body>
+</html>
