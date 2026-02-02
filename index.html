@@ -6,547 +6,995 @@
   <title>Prioritizing What Makes Us Human — Convening (June 16–18)</title>
   <style>
     :root{
-      --bg: #0b0f14;
-      --panel: #0f1722;
-      --text: #e7edf6;
-      --muted: #b6c2d2;
-      --line: rgba(231, 237, 246, .12);
-      --accent: #7dd3fc;
-      --accent2: #a78bfa;
-      --good: #34d399;
-      --warn: #fbbf24;
-      --shadow: 0 18px 50px rgba(0,0,0,.45);
-      --radius: 18px;
-      --radius2: 26px;
-      --max: 1120px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --bg: #ffffff;
+      --ink: #1f2937;         /* charcoal */
+      --muted: #6b7280;       /* gray */
+      --line: #e5e7eb;        /* light gray */
+      --band: #f3f6f7;        /* pale blue-gray band like OFI */
+      --teal: #1f6f8b;        /* blue/teal accent */
+      --orange: #f26b3a;      /* orange highlight */
+      --orange2:#ff7a45;
+      --max: 1040px;
+      --serif: Georgia, "Times New Roman", Times, serif;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: var(--sans);
-      color: var(--text);
-      background:
-        radial-gradient(1000px 600px at 12% 8%, rgba(167,139,250,.22), transparent 60%),
-        radial-gradient(900px 560px at 88% 18%, rgba(125,211,252,.18), transparent 55%),
-        radial-gradient(1200px 700px at 40% 95%, rgba(52,211,153,.10), transparent 60%),
-        var(--bg);
-      line-height: 1.45;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
     }
     a{color:inherit}
-    .wrap{max-width: var(--max); margin:0 auto; padding: 22px 18px 64px;}
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      gap: 14px;
-      padding: 12px 0 18px;
+    .wrap{max-width: var(--max); margin:0 auto; padding:0 18px;}
+    .topbar{
+      height: 4px;
+      background: linear-gradient(90deg, var(--orange), var(--teal));
     }
-    .brand{
-      display:flex; align-items:center; gap: 10px; text-decoration:none;
-    }
-    .logo{
-      width: 38px; height: 38px; border-radius: 12px;
-      background: linear-gradient(135deg, rgba(125,211,252,.9), rgba(167,139,250,.85));
-      box-shadow: 0 12px 25px rgba(167,139,250,.16);
-    }
-    .brand strong{font-weight:700; letter-spacing:.2px;}
-    .brand span{display:block; font-size: 12px; color: var(--muted); margin-top:2px;}
-    .navlinks{
-      display:flex; align-items:center; gap: 14px; flex-wrap:wrap;
-    }
-    .navlinks a{
-      text-decoration:none;
-      color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-    }
-    .navlinks a:hover{
-      border-color: var(--line);
-      color: var(--text);
-      background: rgba(255,255,255,.03);
-    }
-    .btn{
-      appearance:none; border:1px solid var(--line); cursor:pointer;
-      padding: 10px 14px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      font-weight: 650;
-      letter-spacing:.2px;
-      transition: transform .08s ease, border-color .12s ease, background .12s ease;
-    }
-    .btn:hover{border-color: rgba(125,211,252,.45); background: rgba(125,211,252,.08);}
-    .btn:active{transform: translateY(1px);}
-    .btn.primary{
-      border-color: rgba(125,211,252,.55);
-      background: linear-gradient(135deg, rgba(125,211,252,.22), rgba(167,139,250,.18));
-    }
-    .hero{
-      margin-top: 8px;
-      border-radius: var(--radius2);
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      box-shadow: var(--shadow);
-      padding: 26px 22px;
-      overflow:hidden;
-      position:relative;
-    }
-    .pillrow{display:flex; gap:10px; flex-wrap:wrap; margin-bottom: 14px;}
-    .pill{
-      font-size: 12px; color: var(--muted);
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.02);
-      padding: 6px 10px;
-      border-radius: 999px;
-    }
-    .hero h1{
-      font-size: clamp(26px, 3.2vw, 44px);
-      margin: 6px 0 10px;
-      line-height: 1.08;
-      letter-spacing: -.6px;
-    }
-    .hero p{
-      margin: 0 0 16px;
-      color: var(--muted);
-      max-width: 70ch;
-      font-size: 15.5px;
-    }
-    .ctarow{
-      display:flex; gap: 10px; align-items:center; flex-wrap:wrap;
-      margin-top: 12px;
-    }
-    .hint{
-      font-size: 12.5px; color: var(--muted);
-    }
-    .grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 16px;
-      margin-top: 16px;
-    }
-    @media (max-width: 920px){ .grid{grid-template-columns: 1fr; } }
-    .card{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: 0 10px 26px rgba(0,0,0,.25);
-    }
-    .card h2{
-      margin: 0 0 10px;
-      font-size: 18px;
-      letter-spacing: -.2px;
-    }
-    .card p{margin: 0 0 10px; color: var(--muted);}
-    .meta{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-    .metaitem{
-      padding: 12px 12px;
-      border-radius: 14px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.18);
-    }
-    .metaitem .k{
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 4px;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .badge{
-      font-family: var(--mono);
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border:1px solid var(--line);
-      color: var(--muted);
-      background: rgba(255,255,255,.03);
-      white-space:nowrap;
-    }
-    .metaitem .v{
-      font-size: 14.5px;
-      color: var(--text);
-    }
-    .list{
-      display:grid;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .li{
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px 12px;
-      background: rgba(255,255,255,.02);
-    }
-    .li strong{display:block; margin-bottom: 6px;}
-    .li span{color: var(--muted); font-size: 13.5px;}
-    .faq details{
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px 12px;
-      background: rgba(255,255,255,.02);
-    }
-    .faq details + details{margin-top: 10px;}
-    .faq summary{
-      cursor:pointer;
-      font-weight: 650;
-      list-style:none;
-    }
-    .faq summary::-webkit-details-marker{display:none;}
-    .faq p{margin-top: 8px;}
-    footer{
-      margin-top: 24px;
-      color: var(--muted);
-      font-size: 12.5px;
-      padding: 18px 2px 0;
-    }
-
-    /* Modal */
-    .modalback{
-      position:fixed; inset:0;
-      background: rgba(0,0,0,.55);
-      display:none;
-      align-items:flex-end;
-      justify-content:center;
-      padding: 18px;
-      z-index: 50;
-    }
-    .modalback.open{display:flex;}
-    .modal{
-      width: min(860px, 100%);
-      border-radius: 22px;
-      border: 1px solid rgba(231,237,246,.16);
-      background: linear-gradient(180deg, rgba(15,23,34,.95), rgba(10,14,20,.95));
-      box-shadow: 0 25px 90px rgba(0,0,0,.65);
-      overflow:hidden;
-      max-height: 86vh;
-      display:flex;
-      flex-direction:column;
-    }
-    .modalhead{
-      display:flex; align-items:flex-start; justify-content:space-between;
-      gap: 12px;
-      padding: 16px 16px 10px;
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--line);
     }
-    .modalhead h3{margin:0; font-size: 18px;}
-    .modalhead .sub{margin:4px 0 0; color: var(--muted); font-size: 13px;}
-    .close{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      width: 40px; height: 40px;
-      border-radius: 14px;
-      cursor:pointer;
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
     }
-    .modalbody{
-      padding: 14px 16px 16px;
-      overflow:auto;
+    .brand{
+      display:flex; align-items:center; gap: 10px;
+      text-decoration:none;
+      min-width: 220px;
+    }
+    .brandmark{
+      width: 34px; height: 34px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(12px 12px at 30% 35%, rgba(242,107,58,.55), transparent 60%),
+        radial-gradient(14px 14px at 65% 65%, rgba(31,111,139,.40), transparent 65%),
+        #fff;
+    }
+    .brandtext{
+      line-height: 1.1;
+    }
+    .brandtext strong{
+      font-weight: 750;
+      letter-spacing: .2px;
+      display:block;
+    }
+    .brandtext span{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+    nav .links{
+      display:flex; gap: 18px; align-items:center; flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    nav .links a{
+      text-decoration:none;
+      color: var(--ink);
+      font-size: 13px;
+      letter-spacing: .2px;
+      opacity: .85;
+      padding: 8px 6px;
+      border-radius: 8px;
+    }
+    nav .links a:hover{
+      background: #f9fafb;
+      opacity: 1;
+    }
+
+    .btn{
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex; align-items:center; justify-content:center;
+      transition: transform .08s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{background:#111827; border-color:#111827;}
+    .btn:active{transform: translateY(1px);}
+    .btn.orange{
+      border-color: var(--orange);
+      background: var(--orange);
+    }
+    .btn.orange:hover{background: var(--orange2); border-color: var(--orange2);}
+    .btn.ghost{
+      border-color: var(--line);
+      background: #fff;
+      color: var(--ink);
+      font-weight: 650;
+    }
+    .btn.ghost:hover{border-color: #cbd5e1; background:#f9fafb;}
+
+    /* HERO */
+    .hero{
+      border-bottom: 1px solid var(--line);
+      padding: 20px 0 0;
+    }
+    .heroFrame{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 18px 28px;
+    }
+    .heroPhoto{
+      position: relative;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.0), rgba(255,255,255,.0)),
+        radial-gradient(800px 380px at 20% 20%, rgba(31,111,139,.14), transparent 55%),
+        radial-gradient(700px 340px at 80% 30%, rgba(242,107,58,.16), transparent 58%),
+        #f6f7f8;
+      overflow:hidden;
+      aspect-ratio: 16/7;
+      min-height: 260px;
+    }
+    /* If you want a real hero image, set this in HTML: style="background-image:url('...')" */
+    .heroPhoto.hasImage{
+      background-size: cover;
+      background-position: center;
+    }
+    .heroOverlay{
+      position:absolute; inset:0;
+      padding: clamp(18px, 3vw, 34px);
+      display:flex;
+      align-items:flex-start;
+      justify-content:flex-end;
+    }
+    .heroText{
+      max-width: 520px;
+      text-align:right;
+    }
+    .kicker{
+      color: var(--teal);
+      letter-spacing: .12em;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .heroText h1{
+      margin: 10px 0 10px;
+      font-family: var(--sans);
+      font-size: clamp(28px, 4.2vw, 46px);
+      line-height: 1.05;
+      letter-spacing: -.6px;
+    }
+    .heroText h1 .accent{
+      color: var(--orange);
+      font-weight: 850;
+    }
+    .heroText p{
+      margin: 0 0 16px;
+      color: rgba(31,41,55,.80);
+      font-size: 14.5px;
+    }
+    .tagRow{
+      display:flex;
+      gap: 10px;
+      justify-content:flex-end;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
+    .tag{
+      display:inline-block;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-size: 12px;
+      color: #fff;
+    }
+    .tag.orange{background: var(--orange);}
+    .tag.gray{background: #6b7280;}
+    .tag.teal{background: var(--teal);}
+
+    .heroUnder{
+      display:flex;
+      gap: 18px;
+      align-items:flex-start;
+      justify-content:space-between;
+      padding: 18px 0 0;
+      flex-wrap:wrap;
+    }
+    .heroMeta{
+      display:flex; gap: 14px; flex-wrap:wrap;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .metaChip{
+      border:1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 10px;
+      background:#fff;
+    }
+
+    /* Sections */
+    section{
+      padding: 44px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    section.band{
+      background: var(--band);
+    }
+    h2{
+      margin: 0 0 14px;
+      font-size: 28px;
+      letter-spacing: -.3px;
+      font-weight: 850;
+    }
+    h3{
+      margin: 22px 0 10px;
+      font-size: 18px;
+      letter-spacing: -.1px;
+    }
+    .lede{
+      color: rgba(31,41,55,.82);
+      font-size: 15.5px;
+      max-width: 78ch;
+      margin-bottom: 16px;
+    }
+    .copy p{
+      margin: 0 0 14px;
+      max-width: 88ch;
+      font-size: 15.5px;
+    }
+
+    /* Editorial callout band like OFI */
+    .callout{
+      background: linear-gradient(180deg, rgba(31,111,139,.10), rgba(31,111,139,.04));
+      border: 1px solid var(--line);
+      padding: 22px 18px;
+      margin: 24px 0 0;
+      text-align:center;
+      font-family: var(--serif);
+      font-size: clamp(18px, 2.0vw, 26px);
+      color: rgba(31,41,55,.92);
+    }
+    .callout .orange{color: var(--orange);}
+
+    /* Lists */
+    .ol{
+      margin: 0;
+      padding-left: 20px;
+      max-width: 92ch;
+    }
+    .ol li{
+      margin: 0 0 12px;
+      font-size: 15.5px;
+    }
+    .subnote{
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+      max-width: 92ch;
+    }
+
+    /* Two column blocks (like footer/news area) */
+    .cols{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+    }
+    @media (max-width: 920px){
+      .cols{grid-template-columns: 1fr;}
+      .heroText{text-align:left;}
+      .heroOverlay{justify-content:flex-start;}
+      .tagRow{justify-content:flex-start;}
+    }
+
+    .panel{
+      border: 1px solid var(--line);
+      background:#fff;
+      padding: 18px;
+    }
+    .panel h3{margin-top:0;}
+    .kv{
+      display:grid;
+      gap: 10px;
+      font-size: 14px;
+    }
+    .kv .row{
+      display:flex; justify-content:space-between; gap:12px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+    .kv .row:last-child{border-bottom:none; padding-bottom:0;}
+    .k{color: var(--muted);}
+    .v{font-weight: 700;}
+
+    /* FAQs */
+    details{
+      border: 1px solid var(--line);
+      background:#fff;
+      padding: 14px 14px;
+    }
+    details + details{margin-top: 10px;}
+    summary{
+      cursor:pointer;
+      font-weight: 800;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none;}
+    details p{
+      margin: 10px 0 0;
+      color: rgba(31,41,55,.85);
+      font-size: 14.5px;
+      max-width: 86ch;
+    }
+
+    /* Form */
+    form{
+      margin-top: 12px;
     }
     .formgrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
+      max-width: 980px;
     }
-    @media (max-width: 720px){ .formgrid{grid-template-columns: 1fr;} .modalback{align-items:stretch;} }
-    label{display:block; font-size: 12px; color: var(--muted); margin-bottom: 6px;}
+    @media (max-width: 820px){
+      .formgrid{grid-template-columns: 1fr;}
+    }
+    label{
+      display:block;
+      font-size: 12px;
+      letter-spacing:.02em;
+      font-weight: 750;
+      color: rgba(31,41,55,.78);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
     input, select, textarea{
       width:100%;
-      padding: 10px 11px;
-      border-radius: 14px;
-      border: 1px solid rgba(231,237,246,.16);
-      background: rgba(0,0,0,.18);
-      color: var(--text);
-      outline:none;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font: inherit;
+      background: #fff;
     }
-    textarea{min-height: 96px; resize: vertical;}
+    textarea{min-height: 110px; resize: vertical;}
     .full{grid-column: 1/-1;}
-    .row{
-      display:flex; gap: 10px; flex-wrap:wrap; align-items:center;
-      margin-top: 12px;
+    .formActions{
+      margin-top: 14px;
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      align-items:center;
     }
-    .note{
-      color: var(--muted);
+    .small{
       font-size: 12.5px;
-      margin-top: 10px;
-      border-top: 1px dashed rgba(231,237,246,.18);
-      padding-top: 10px;
+      color: var(--muted);
+      max-width: 92ch;
     }
-    .tiny{font-size: 12px; color: var(--muted);}
+
+    footer{
+      background: #111827;
+      color: rgba(255,255,255,.78);
+      padding: 32px 0;
+    }
+    footer .wrap{
+      display:flex;
+      gap: 18px;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      align-items:flex-start;
+    }
+    footer strong{color:#fff;}
+    .footLinks{
+      display:flex; gap: 14px; flex-wrap:wrap;
+      font-size: 13px;
+      opacity: .95;
+    }
+    .footLinks a{color: rgba(255,255,255,.82); text-decoration:none;}
+    .footLinks a:hover{text-decoration:underline;}
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <header class="nav">
-      <a class="brand" href="#top">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <strong>Prioritizing What Makes Us Human</strong>
-          <span>Convening • June 16–18</span>
-        </div>
-      </a>
+  <div class="topbar"></div>
 
-      <nav class="navlinks" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#logistics">Logistics</a>
-        <a href="#agenda">What we’ll do</a>
-        <a href="#faq">FAQs</a>
-        <button class="btn primary" id="openRegTop">Register</button>
-      </nav>
-    </header>
-
-    <main id="top">
-      <section class="hero" aria-label="Hero">
-        <div class="pillrow">
-          <div class="pill">Interdisciplinary working group</div>
-          <div class="pill">Field-building convening</div>
-          <div class="pill">Connection to self • others • life</div>
-        </div>
-
-        <h1>Building a shared foundation for what makes us human—<br/>in education, in an age of AI.</h1>
-
-        <p>
-          Education has tilted toward performance, productivity, and measurable outcomes—often framed as “college, career, and success.”
-          This convening is a first step toward re-centering the inner dimensions of development: connection to self, others, and life.
-        </p>
-
-        <div class="ctarow">
-          <button class="btn primary" id="openRegHero">Register</button>
-          <span class="hint">Invite-only working convening (12–15 participants), with broader coalition-building to follow.</span>
-        </div>
-      </section>
-
-      <section class="grid">
-        <section class="card" id="about">
-          <h2>Context & Goals</h2>
-
-          <!-- 3-paragraph blurb -->
-          <p>
-            In an age increasingly defined by artificial intelligence, technological acceleration, and a culture of achievement, education faces a defining challenge:
-            how to nurture what makes us human. While “college, career, and success” matter, their dominance has shifted learning toward outer performance
-            at the expense of the inner dimensions that give life coherence and meaning.
-          </p>
-          <p>
-            We are living through a crisis of connection—reflected in rising anxiety, isolation, and polarization—that signals a developmental gap.
-            Many wellbeing approaches focus on parts (skills, traits, competencies) without engaging the underlying wholeness that is foundational to healthy development.
-            We need shared language and an actionable framework that approaches wholeness concretely through connection to self, others, and life.
-          </p>
-          <p>
-            This initiative places “What Makes Us Human?” at the center of educational thought and practice—advancing a pedagogy of connectedness that engages students’ whole selves.
-            By bringing together educators, researchers, practitioners, and thought leaders, we aim to confirm shared language and intention, identify priority areas for collaboration,
-            and generate momentum for a broader coalition and next steps to shape the field forward.
-          </p>
-
-          <div class="list" aria-label="Core intent">
-            <div class="li">
-              <strong>Vision</strong>
-              <span>A world where education cultivates people deeply connected to themselves, others, and life—acting with wisdom, compassion, and agency.</span>
-            </div>
-            <div class="li">
-              <strong>Mission</strong>
-              <span>Place what makes us human at the center of education by fostering connection to self, others, and life—co-creating frameworks, principles, and actionable guidelines.</span>
-            </div>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top">
+          <div class="brandmark" aria-hidden="true"></div>
+          <div class="brandtext">
+            <strong>Prioritizing What Makes Us Human</strong>
+            <span>Convening • June 16–18, 2026</span>
           </div>
-        </section>
+        </a>
 
-        <aside class="card" id="logistics">
-          <h2>Logistics</h2>
-          <div class="meta">
-            <div class="metaitem">
-              <div class="k">Dates <span class="badge">Confirmed</span></div>
-              <div class="v">June 16–18, 2025</div>
-            </div>
-            <div class="metaitem">
-              <div class="k">Location <span class="badge">Confirmed</span></div>
-              <div class="v">Fetzer Institute • Kalamazoo, MI</div>
-            </div>
-            <div class="metaitem">
-              <div class="k">Street address <span class="badge">TBD</span></div>
-              <div class="v">Add full address here (street, city, state, ZIP)</div>
-            </div>
-            <div class="metaitem">
-              <div class="k">Arrival time <span class="badge">TBD</span></div>
-              <div class="v">Suggested arrival window (e.g., Mon 2:00–4:00 PM)</div>
-            </div>
+        <nav aria-label="Primary navigation">
+          <div class="links">
+            <a href="#current">Current State</a>
+            <a href="#history">How We Got Here</a>
+            <a href="#field">The Field</a>
+            <a href="#framework">Framework</a>
+            <a href="#strategy">Strategy</a>
+            <a href="#convening">Convening</a>
+            <a href="#faq">FAQs</a>
+            <a class="btn orange" href="#register">Register</a>
           </div>
-
-          <div class="list" style="margin-top:14px;">
-            <div class="li">
-              <strong>Convening purpose</strong>
-              <span>Confirm and formalize shared language and intention; identify priority collaborations; plan future steps for the broader coalition.</span>
-            </div>
-            <div class="li">
-              <strong>Who’s in the room</strong>
-              <span>Researchers, mental health experts, educators/students, program leaders, foundations, media, and other stakeholders (invite-only working group).</span>
-            </div>
-          </div>
-
-          <div class="row" style="margin-top:14px;">
-            <button class="btn primary" id="openRegSide">Register</button>
-            <span class="tiny">Questions? Add a contact email/phone here.</span>
-          </div>
-        </aside>
-      </section>
-
-      <section class="card" id="agenda" style="margin-top:16px;">
-        <h2>What we’re going to do</h2>
-        <p>
-          This is a working convening to align around mission, vision, framework, strategy, approach, and metrics—and to advance the content needed to steward a nascent field.
-        </p>
-
-        <div class="list" aria-label="Workstreams">
-          <div class="li">
-            <strong>1) Align on shared foundation</strong>
-            <span>Stress-test and refine the core framing: connection to self, others, and life (and the agency that animates it).</span>
-          </div>
-          <div class="li">
-            <strong>2) Develop practical content</strong>
-            <span>Review and further develop guiding principles, surface common misconceptions, and draft applications across domains (mental health, character, purpose, belonging, identity, SEL, etc.).</span>
-          </div>
-          <div class="li">
-            <strong>3) Build momentum & coalition</strong>
-            <span>Identify inroads for culture and practice, clarify participant contributions, and map additional partners to involve after the convening.</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="grid" style="margin-top:16px;">
-        <section class="card faq" id="faq">
-          <h2>FAQs</h2>
-
-          <details>
-            <summary>Is this event invite-only?</summary>
-            <p>Yes—this first convening is designed for depth of conversation in a small working group (typically 12–15 people). Future engagement will broaden participation.</p>
-          </details>
-
-          <details>
-            <summary>What should I expect in the sessions?</summary>
-            <p>Working sessions to align on the shared framework, refine language, and co-develop principles and domain applications—plus time to identify collaboration priorities and next steps.</p>
-          </details>
-
-          <details>
-            <summary>Will there be pre-work?</summary>
-            <p><strong>TBD.</strong> If desired, add 1–2 short prompts (e.g., a reflection on “what makes us human” in your context, and one domain application you’d like to strengthen).</p>
-          </details>
-
-          <details>
-            <summary>Travel, lodging, and meals?</summary>
-            <p><strong>TBD.</strong> Add guidance on recommended airports, lodging blocks, ground transportation, and dietary accommodations once finalized.</p>
-          </details>
-
-          <details>
-            <summary>Accessibility needs?</summary>
-            <p>We will accommodate accessibility needs. Please share requests in the registration form so we can plan ahead.</p>
-          </details>
-        </section>
-
-        <aside class="card">
-          <h2>Quick links</h2>
-          <div class="list">
-            <div class="li">
-              <strong>Register</strong>
-              <span>Submit your details and logistics needs.</span>
-            </div>
-            <div class="li">
-              <strong>Add venue address</strong>
-              <span>Replace the “TBD” address block once confirmed.</span>
-            </div>
-            <div class="li">
-              <strong>Arrival window</strong>
-              <span>Set a recommended arrival time so travel planning is clear.</span>
-            </div>
-          </div>
-          <div class="row" style="margin-top:14px;">
-            <button class="btn primary" id="openRegQuick">Open registration</button>
-          </div>
-          <p class="note">
-            Tip: you can embed a map once the street address is confirmed.
-          </p>
-        </aside>
-      </section>
-
-      <footer>
-        <div>Mockup site for the June 16–18 convening. Replace TBD placeholders once logistics are finalized.</div>
-      </footer>
-    </main>
-  </div>
-
-  <!-- Registration modal -->
-  <div class="modalback" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="regTitle">
-    <div class="modal">
-      <div class="modalhead">
-        <div>
-          <h3 id="regTitle">Register for the Convening</h3>
-          <div class="sub">June 16–18 • Fetzer Institute (Kalamazoo, MI)</div>
-        </div>
-        <button class="close" id="closeModal" aria-label="Close">✕</button>
+        </nav>
       </div>
+    </div>
+  </header>
 
-      <div class="modalbody">
-        <form id="regForm">
+  <main id="top">
+    <!-- HERO -->
+    <div class="hero">
+      <div class="heroFrame">
+        <!-- Add a hero photo URL by replacing the class and adding style like:
+             <div class="heroPhoto hasImage" style="background-image:url('YOUR_IMAGE_URL_HERE');"> -->
+        <div class="heroPhoto" role="img" aria-label="Hero image placeholder">
+          <div class="heroOverlay">
+            <div class="heroText">
+              <div class="kicker">IN AN AGE OF AI, POLARIZATION, & A CRISIS OF MEANING</div>
+              <h1>
+                PRIORITIZING<br/>
+                <span class="accent">WHAT MAKES US HUMAN</span>
+              </h1>
+              <p>
+                Creating the foundations for an interdisciplinary field of study — and a pedagogy of connectedness
+                that centers connection with self, others, and life.
+              </p>
+              <a class="btn orange" href="#register">Register</a>
+
+              <div class="tagRow" aria-label="Hero tags">
+                <span class="tag orange">CONNECTION</span>
+                <span class="tag gray">AGENCY</span>
+                <span class="tag teal">WHOLE SELF</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="heroUnder">
+          <div class="heroMeta" aria-label="Event meta">
+            <span class="metaChip"><strong>Dates:</strong> June 16–18, 2026</span>
+            <span class="metaChip"><strong>Location:</strong> Fetzer Institute • Kalamazoo, Michigan</span>
+            <span class="metaChip"><strong>Arrival:</strong> TBD</span>
+          </div>
+          <div>
+            <a class="btn ghost" href="#logistics">View logistics</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CURRENT STATE -->
+    <section id="current">
+      <div class="wrap">
+        <h2>The Current State of Education</h2>
+        <div class="copy">
+          <p>
+            In an age increasingly defined by artificial intelligence, technological acceleration, a culture
+            of achievement, and growing social fragmentation and polarization, education faces a
+            defining challenge: how to nurture what makes us human. Across classrooms and policy
+            agendas, students are prepared to compete, achieve, and succeed—often framed in terms
+            of “college, career, and success.” While these aims have value, their dominance has tilted
+            education toward the outer dimensions of life—performance, productivity, and measurable
+            outcomes—at the expense of the inner dimensions that connect students to their own lives
+            and give those pursuits meaning.
+          </p>
+          <p>
+            We are living through a broad crisis of connection—reflected in rising anxiety, isolation, and
+            polarization—that points to a fundamental gap in how education has approached human
+            development. We have not cultivated the inner capacities that allow individuals to relate
+            authentically to themselves, to others, and to the world.
+          </p>
+          <p>
+            Although many social-emotional learning (SEL) and related programs seek to address
+            wellbeing, they often do so by focusing on parts—skills, traits, or competencies—without
+            engaging the underlying wholeness that is the foundation of health and development for
+            both individuals and society.
+          </p>
+          <p>
+            We lack a shared language or framework for addressing wholeness directly, so efforts to
+            foster wellbeing frequently remain fragmented. Yet wholeness is not abstract or “soft.” It can
+            be approached concretely through creating outlets for students to develop their connection
+            with self, others, and life—connections that integrate the inner and outer dimensions of
+            learning and give coherence to their experience. SEL skills and competencies no doubt have
+            importance, but they need to be anchored in the connectivity that engages their whole self,
+            otherwise students will experience those skills and competencies as fragmented parts that
+            do not interrelate with the core of who they are.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW DID WE GET HERE -->
+    <section id="history" class="band">
+      <div class="wrap">
+        <h2>How Did We Get Here?</h2>
+        <div class="copy">
+          <p>
+            It’s easy to blame the rapid advance of technology for an intensifying crisis of disconnection and
+            mental health in our youth. While technological advances and social media have been profound
+            accelerants, complicating the journey of connection with self, others, and life, a host of other forces
+            have combined to bring us to this point. To fully appreciate what our youth are dealing with, it is
+            helpful to consider the historical and cultural context in which today's adolescents are growing up.
+          </p>
+          <p>
+            A few generations prior, society would dictate and hand us an understanding and roadmap of
+            “reality.” Whether commendable or lamentable, this "map" outlined what it meant to be a boy, a girl,
+            a man, a woman, what was expected of us, and what our future held for us. Although these cultural
+            narratives imposed limitations, they also offered a sense of certainty and stability.
+          </p>
+          <p>
+            Today, these prescribed narratives no longer hold the same weight and certainty in defining who we
+            are and our direction in life. As a result, adolescents are largely left to their own devices to
+            understand themselves, life, and their place in it. This shift has left many youth feeling lost, confused,
+            and in the dark, without the means needed to chart a path to their future. Consequently, teenagers
+            grapple with intense feelings of disconnection, anxiety, and isolation, struggling to find their way in a
+            world that seems increasingly chaotic and uncertain.
+          </p>
+          <p>
+            Atop these challenges, youth are bombarded with images and messages that fuel concerns about
+            self-image and drive them to project inauthentic versions of themselves on social media and in their
+            lives. The struggle for authenticity is further complicated by a growing distrust in media's portrayal
+            of facts and events, leaving young people uncertain about what information they can rely on as they
+            form their identities and worldviews.
+          </p>
+          <p>
+            The rapid advancement of AI technology is set to amplify these challenges exponentially. As
+            AI-generated content becomes more sophisticated, we will face increasing difficulty in distinguishing
+            between genuine human expression and artificial creations. This blurring of lines will further
+            complicate teens’ journey toward authentic connection with themselves, others, and the world
+            around them.
+          </p>
+          <p>
+            In this new landscape, the role of parents and educators is crucial, especially during the pivotal
+            transition from adolescence to independent adulthood. Our most promising solution lies in providing
+            teens with opportunities to develop an internal compass that helps to ground them as they find and
+            chart their unique path. This guidance from within can replace the outdated scripts of the past,
+            enabling young people to uncover their authentic selves and determine their own directions in life.
+          </p>
+          <p>
+            In this way, we not only address the immediate mental health crisis but also empower the next
+            generation to thrive in an increasingly complex and rapidly changing world.
+          </p>
+        </div>
+
+        <div class="callout">
+          Education’s ultimate task is not to prepare students for machines, but to prepare them for
+          <span class="orange">meaning</span>.
+        </div>
+      </div>
+    </section>
+
+    <!-- CREATING A NEW FIELD -->
+    <section id="field">
+      <div class="wrap">
+        <h2>Creating a new Interdisciplinary field of study</h2>
+        <div class="copy">
+          <p>
+            This initiative seeks to place “What Makes Us Human?” at the center of educational
+            thought and practice. By supporting educators, researchers, and leaders to explore and
+            advance a pedagogy of connectedness—one that engages students’ whole selves—we can
+            counter the prevailing pedagogy that atomizes the self into discrete parts: academic, social,
+            emotional, behavioral. A pedagogy of connectedness reorients learning around human
+            agency and authentic relationship rather than control, conformity, or performance alone.
+          </p>
+          <p>
+            Anchoring the many promising strands of educational innovation—identity development,
+            purpose learning, character education, agency and social-emotional learning—in the deeper
+            foundation of what makes us human creates the possibility of moving beyond fixed and
+            externally imposed definitions of success. It allows us to cultivate the inner ground from
+            which real growth emerges: the ability to relate meaningfully to one’s own experience, to
+            others, and to life itself.
+          </p>
+          <p>
+            Connection is not an abstract ideal; it is a concrete developmental process that can be
+            fostered in any context—from classroom learning to athletics, from community engagement
+            to higher education. When students consciously explore how they relate to their experience,
+            to others, and to life, they strengthen the ethical, emotional, and existential core that
+            sustains resilience, empathy, and purpose.
+          </p>
+          <p>
+            We aim to deepen the understanding of the “whole child”—not as a collection of parts to
+            be supported separately, but as an integrated, relational individual whose wellbeing depends
+            on a foundation of connectedness to self, others, and life. Wholeness is a byproduct of
+            connectedness; it is foundational to human development—it is what grounds us in our
+            humanity and differentiates us from AI.
+          </p>
+          <p>
+            By galvanizing a community of educational leaders across disciplines, we aim to
+            collectively lay the foundations for a new interdisciplinary field of study, expanding the
+            narrative of education beyond college and career readiness toward preparedness for life, for
+            relationship, and for the shared human journey. Addressing disconnection at its roots is
+            essential not only for individual wellbeing but also for the flourishing and cohesion of society
+            itself.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONCEPTUAL FRAMEWORK -->
+    <section id="framework" class="band">
+      <div class="wrap">
+        <h2>Conceptual Framework</h2>
+        <p class="lede"><strong>Towards a Pedagogy of Wholeness</strong></p>
+
+        <div class="copy">
+          <p>
+            Wholeness and Connection: Wholeness is the foundation for individual and
+            societal well-being, yet existing programs often address aspects or
+            parts rather than the underlying wholeness. This new interdisciplinary
+            field of study seeks to redefine the whole child as an integrated, relational
+            being. At the heart of this field building approach lies a guiding framework designed to expand our
+            understanding of the “whole child". It centers on three interconnected domains: Connection with Self, Connection with
+            Others, and Connection with Life. Each domain of connection is animated by <strong>agency</strong>—the
+            capacity to consciously and intentionally engage with and express our experience in relation
+            to ourselves, others, and life. This field situates connection as the generative core of human
+            wholeness that forms the foundation for personal flourishing and collective health.
+          </p>
+
+          <h3>1. Connection with Self</h3>
+          <p>
+            This domain cultivates the agency to explore and express who we
+            are. Central to this connection is students being able to explore how they relate to and
+            make sense of their experience. This connection fosters authenticity and grounds
+            students in the conviction required to act from their inner compass rather than external
+            validation.
+          </p>
+
+          <h3>2. Connection with Others</h3>
+          <p>
+            This domain cultivates the agency to form intimate and trusting
+            relationships. Central to this connection is creating opportunities for students to truly see
+            and connect with one another as human beings. This dimension is crucial for reducing
+            polarization and restoring a sense of shared humanity across differences.
+          </p>
+
+          <h3>3. Connection with Life</h3>
+          <p>
+            This domain cultivates the agency to embrace life with purpose
+            and possibility by supporting students to make sense of their lives, their future, and their
+            place in the world and their communities. This connection nurtures character, authentic
+            citizenship and appreciation for the shared human journey.
+          </p>
+
+          <p>
+            Agency and Humanity: Agency and humanity are inextricably linked. The
+            capacity to consciously shape how we relate to ourselves, others, and life is
+            unique to humanity; it differentiates us from both animals and AI. Supporting
+            students in reflecting intentionally on how they relate to their experience—through reflection, relational practice, and authentic
+            meaning-making—whether in collaboration or conflict, profoundly deepens their sense of
+            connectedness. When students are supported in developing this agency, they begin to see
+            themselves not merely as participants in life’s unfolding but as co-authors.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRATEGY -->
+    <section id="strategy">
+      <div class="wrap">
+        <h2>Field Building Strategy</h2>
+        <div class="copy">
+          <p>
+            Prioritizing what makes us human is a comprehensive, collaborative, and interdisciplinary
+            approach to forming a shared vision that requires both conceptual clarity and structural
+            coordination. The work unfolds through five interdependent phases:
+          </p>
+
+          <!-- No sub-bullets: integrated into 1–5 -->
+          <ol class="ol">
+            <li>
+              Collaborate with and convene an interdisciplinary working group of educators,
+              researchers, practitioners, and thought leaders to co-create shared language,
+              intellectual coherence, and long-term stewardship for the field. The centerpiece of this
+              strategy is building a trusted and aligned steering committee, culminating in an initial
+              convening on June 16–18, 2026. Approximately 20 key stakeholders representing
+              research institutions, innovative programs, media, and foundations will gather at the
+              Fetzer Institute in Kalamazoo, Michigan. This convening will serve as the first step to
+              formalize shared language and intention, identify priority areas for collaboration, and
+              build momentum for broader coalition development and next steps in shaping the
+              field. Potential participants/advisors will include Researchers; Mental Health experts; High school Educators and students; Program Leaders/Weavers (bringing theory and practice together); Network of Organizations; Foundations; Government Officials; Journalists.
+            </li>
+            <li>
+              Refine the framework to clearly convey what it means to prioritize What Makes Us
+              Human means, why it matters, and how it functions as a foundation for human
+              development and societal wellbeing.
+            </li>
+            <li>
+              Co-Develop core pedagogical principles to highlight best practices, and identify
+              misconceptions to ensure rigor of application – clarifying both effective approaches
+              and common practices that can unintentionally undermine human development.
+            </li>
+            <li>
+              Demonstrate and communicate the foundational relevance of prioritizing students’
+              humanity across multiple domains of learning and growth to bring light to the impact
+              possible. Examples include: Character Development/Ethics, Mental Health, SEL,
+              Identity development, Polarization, Agency development, Purpose development,
+              Belonging and Connectedness. Collaborate with experts across domains to align terminology,
+              frameworks, pedagogical principles, and measures; and publish findings and guidance through
+              accessible articles, podcasts, conferences and open-source resources to reach diverse audiences.
+            </li>
+            <li>
+              Catalyze a broader movement to shift educational narratives, priorities, and
+              investments from an exclusive focus on performance and outcomes toward cultivating
+              human connection, agency, and flourishing in an age of AI. This includes coalition development to
+              unite key stakeholders around the mission; a coordinated strategy for movement building that centers
+              collective ownership and collaboration; thought leadership through conferences, philanthropic convenings,
+              media opportunities, and writing projects focused on collaborative messaging; and a plan to inform and
+              influence public policy later in the process.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONVENING -->
+    <section id="convening" class="band">
+      <div class="wrap">
+        <h2>Goals for the first Convening (June 16–18)</h2>
+        <p class="lede">Convening objectives and outcomes through a community of stewardship</p>
+
+        <div class="copy">
+          <ol class="ol">
+            <li>
+              <strong>Align around the mission, vision, framework, strategy, approach, and metrics.</strong> This
+              convening will serve as a space to test core ideas, surface tensions, and strengthen
+              intellectual coherence.<br/>
+              <strong>Outcome:</strong> A shared and coherent narrative for the field-building effort, with key
+              inconsistencies addressed and resolved.
+            </li>
+
+            <li>
+              <strong>Review and further develop foundational content</strong><br/>
+              a. Guiding principles for connection with self, others, life<br/>
+              Outcome: Diverse input to inform a first draft of core pedagogical principles<br/><br/>
+              b. Common misconceptions and implementation pitfalls related to connection with
+              self, others, and life<br/>
+              Outcome: Diverse input to inform a first draft of common misconceptions and
+              ineffective practices<br/><br/>
+              c. Applications across key domains of learning and growth (e.g., mental health,
+              character, purpose, belonging, agency, etc.)<br/>
+              Outcome: Input across domains to inform a first draft outlining how prioritizing
+              What Makes Us Human applies to different areas of development
+            </li>
+
+            <li>
+              Heather Malin will present a synthesis of more than a dozen existing frameworks
+              focused on students’ inner development, enabling participants to identify areas of
+              convergence, clarify core priorities, and explore how disparate approaches can be
+              integrated into a coherent field
+            </li>
+
+            <li>
+              Explore inroads for this work in broader culture and across key domains of learning
+              and growth<br/>
+              Outcome: A phased and prioritized set of strategies for integrating What Makes Us
+              Human into education and related domains over time
+            </li>
+
+            <li>
+              Build a coalition to galvanize key stakeholders across education, academia,
+              philanthropy, media, and policy<br/>
+              Outcome: Clear commitments from participants on how they will contribute to the
+              initiative<br/>
+              Outcome: A curated list of additional potential early contributors and allies for the
+              movement
+            </li>
+
+            <li>
+              Define next steps<br/>
+              Outcome: Agreement on short term and mid-term priorities and working groups to
+              advance the next phase of field building
+            </li>
+          </ol>
+
+          <p class="subnote">
+            Rather than presuming a single, predetermined trajectory, this convening is designed as a
+            space for collective discernment—examining where there is the greatest alignment,
+            readiness, leverage, and need—and to clarify which directions make the most sense to
+            prioritize at this stage of field building. A core goal of the convening is to surface shared
+            insight about how this work can most meaningfully grow, spread, and be stewarded in ways
+            that are authentic, rigorous, and responsive to the current educational and cultural
+            landscape.
+          </p>
+        </div>
+
+        <div class="callout">
+          Join us in re-envisioning education — to nurture the conscious, connected, and creative
+          capacities that foster exploration of what it means to be <span class="orange">human</span>.
+        </div>
+      </div>
+    </section>
+
+    <!-- ROLE OF PARTICIPANT -->
+    <section id="participant">
+      <div class="wrap">
+        <h2>Role of Convening Participant</h2>
+        <div class="copy">
+          <ol class="ol">
+            <li>
+              We want you here for your experience and perspective as we embark upon
+              creating this new field to strengthen the overall approach and contribute to a
+              new interdisciplinary field of study.
+            </li>
+            <li>
+              This is an invitation to a community of Stewardship for a nascent field
+            </li>
+            <li>
+              Theoretical framework that anchors what makes us uniquely human
+            </li>
+            <li>
+              Further Develop a strategy to co-create and expand this nascent field
+            </li>
+          </ol>
+
+          <p>
+            Our collective journey as we enter an age of AI calls for an evolution in education’s
+            purpose—from information transmission to human integration.
+          </p>
+          <p>
+            Its ultimate aim is to create a lasting educational paradigm that honors the uniqueness
+            of being human and cultivates the inner- and inter-connectedness that technology
+            cannot replicate.
+          </p>
+          <p>
+            By addressing the underlying crisis of disconnection and Prioritizing What Makes Us
+            Human, we prepare students for meaning, flourishing, and wise coexistence with
+            technology and nature. This educational shift frames connection as both preventive
+            (reducing violence and conflict) and promotive (leading to a healthy society).
+          </p>
+          <p>
+            Join us in re-envisioning education—to nurture the conscious, connected, and creative
+            capacities that foster exploration of what it means to be human.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGISTICS + QUICK INFO -->
+    <section id="logistics" class="band">
+      <div class="wrap">
+        <h2>Logistics</h2>
+
+        <div class="cols">
+          <div class="copy">
+            <p class="lede">
+              Convening at the Fetzer Institute in Kalamazoo, Michigan. Final schedule, arrival window, and
+              address details will be shared with confirmed participants.
+            </p>
+
+            <div class="callout" style="margin-top:18px;">
+              Would you like to register for the convening?<br/>
+              <a class="btn orange" href="#register" style="margin-top:14px;">Register</a>
+            </div>
+          </div>
+
+          <div class="panel" aria-label="Key details">
+            <h3>At a glance</h3>
+            <div class="kv">
+              <div class="row"><span class="k">Dates</span><span class="v">June 16–18, 2026</span></div>
+              <div class="row"><span class="k">Arrival time</span><span class="v">TBD</span></div>
+              <div class="row"><span class="k">Location</span><span class="v">Fetzer Institute</span></div>
+              <div class="row"><span class="k">City</span><span class="v">Kalamazoo, MI</span></div>
+              <div class="row"><span class="k">Address</span><span class="v">TBD (add full street address)</span></div>
+            </div>
+            <p class="small" style="margin-top:12px;">
+              If you have accessibility or travel needs, please note them in the registration form.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE TEAM PLACEHOLDER -->
+    <section id="team">
+      <div class="wrap">
+        <h2>Core Team & Advisors</h2>
+        <p class="lede">Placeholder — to be added.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="band">
+      <div class="wrap">
+        <h2>FAQs</h2>
+
+        <details>
+          <summary>Who is this convening for?</summary>
+          <p>
+            An interdisciplinary working group of educators, researchers, practitioners, and thought leaders contributing to
+            shared language, coherence, and stewardship for this emerging field.
+          </p>
+        </details>
+
+        <details>
+          <summary>What should I expect in the sessions?</summary>
+          <p>
+            Working sessions to align around mission, vision, framework, strategy, and metrics; review and develop foundational content;
+            explore inroads across domains; build coalition commitments; and define next steps.
+          </p>
+        </details>
+
+        <details>
+          <summary>Where is it happening?</summary>
+          <p>
+            Fetzer Institute, Kalamazoo, Michigan. Full address and arrival guidance will be shared once finalized.
+          </p>
+        </details>
+
+        <details>
+          <summary>What if I have dietary or accessibility needs?</summary>
+          <p>
+            Please share needs in the registration form so we can plan ahead.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- REGISTER -->
+    <section id="register">
+      <div class="wrap">
+        <h2>Register</h2>
+        <p class="lede">
+          Please complete the form below. (This page is a front-end mockup; connect it to your preferred system later—Google Form, Airtable, Typeform, etc.)
+        </p>
+
+        <form onsubmit="event.preventDefault(); alert('Submitted! (Mockup only — connect this form to your registration workflow.)');">
           <div class="formgrid">
-            <!-- Questions for the registration form -->
             <div>
               <label for="fullName">Full name</label>
-              <input id="fullName" name="fullName" placeholder="First Last" required />
+              <input id="fullName" name="fullName" required />
             </div>
-
             <div>
               <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="name@org.org" required />
+              <input id="email" name="email" type="email" required />
             </div>
-
             <div>
               <label for="org">Organization / affiliation</label>
-              <input id="org" name="org" placeholder="Organization name" />
+              <input id="org" name="org" />
             </div>
-
             <div>
               <label for="role">Role / title</label>
-              <input id="role" name="role" placeholder="Your role" />
+              <input id="role" name="role" />
             </div>
 
             <div class="full">
-              <label for="stakeholder">Which stakeholder lens best describes you?</label>
+              <label for="stakeholder">Stakeholder lens</label>
               <select id="stakeholder" name="stakeholder">
                 <option value="">Select one (or closest)</option>
-                <option>Researcher / Academic</option>
-                <option>Mental health / Wellbeing expert</option>
-                <option>Educator / School leader</option>
-                <option>Student / Youth voice</option>
-                <option>Program leader / Practitioner</option>
-                <option>Foundation / Funder</option>
-                <option>Media / Journalism</option>
-                <option>Government / Policy</option>
+                <option>Researcher</option>
+                <option>Mental Health expert</option>
+                <option>High school Educator</option>
+                <option>Student</option>
+                <option>Program Leader/Weaver (bringing theory and practice together)</option>
+                <option>Network of Organizations</option>
+                <option>Foundation</option>
+                <option>Government Official</option>
+                <option>Journalist</option>
                 <option>Other</option>
               </select>
             </div>
 
             <div class="full">
-              <label for="focus">Which domains are you most excited to contribute to?</label>
-              <select id="focus" name="focus">
-                <option value="">Choose one primary area</option>
-                <option>Connection to Self</option>
-                <option>Connection to Others</option>
-                <option>Connection to Life</option>
-                <option>Agency (cross-cutting)</option>
-                <option>Domain application (mental health / SEL / character / purpose / belonging / identity)</option>
-              </select>
-            </div>
-
-            <div class="full">
-              <label for="contribution">What contribution are you most interested in making through this initiative?</label>
-              <textarea id="contribution" name="contribution" placeholder="A few sentences on what you’d like to bring, test, or build with the group."></textarea>
+              <label for="contribution">What contribution are you most interested in making?</label>
+              <textarea id="contribution" name="contribution"></textarea>
             </div>
 
             <div>
               <label for="arrival">Arrival date & time (local)</label>
               <input id="arrival" name="arrival" placeholder="e.g., June 16 • 2:30 PM" />
             </div>
-
             <div>
               <label for="departure">Departure date & time (local)</label>
               <input id="departure" name="departure" placeholder="e.g., June 18 • 4:00 PM" />
@@ -554,95 +1002,47 @@
 
             <div>
               <label for="diet">Dietary needs</label>
-              <input id="diet" name="diet" placeholder="e.g., vegetarian, allergies" />
+              <input id="diet" name="diet" />
             </div>
-
             <div>
               <label for="access">Accessibility needs</label>
-              <input id="access" name="access" placeholder="Mobility, sensory, other needs" />
+              <input id="access" name="access" />
             </div>
 
             <div class="full">
               <label for="notes">Anything else we should know?</label>
-              <textarea id="notes" name="notes" placeholder="Logistics, session needs, or questions."></textarea>
+              <textarea id="notes" name="notes"></textarea>
             </div>
           </div>
 
-          <div class="row">
-            <button class="btn primary" type="submit">Submit registration</button>
-            <button class="btn" type="button" id="saveDraft">Save draft (local)</button>
-            <span class="tiny">This mockup stores drafts in your browser only.</span>
+          <div class="formActions">
+            <button class="btn orange" type="submit">Submit registration</button>
+            <a class="btn ghost" href="#top">Back to top</a>
           </div>
 
-          <p class="note">
-            Implementation note: connect this form to your registration system (Airtable, Google Form, Typeform, etc.).
-            For now, “Submit” just validates and shows a success message.
+          <p class="small" style="margin-top:10px;">
+            Implementation note: Replace the form action with your registration workflow (Airtable/Typeform/etc.). This mockup currently just shows a success message.
           </p>
         </form>
       </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <strong>Prioritizing What Makes Us Human</strong><br/>
+        <span style="opacity:.9;">Convening • June 16–18, 2026 • Fetzer Institute • Kalamazoo, MI</span><br/>
+        <span style="font-size:12.5px; opacity:.8;">© 2026 • All rights reserved</span>
+      </div>
+      <div class="footLinks" aria-label="Footer links">
+        <a href="#current">Current State</a>
+        <a href="#framework">Framework</a>
+        <a href="#convening">Convening Goals</a>
+        <a href="#register">Register</a>
+      </div>
     </div>
-  </div>
-
-  <script>
-    const modalBack = document.getElementById("modalBack");
-    const openButtons = [
-      "openRegTop","openRegHero","openRegSide","openRegQuick"
-    ].map(id => document.getElementById(id));
-
-    const closeModal = () => {
-      modalBack.classList.remove("open");
-      document.body.style.overflow = "";
-    };
-    const openModal = () => {
-      modalBack.classList.add("open");
-      document.body.style.overflow = "hidden";
-      setTimeout(() => document.getElementById("fullName")?.focus(), 50);
-    };
-
-    openButtons.forEach(btn => btn && btn.addEventListener("click", openModal));
-    document.getElementById("closeModal").addEventListener("click", closeModal);
-
-    modalBack.addEventListener("click", (e) => {
-      if(e.target === modalBack) closeModal();
-    });
-
-    // Draft save/load (localStorage)
-    const form = document.getElementById("regForm");
-    const key = "convening_reg_draft_v1";
-
-    const getData = () => Object.fromEntries(new FormData(form).entries());
-    const setData = (data) => {
-      for (const [k,v] of Object.entries(data || {})) {
-        const el = form.elements[k];
-        if (el) el.value = v;
-      }
-    };
-
-    // Load any draft automatically
-    try { setData(JSON.parse(localStorage.getItem(key) || "{}")); } catch {}
-
-    document.getElementById("saveDraft").addEventListener("click", () => {
-      localStorage.setItem(key, JSON.stringify(getData()));
-      alert("Draft saved in this browser.");
-    });
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const data = getData();
-      if(!data.fullName || !data.email){
-        alert("Please add your name and email.");
-        return;
-      }
-      localStorage.removeItem(key);
-      alert("Submitted! (Mockup only — connect this to your registration workflow.)");
-      form.reset();
-      closeModal();
-    });
-
-    // ESC to close
-    window.addEventListener("keydown", (e) => {
-      if(e.key === "Escape" && modalBack.classList.contains("open")) closeModal();
-    });
-  </script>
+  </footer>
 </body>
 </html>
