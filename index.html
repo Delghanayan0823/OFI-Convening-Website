@@ -227,7 +227,7 @@
       background:#fff;
     }
 
-    /* NEW: Image directly under hero square */
+    /* Image directly under hero square */
     .heroBelowImage{
       margin: 14px auto 0;
       max-width: 760px;
@@ -240,9 +240,8 @@
       background:#fff;
     }
 
-    /* NEW: Section images */
+    /* Generic image frame */
     .sectionImage{
-      margin: 14px 0 18px;
       border: 1px solid var(--line);
       background:#fff;
       overflow:hidden;
@@ -251,6 +250,23 @@
       width:100%;
       height:auto;
       display:block;
+    }
+
+    /* NEW: side-by-side blocks for "image next to text" placements */
+    .sideBySide{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items:start;
+      margin: 14px 0 18px;
+    }
+    .sideBySide.tight{ margin: 10px 0 14px; }
+    .sideBySide .sectionImage{ margin:0; }
+    @media (max-width: 920px){
+      .heroText{text-align:left;}
+      .heroOverlay{justify-content:flex-start;}
+      .tagRow{justify-content:flex-start;}
+      .sideBySide{grid-template-columns: 1fr;}
     }
 
     /* Sections */
@@ -311,6 +327,7 @@
       max-width: 92ch;
     }
 
+    /* Two column blocks (like footer/news area) */
     .cols{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
@@ -318,9 +335,6 @@
     }
     @media (max-width: 920px){
       .cols{grid-template-columns: 1fr;}
-      .heroText{text-align:left;}
-      .heroOverlay{justify-content:flex-start;}
-      .tagRow{justify-content:flex-start;}
     }
 
     .panel{
@@ -343,6 +357,7 @@
     .k{color: var(--muted);}
     .v{font-weight: 700;}
 
+    /* FAQs */
     details{
       border: 1px solid var(--line);
       background:#fff;
@@ -362,6 +377,7 @@
       max-width: 86ch;
     }
 
+    /* Form */
     form{ margin-top: 12px; }
     .formgrid{
       display:grid;
@@ -476,7 +492,7 @@
                 that centers connection with self, others, and life.
               </p>
 
-              <!-- REMOVED per your request: the hero Register button -->
+              <!-- Removed per your request: the hero Register button -->
 
               <div class="tagRow" aria-label="Hero tags">
                 <span class="tag orange">CONNECTION</span>
@@ -487,7 +503,7 @@
           </div>
         </div>
 
-        <!-- NEW: image1 directly under the hero square -->
+        <!-- Image 1 directly under the hero square -->
         <div class="heroBelowImage" aria-label="Hero supporting image">
           <img src="images/image1.png" alt="Supporting image" />
         </div>
@@ -496,7 +512,7 @@
           <div class="heroMeta" aria-label="Event meta">
             <span class="metaChip"><strong>Dates:</strong> June 16–18, 2026</span>
             <span class="metaChip"><strong>Location:</strong> Fetzer Institute • Kalamazoo, Michigan</span>
-            <span class="metaChip"><strong>Arrival:</strong> TBD</span>
+            <span class="metaChip"><strong>Arrival:</strong> 5:00 PM</span>
           </div>
           <div>
             <a class="btn ghost" href="#logistics">View logistics</a>
@@ -509,12 +525,6 @@
     <section id="current">
       <div class="wrap">
         <h2>The Current State of Education</h2>
-
-        <!-- image2 placed into this section -->
-        <figure class="sectionImage" aria-label="Current State image">
-          <img src="images/image2.png" alt="The Current State of Education" />
-        </figure>
-
         <div class="copy">
           <p>
             In an age increasingly defined by artificial intelligence, technological acceleration, a culture
@@ -556,12 +566,6 @@
     <section id="history" class="band">
       <div class="wrap">
         <h2>How Did We Get Here?</h2>
-
-        <!-- image3 placed into this section -->
-        <figure class="sectionImage" aria-label="How we got here image">
-          <img src="images/image3.png" alt="How Did We Get Here?" />
-        </figure>
-
         <div class="copy">
           <p>
             It’s easy to blame the rapid advance of technology for an intensifying crisis of disconnection and
@@ -622,12 +626,6 @@
     <section id="field">
       <div class="wrap">
         <h2>Creating a new Interdisciplinary field of study</h2>
-
-        <!-- image4 placed into this section -->
-        <figure class="sectionImage" aria-label="New field image">
-          <img src="images/image4.png" alt="The Case for a New Interdisciplinary Field of Study" />
-        </figure>
-
         <div class="copy">
           <p>
             This initiative seeks to place “What Makes Us Human?” at the center of educational
@@ -652,13 +650,22 @@
             to others, and to life, they strengthen the ethical, emotional, and existential core that
             sustains resilience, empathy, and purpose.
           </p>
-          <p>
-            We aim to deepen the understanding of the “whole child”—not as a collection of parts to
-            be supported separately, but as an integrated, relational individual whose wellbeing depends
-            on a foundation of connectedness to self, others, and life. Wholeness is a byproduct of
-            connectedness; it is foundational to human development—it is what grounds us in our
-            humanity and differentiates us from AI.
-          </p>
+
+          <!-- Image 2 next to the specific "whole child" paragraph -->
+          <div class="sideBySide" aria-label="Whole child paragraph with image">
+            <div>
+              <p>
+                This initiative seeks to deepen the understanding of the “whole child”—not as a collection of parts to be supported separately,
+                but as an integrated, relational individual whose wellbeing depends on a foundation of connectedness to self, others, and life.
+                Wholeness emerges as a byproduct of connectedness; it is foundational to human development and grounds what makes us uniquely
+                human in an age of artificial intelligence.
+              </p>
+            </div>
+            <figure class="sectionImage" aria-label="Image 2">
+              <img src="images/image2.png" alt="Whole child and connectedness" />
+            </figure>
+          </div>
+
           <p>
             By galvanizing a community of educational leaders across disciplines, we aim to
             collectively lay the foundations for a new interdisciplinary field of study, expanding the
@@ -676,12 +683,15 @@
       <div class="wrap">
         <h2>Conceptual Framework</h2>
 
-        <!-- image5 placed into this section -->
-        <figure class="sectionImage" aria-label="Framework image">
-          <img src="images/image5.png" alt="Conceptual Framework" />
-        </figure>
-
-        <p class="lede"><strong>Towards a Pedagogy of Wholeness</strong></p>
+        <!-- Image 3 next to "Towards a Pedagogy of Wholeness" -->
+        <div class="sideBySide tight" aria-label="Pedagogy of wholeness lede with image">
+          <div>
+            <p class="lede"><strong>Towards a Pedagogy of Wholeness</strong></p>
+          </div>
+          <figure class="sectionImage" aria-label="Image 3">
+            <img src="images/image3.png" alt="Towards a Pedagogy of Wholeness" />
+          </figure>
+        </div>
 
         <div class="copy">
           <p>
@@ -722,15 +732,25 @@
             citizenship and appreciation for the shared human journey.
           </p>
 
-          <p>
-            Agency and Humanity: Agency and humanity are inextricably linked. The
-            capacity to consciously shape how we relate to ourselves, others, and life is
-            unique to humanity; it differentiates us from both animals and AI. Supporting
-            students in reflecting intentionally on how they relate to their experience—through reflection, relational practice, and authentic
-            meaning-making—whether in collaboration or conflict, profoundly deepens their sense of
-            connectedness. When students are supported in developing this agency, they begin to see
-            themselves not merely as participants in life’s unfolding but as co-authors.
-          </p>
+          <!-- Image 4 next to the Agency and Humanity paragraph -->
+          <div class="sideBySide" aria-label="Agency and humanity with image">
+            <div>
+              <p>
+                Agency and Humanity: Agency and humanity are inextricably linked. Agency is not merely choice or motivation,
+                but the capacity to consciously author how we relate to our experiences, to others, and to life itself.
+                This capacity is a defining human capability — one that differentiates us from both animals and artificial intelligence.
+              </p>
+              <p>
+                Supporting students in reflecting intentionally on how they relate to their experience—through reflection, relational practice,
+                and authentic meaning-making—whether in collaboration or conflict, profoundly deepens their sense of connectedness.
+                When students are supported in developing this agency, they begin to see themselves not merely as participants in life’s unfolding
+                but as co-authors.
+              </p>
+            </div>
+            <figure class="sectionImage" aria-label="Image 4">
+              <img src="images/image4.png" alt="Agency and Humanity" />
+            </figure>
+          </div>
         </div>
       </div>
     </section>
@@ -740,8 +760,8 @@
       <div class="wrap">
         <h2>Field Building Strategy</h2>
 
-        <!-- image6 placed into this section -->
-        <figure class="sectionImage" aria-label="Strategy image">
+        <!-- image6 stays here (unchanged) -->
+        <figure class="sectionImage" aria-label="Strategy image" style="margin:14px 0 18px;">
           <img src="images/image6.png" alt="Field Building Strategy" />
         </figure>
 
@@ -943,16 +963,21 @@
             <h3>At a glance</h3>
             <div class="kv">
               <div class="row"><span class="k">Dates</span><span class="v">June 16–18, 2026</span></div>
-              <div class="row"><span class="k">Arrival time</span><span class="v">TBD</span></div>
+              <div class="row"><span class="k">Arrival time</span><span class="v">5:00 PM</span></div>
               <div class="row"><span class="k">Location</span><span class="v">Fetzer Institute</span></div>
               <div class="row"><span class="k">City</span><span class="v">Kalamazoo, MI</span></div>
-              <div class="row"><span class="k">Address</span><span class="v">TBD (add full street address)</span></div>
+              <div class="row"><span class="k">Address</span><span class="v">9292 W KL Ave, Kalamazoo, MI 49009</span></div>
             </div>
             <p class="small" style="margin-top:12px;">
               If you have accessibility or travel needs, please note them in the registration form.
             </p>
           </div>
         </div>
+
+        <!-- Image 5 at the bottom of Logistics -->
+        <figure class="sectionImage" aria-label="Logistics image" style="margin-top:18px;">
+          <img src="images/image5.png" alt="Logistics" />
+        </figure>
       </div>
     </section>
 
@@ -988,7 +1013,7 @@
         <details>
           <summary>Where is it happening?</summary>
           <p>
-            Fetzer Institute, Kalamazoo, Michigan. Full address and arrival guidance will be shared once finalized.
+            Fetzer Institute, Kalamazoo, Michigan — 9292 W KL Ave, Kalamazoo, MI 49009.
           </p>
         </details>
 
@@ -1052,7 +1077,7 @@
 
             <div>
               <label for="arrival">Arrival date & time (local)</label>
-              <input id="arrival" name="arrival" placeholder="e.g., June 16 • 2:30 PM" />
+              <input id="arrival" name="arrival" placeholder="e.g., June 16 • 5:00 PM" />
             </div>
             <div>
               <label for="departure">Departure date & time (local)</label>
