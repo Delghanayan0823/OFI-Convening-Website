@@ -7,12 +7,12 @@
   <style>
     :root{
       --bg: #ffffff;
-      --ink: #1f2937;         /* charcoal */
-      --muted: #6b7280;       /* gray */
-      --line: #e5e7eb;        /* light gray */
-      --band: #f3f6f7;        /* pale blue-gray band like OFI */
-      --teal: #1f6f8b;        /* blue/teal accent */
-      --orange: #f26b3a;      /* orange highlight */
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --band: #f3f6f7;
+      --teal: #1f6f8b;
+      --orange: #f26b3a;
       --orange2:#ff7a45;
       --max: 1040px;
       --serif: Georgia, "Times New Roman", Times, serif;
@@ -148,10 +148,6 @@
       aspect-ratio: 16/7;
       min-height: 260px;
     }
-    .heroPhoto.hasImage{
-      background-size: cover;
-      background-position: center;
-    }
     .heroOverlay{
       position:absolute; inset:0;
       padding: clamp(18px, 3vw, 34px);
@@ -227,10 +223,10 @@
       background:#fff;
     }
 
-    /* Image directly under hero square */
+    /* Image 1 (bigger) directly under hero square */
     .heroBelowImage{
-      margin: 14px auto 0;
-      max-width: 760px;
+      margin: 16px auto 0;
+      max-width: 980px; /* bigger */
     }
     .heroBelowImage img{
       width: 100%;
@@ -252,7 +248,7 @@
       display:block;
     }
 
-    /* NEW: side-by-side blocks for "image next to text" placements */
+    /* Side-by-side blocks for "image next to text" placements */
     .sideBySide{
       display:grid;
       grid-template-columns: 1.15fr .85fr;
@@ -261,12 +257,37 @@
       margin: 14px 0 18px;
     }
     .sideBySide.tight{ margin: 10px 0 14px; }
-    .sideBySide .sectionImage{ margin:0; }
+
+    /* Smaller images + more room for text (like your Image 4 layout, but with narrower image) */
+    .sideBySide.narrowImg{
+      grid-template-columns: 1.45fr .55fr; /* text gets more space, image smaller */
+    }
+    .sideBySide.narrowImg .sectionImage{
+      max-width: 320px; /* smaller image block */
+      justify-self: end;
+    }
+
+    /* Small figure + caption */
+    figure{margin:0;}
+    figcaption{
+      font-size: 12.5px;
+      color: var(--muted);
+      padding: 10px 2px 0;
+      text-align:left;
+      letter-spacing:.02em;
+    }
+    .figureSmall{
+      max-width: 340px; /* smaller */
+    }
+
     @media (max-width: 920px){
       .heroText{text-align:left;}
       .heroOverlay{justify-content:flex-start;}
       .tagRow{justify-content:flex-start;}
       .sideBySide{grid-template-columns: 1fr;}
+      .sideBySide.narrowImg{grid-template-columns: 1fr;}
+      .sideBySide.narrowImg .sectionImage{max-width:none; justify-self:auto;}
+      .figureSmall{max-width:none;}
     }
 
     /* Sections */
@@ -327,7 +348,6 @@
       max-width: 92ch;
     }
 
-    /* Two column blocks (like footer/news area) */
     .cols{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
@@ -357,27 +377,6 @@
     .k{color: var(--muted);}
     .v{font-weight: 700;}
 
-    /* FAQs */
-    details{
-      border: 1px solid var(--line);
-      background:#fff;
-      padding: 14px 14px;
-    }
-    details + details{margin-top: 10px;}
-    summary{
-      cursor:pointer;
-      font-weight: 800;
-      list-style:none;
-    }
-    summary::-webkit-details-marker{display:none;}
-    details p{
-      margin: 10px 0 0;
-      color: rgba(31,41,55,.85);
-      font-size: 14.5px;
-      max-width: 86ch;
-    }
-
-    /* Form */
     form{ margin-top: 12px; }
     .formgrid{
       display:grid;
@@ -465,7 +464,6 @@
             <a href="#framework">Framework</a>
             <a href="#strategy">Strategy</a>
             <a href="#convening">Convening</a>
-            <a href="#faq">FAQs</a>
             <a class="btn orange" href="#register">Register</a>
           </div>
         </nav>
@@ -477,8 +475,6 @@
     <!-- HERO -->
     <div class="hero">
       <div class="heroFrame">
-        <!-- Optional: use your actual hero image if you want
-        <div class="heroPhoto hasImage" style="background-image:url('images/fetzer_from_above.webp');"> -->
         <div class="heroPhoto" role="img" aria-label="Hero image placeholder">
           <div class="heroOverlay">
             <div class="heroText">
@@ -492,8 +488,6 @@
                 that centers connection with self, others, and life.
               </p>
 
-              <!-- Removed per your request: the hero Register button -->
-
               <div class="tagRow" aria-label="Hero tags">
                 <span class="tag orange">CONNECTION</span>
                 <span class="tag gray">AGENCY</span>
@@ -503,7 +497,7 @@
           </div>
         </div>
 
-        <!-- Image 1 directly under the hero square -->
+        <!-- Image 1 bigger -->
         <div class="heroBelowImage" aria-label="Hero supporting image">
           <img src="images/image1.png" alt="Supporting image" />
         </div>
@@ -651,8 +645,8 @@
             sustains resilience, empathy, and purpose.
           </p>
 
-          <!-- Image 2 next to the specific "whole child" paragraph -->
-          <div class="sideBySide" aria-label="Whole child paragraph with image">
+          <!-- Image 2 smaller, more room for text -->
+          <div class="sideBySide narrowImg" aria-label="Whole child paragraph with image">
             <div>
               <p>
                 This initiative seeks to deepen the understanding of the “whole child”—not as a collection of parts to be supported separately,
@@ -683,8 +677,8 @@
       <div class="wrap">
         <h2>Conceptual Framework</h2>
 
-        <!-- Image 3 next to "Towards a Pedagogy of Wholeness" -->
-        <div class="sideBySide tight" aria-label="Pedagogy of wholeness lede with image">
+        <!-- Image 3 smaller + more room for text -->
+        <div class="sideBySide narrowImg tight" aria-label="Pedagogy of wholeness lede with image">
           <div>
             <p class="lede"><strong>Towards a Pedagogy of Wholeness</strong></p>
           </div>
@@ -732,7 +726,7 @@
             citizenship and appreciation for the shared human journey.
           </p>
 
-          <!-- Image 4 next to the Agency and Humanity paragraph -->
+          <!-- Image 4 stays as-is (your reference layout) -->
           <div class="sideBySide" aria-label="Agency and humanity with image">
             <div>
               <p>
@@ -760,10 +754,7 @@
       <div class="wrap">
         <h2>Field Building Strategy</h2>
 
-        <!-- image6 stays here (unchanged) -->
-        <figure class="sectionImage" aria-label="Strategy image" style="margin:14px 0 18px;">
-          <img src="images/image6.png" alt="Field Building Strategy" />
-        </figure>
+        <!-- Removed per your request: strategy image -->
 
         <div class="copy">
           <p>
@@ -971,58 +962,16 @@
             <p class="small" style="margin-top:12px;">
               If you have accessibility or travel needs, please note them in the registration form.
             </p>
+
+            <!-- Image 5 smaller and attached to Logistics panel with label -->
+            <figure class="figureSmall" style="margin-top:14px;">
+              <div class="sectionImage" aria-label="The Fetzer Center image">
+                <img src="images/image5.png" alt="The Fetzer Center" />
+              </div>
+              <figcaption><strong>The Fetzer Center</strong></figcaption>
+            </figure>
           </div>
         </div>
-
-        <!-- Image 5 at the bottom of Logistics -->
-        <figure class="sectionImage" aria-label="Logistics image" style="margin-top:18px;">
-          <img src="images/image5.png" alt="Logistics" />
-        </figure>
-      </div>
-    </section>
-
-    <!-- CORE TEAM PLACEHOLDER -->
-    <section id="team">
-      <div class="wrap">
-        <h2>Core Team & Advisors</h2>
-        <p class="lede">Placeholder — to be added.</p>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="band">
-      <div class="wrap">
-        <h2>FAQs</h2>
-
-        <details>
-          <summary>Who is this convening for?</summary>
-          <p>
-            An interdisciplinary working group of educators, researchers, practitioners, and thought leaders contributing to
-            shared language, coherence, and stewardship for this emerging field.
-          </p>
-        </details>
-
-        <details>
-          <summary>What should I expect in the sessions?</summary>
-          <p>
-            Working sessions to align around mission, vision, framework, strategy, and metrics; review and develop foundational content;
-            explore inroads across domains; build coalition commitments; and define next steps.
-          </p>
-        </details>
-
-        <details>
-          <summary>Where is it happening?</summary>
-          <p>
-            Fetzer Institute, Kalamazoo, Michigan — 9292 W KL Ave, Kalamazoo, MI 49009.
-          </p>
-        </details>
-
-        <details>
-          <summary>What if I have dietary or accessibility needs?</summary>
-          <p>
-            Please share needs in the registration form so we can plan ahead.
-          </p>
-        </details>
       </div>
     </section>
 
