@@ -132,7 +132,7 @@
         #f6f7f8;
       overflow:hidden;
 
-      /* shorter hero so there’s less empty space */
+      /* shorter hero */
       aspect-ratio: 16/5;
       min-height: 200px;
     }
@@ -216,13 +216,23 @@
       display:block;
     }
 
-    /* New: media row (replaces float images so spacing stays consistent) */
+    /* Media row (replaces floats) */
     .mediaRow{
       display:grid;
       grid-template-columns: 1fr 360px;
       gap: 18px;
-      align-items:center;
-      margin: 0 0 14px; /* matches paragraph spacing */
+
+      /* IMPORTANT: align to top so the text doesn’t get “pushed down” (fixes the big gap you’re seeing) */
+      align-items:start;
+
+      /* matches normal paragraph spacing */
+      margin: 0 0 14px;
+    }
+    .mediaRow .mediaText{
+      /* behave like normal paragraph flow */
+      margin: 0;
+      max-width: 88ch;
+      font-size: 15.5px;
     }
     .mediaRow .mediaImg{
       border: 1px solid var(--line);
@@ -239,15 +249,16 @@
       align-items:start;
     }
 
-    /* Fill-frame image (for Image 4) */
+    /* Image 4: show the whole graphic (no cropping) */
     .fillFrame{
-      aspect-ratio: 4 / 3;
-      display:flex;
+      /* no forced aspect ratio; let the image determine height so we can see all kids */
+      display:block;
+      background:#fff;
     }
     .fillFrame img{
       width:100%;
-      height:100%;
-      object-fit: cover; /* removes interior white margins by cropping */
+      height:auto;
+      object-fit: contain; /* ensure full image is visible */
       display:block;
     }
 
@@ -261,7 +272,7 @@
     section{
       padding: 44px 0;
       border-bottom: 1px solid var(--line);
-      scroll-margin-top: 84px; /* anchor offset */
+      scroll-margin-top: 84px;
     }
     section.band{ background: var(--band); }
 
@@ -299,6 +310,14 @@
       color: rgba(31,41,55,.92);
     }
     .callout .orange{color: var(--orange);}
+    .callout .attrib{
+      display:block;
+      margin-top: 12px;
+      font-family: var(--sans);
+      font-size: 14px;
+      color: rgba(31,41,55,.70);
+      letter-spacing: .01em;
+    }
 
     .ol{
       margin: 0;
@@ -562,9 +581,10 @@
           </p>
         </div>
 
+        <!-- UPDATED QUOTE -->
         <div class="callout">
-          Education’s ultimate task is not to prepare students for machines, but to prepare them for
-          <span class="orange">meaning</span>.
+          ‘The biggest problem growing up today is not actually stress; it’s meaninglessness.’
+          <span class="attrib">—William Damon, Stanford University</span>
         </div>
       </div>
     </section>
@@ -586,9 +606,9 @@
             Anchoring the many promising strands of educational innovation—identity development,
             purpose learning, character education, agency and social-emotional learning—in the deeper
             foundation of what makes us human creates the possibility of moving beyond fixed and
-            externally imposed definitions of success. It allows us to cultivate the inner ground from
-            which real growth emerges: the ability to relate meaningfully to one’s own experience, to
-            others, and to life itself.
+            externally imposed definitions of success. It allows us to cultivate the inner ground
+            from which real growth emerges: the ability to relate meaningfully to one’s own experience,
+            to others, and to life itself.
           </p>
           <p>
             Connection is not an abstract ideal; it is a concrete developmental process that can be
@@ -598,9 +618,9 @@
             sustains resilience, empathy, and purpose.
           </p>
 
-          <!-- Image 2: now aligned without floats; spacing matches paragraph rhythm -->
+          <!-- Image 2: spacing now matches normal paragraph rhythm (no vertical centering gap) -->
           <div class="mediaRow">
-            <p style="margin:0;">
+            <p class="mediaText">
               This initiative seeks to deepen the understanding of the “whole child”—not as a collection of parts to be supported separately,
               but as an integrated, relational individual whose wellbeing depends on a foundation of connectedness to self, others, and life.
               Wholeness emerges as a byproduct of connectedness; it is foundational to human development and grounds what makes us uniquely
@@ -631,7 +651,7 @@
         <p class="lede"><strong>Towards a Pedagogy of Wholeness</strong></p>
 
         <div class="copy">
-          <!-- Image 3: now aligned without floats -->
+          <!-- Image 3: aligned without floats -->
           <div class="mediaRow large">
             <div>
               <p style="margin-top:0;">
@@ -677,7 +697,8 @@
             citizenship and appreciation for the shared human journey.
           </p>
 
-          <div class="cols" style="grid-template-columns: 1.15fr .85fr;">
+          <!-- WIDEN IMAGE 4 COLUMN so it has more room -->
+          <div class="cols" style="grid-template-columns: 1fr 1fr;">
             <div>
               <p>
                 Agency and Humanity: Agency and humanity are inextricably linked. Agency is not merely choice or motivation,
@@ -692,7 +713,7 @@
               </p>
             </div>
 
-            <!-- Image 4: fills the rectangle (no interior white space) -->
+            <!-- Image 4: widened + no cropping so you can see all of the kids -->
             <figure class="sectionImage fillFrame" aria-label="Image 4">
               <img src="images/image4.png" alt="Agency and Humanity" />
             </figure>
@@ -724,7 +745,7 @@
               Fetzer Institute in Kalamazoo, Michigan. This convening will serve as the first step to
               formalize shared language and intention, identify priority areas for collaboration, and
               build momentum for broader coalition development and next steps in shaping the
-              field. Potential participants/advisors will include Researchers; Mental Health experts; High school Educators and students; Program Leaders/Weavers (bringing theory and practice together); Network of Organizations; Foundations; Government Officials; Journalists.
+              field. Potential participants/advisors will include Researchers; Mental Health experts; High school Educators and students; Program Leaders/Weaver (bringing theory and practice together); Network of Organizations; Foundations; Government Officials; Journalists.
             </li>
             <li>
               Refine the framework to clearly convey what it means to prioritize What Makes Us
