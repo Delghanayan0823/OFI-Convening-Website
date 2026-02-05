@@ -71,23 +71,6 @@
       color: var(--muted);
       margin-top: 3px;
     }
-    nav .links{
-      display:flex; gap: 18px; align-items:center; flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    nav .links a{
-      text-decoration:none;
-      color: var(--ink);
-      font-size: 13px;
-      letter-spacing: .2px;
-      opacity: .85;
-      padding: 8px 6px;
-      border-radius: 8px;
-    }
-    nav .links a:hover{
-      background: #f9fafb;
-      opacity: 1;
-    }
 
     .btn{
       border: 1px solid var(--ink);
@@ -182,26 +165,6 @@
       color: rgba(31,41,55,.80);
       font-size: 14.5px;
     }
-    .tagRow{
-      display:flex;
-      gap: 10px;
-      justify-content:flex-end;
-      flex-wrap:wrap;
-      margin-top: 10px;
-    }
-    .tag{
-      display:inline-block;
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      font-size: 12px;
-      color: #fff;
-    }
-    .tag.orange{background: var(--orange);}
-    .tag.gray{background: #6b7280;}
-    .tag.teal{background: var(--teal);}
 
     .heroUnder{
       display:flex;
@@ -226,7 +189,7 @@
     /* Image 1 (bigger) directly under hero square */
     .heroBelowImage{
       margin: 16px auto 0;
-      max-width: 980px; /* bigger */
+      max-width: 980px;
     }
     .heroBelowImage img{
       width: 100%;
@@ -248,46 +211,27 @@
       display:block;
     }
 
-    /* Side-by-side blocks for "image next to text" placements */
-    .sideBySide{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 18px;
-      align-items:start;
-      margin: 14px 0 18px;
+    /* Float images so text flows naturally (prevents big white gaps) */
+    .floatRight{
+      float: right;
+      width: 320px;     /* Image 2 */
+      max-width: 42%;
+      margin: 4px 0 12px 18px;
+      border: 1px solid var(--line);
+      background:#fff;
     }
-    .sideBySide.tight{ margin: 10px 0 14px; }
-
-    /* Smaller images + more room for text (like your Image 4 layout, but with narrower image) */
-    .sideBySide.narrowImg{
-      grid-template-columns: 1.45fr .55fr; /* text gets more space, image smaller */
+    .floatRightLarge{
+      float: right;
+      width: 420px;     /* Image 3 slightly larger + readable */
+      max-width: 48%;
+      margin: 10px 0 12px 18px; /* moved DOWN a bit */
+      border: 1px solid var(--line);
+      background:#fff;
     }
-    .sideBySide.narrowImg .sectionImage{
-      max-width: 320px; /* smaller image block */
-      justify-self: end;
-    }
-
-    /* Small figure + caption */
-    figure{margin:0;}
-    figcaption{
-      font-size: 12.5px;
-      color: var(--muted);
-      padding: 10px 2px 0;
-      text-align:left;
-      letter-spacing:.02em;
-    }
-    .figureSmall{
-      max-width: 340px; /* smaller */
-    }
-
-    @media (max-width: 920px){
-      .heroText{text-align:left;}
-      .heroOverlay{justify-content:flex-start;}
-      .tagRow{justify-content:flex-start;}
-      .sideBySide{grid-template-columns: 1fr;}
-      .sideBySide.narrowImg{grid-template-columns: 1fr;}
-      .sideBySide.narrowImg .sectionImage{max-width:none; justify-self:auto;}
-      .figureSmall{max-width:none;}
+    .clearfix::after{
+      content:"";
+      display:block;
+      clear:both;
     }
 
     /* Sections */
@@ -354,7 +298,15 @@
       gap: 18px;
     }
     @media (max-width: 920px){
+      .heroText{text-align:left;}
+      .heroOverlay{justify-content:flex-start;}
       .cols{grid-template-columns: 1fr;}
+      .floatRight, .floatRightLarge{
+        float:none;
+        width:100%;
+        max-width:100%;
+        margin: 10px 0 14px;
+      }
     }
 
     .panel{
@@ -456,17 +408,7 @@
           </div>
         </a>
 
-        <nav aria-label="Primary navigation">
-          <div class="links">
-            <a href="#current">Current State</a>
-            <a href="#history">How We Got Here</a>
-            <a href="#field">The Field</a>
-            <a href="#framework">Framework</a>
-            <a href="#strategy">Strategy</a>
-            <a href="#convening">Convening</a>
-            <a class="btn orange" href="#register">Register</a>
-          </div>
-        </nav>
+        <!-- Top navigation removed per request -->
       </div>
     </div>
   </header>
@@ -487,12 +429,7 @@
                 Creating the foundations for an interdisciplinary field of study — and a pedagogy of connectedness
                 that centers connection with self, others, and life.
               </p>
-
-              <div class="tagRow" aria-label="Hero tags">
-                <span class="tag orange">CONNECTION</span>
-                <span class="tag gray">AGENCY</span>
-                <span class="tag teal">WHOLE SELF</span>
-              </div>
+              <!-- Hero tags removed per request -->
             </div>
           </div>
         </div>
@@ -645,20 +582,14 @@
             sustains resilience, empathy, and purpose.
           </p>
 
-          <!-- Image 2 smaller, more room for text -->
-          <div class="sideBySide narrowImg" aria-label="Whole child paragraph with image">
-            <div>
-              <p>
-                This initiative seeks to deepen the understanding of the “whole child”—not as a collection of parts to be supported separately,
-                but as an integrated, relational individual whose wellbeing depends on a foundation of connectedness to self, others, and life.
-                Wholeness emerges as a byproduct of connectedness; it is foundational to human development and grounds what makes us uniquely
-                human in an age of artificial intelligence.
-              </p>
-            </div>
-            <figure class="sectionImage" aria-label="Image 2">
-              <img src="images/image2.png" alt="Whole child and connectedness" />
-            </figure>
-          </div>
+          <!-- Image 2: float right so text spacing stays consistent -->
+          <p class="clearfix">
+            <img class="floatRight" src="images/image2.png" alt="Whole child and connectedness" />
+            This initiative seeks to deepen the understanding of the “whole child”—not as a collection of parts to be supported separately,
+            but as an integrated, relational individual whose wellbeing depends on a foundation of connectedness to self, others, and life.
+            Wholeness emerges as a byproduct of connectedness; it is foundational to human development and grounds what makes us uniquely
+            human in an age of artificial intelligence.
+          </p>
 
           <p>
             By galvanizing a community of educational leaders across disciplines, we aim to
@@ -677,18 +608,12 @@
       <div class="wrap">
         <h2>Conceptual Framework</h2>
 
-        <!-- Image 3 smaller + more room for text -->
-        <div class="sideBySide narrowImg tight" aria-label="Pedagogy of wholeness lede with image">
-          <div>
-            <p class="lede"><strong>Towards a Pedagogy of Wholeness</strong></p>
-          </div>
-          <figure class="sectionImage" aria-label="Image 3">
-            <img src="images/image3.png" alt="Towards a Pedagogy of Wholeness" />
-          </figure>
-        </div>
+        <p class="lede"><strong>Towards a Pedagogy of Wholeness</strong></p>
 
         <div class="copy">
-          <p>
+          <!-- Image 3: larger + aligned with this paragraph, and less disruptive -->
+          <p class="clearfix">
+            <img class="floatRightLarge" src="images/image3.png" alt="Framework diagram" />
             Wholeness and Connection: Wholeness is the foundation for individual and
             societal well-being, yet existing programs often address aspects or
             parts rather than the underlying wholeness. This new interdisciplinary
@@ -726,8 +651,8 @@
             citizenship and appreciation for the shared human journey.
           </p>
 
-          <!-- Image 4 stays as-is (your reference layout) -->
-          <div class="sideBySide" aria-label="Agency and humanity with image">
+          <!-- Image 4 stays as-is -->
+          <div class="cols" style="grid-template-columns: 1.15fr .85fr;">
             <div>
               <p>
                 Agency and Humanity: Agency and humanity are inextricably linked. Agency is not merely choice or motivation,
@@ -753,8 +678,6 @@
     <section id="strategy">
       <div class="wrap">
         <h2>Field Building Strategy</h2>
-
-        <!-- Removed per your request: strategy image -->
 
         <div class="copy">
           <p>
@@ -879,11 +802,6 @@
             landscape.
           </p>
         </div>
-
-        <div class="callout">
-          Join us in re-envisioning education — to nurture the conscious, connected, and creative
-          capacities that foster exploration of what it means to be <span class="orange">human</span>.
-        </div>
       </div>
     </section>
 
@@ -924,13 +842,17 @@
             technology and nature. This educational shift frames connection as both preventive
             (reducing violence and conflict) and promotive (leading to a healthy society).
           </p>
-          <p>
-            Join us in re-envisioning education—to nurture the conscious, connected, and creative
-            capacities that foster exploration of what it means to be human.
-          </p>
         </div>
       </div>
     </section>
+
+    <!-- Moved callout here (after participant, before logistics) -->
+    <div class="wrap" style="padding: 0 18px;">
+      <div class="callout" style="margin: 0 0 44px;">
+        Join us in re-envisioning education — to nurture the conscious, connected, and creative
+        capacities that foster exploration of what it means to be <span class="orange">human</span>.
+      </div>
+    </div>
 
     <!-- LOGISTICS + QUICK INFO -->
     <section id="logistics" class="band">
@@ -948,6 +870,11 @@
               Would you like to register for the convening?<br/>
               <a class="btn orange" href="#register" style="margin-top:14px;">Register</a>
             </div>
+
+            <!-- Image 5: outside the white box, under the register prompt, no caption -->
+            <div class="sectionImage" style="margin-top:16px; max-width:520px;">
+              <img src="images/image5.png" alt="The Fetzer Center" />
+            </div>
           </div>
 
           <div class="panel" aria-label="Key details">
@@ -962,14 +889,6 @@
             <p class="small" style="margin-top:12px;">
               If you have accessibility or travel needs, please note them in the registration form.
             </p>
-
-            <!-- Image 5 smaller and attached to Logistics panel with label -->
-            <figure class="figureSmall" style="margin-top:14px;">
-              <div class="sectionImage" aria-label="The Fetzer Center image">
-                <img src="images/image5.png" alt="The Fetzer Center" />
-              </div>
-              <figcaption><strong>The Fetzer Center</strong></figcaption>
-            </figure>
           </div>
         </div>
       </div>
