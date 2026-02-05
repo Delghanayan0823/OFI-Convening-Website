@@ -17,8 +17,10 @@
       --max: 1040px;
       --serif: Georgia, "Times New Roman", Times, serif;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      scroll-padding-top: 84px; /* prevents sticky header covering anchors */
     }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth;}
     body{
       margin:0;
       font-family: var(--sans);
@@ -27,6 +29,7 @@
       line-height: 1.55;
     }
     a{color:inherit}
+    img{max-width:100%; height:auto;}
     .wrap{max-width: var(--max); margin:0 auto; padding:0 18px;}
     .topbar{
       height: 4px;
@@ -128,14 +131,16 @@
         radial-gradient(700px 340px at 80% 30%, rgba(242,107,58,.16), transparent 58%),
         #f6f7f8;
       overflow:hidden;
-      aspect-ratio: 16/7;
-      min-height: 260px;
+
+      /* shorter hero so there’s less empty space */
+      aspect-ratio: 16/5;
+      min-height: 200px;
     }
     .heroOverlay{
       position:absolute; inset:0;
       padding: clamp(18px, 3vw, 34px);
       display:flex;
-      align-items:flex-start;
+      align-items:center;       /* vertically centered */
       justify-content:flex-end;
     }
     .heroText{
@@ -211,33 +216,52 @@
       display:block;
     }
 
-    /* Float images so text flows naturally (prevents big white gaps) */
-    .floatRight{
-      float: right;
-      width: 320px;     /* Image 2 */
-      max-width: 42%;
-      margin: 4px 0 12px 18px;
+    /* New: media row (replaces float images so spacing stays consistent) */
+    .mediaRow{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap: 18px;
+      align-items:center;
+      margin: 0 0 14px; /* matches paragraph spacing */
+    }
+    .mediaRow .mediaImg{
       border: 1px solid var(--line);
       background:#fff;
+      overflow:hidden;
     }
-    .floatRightLarge{
-      float: right;
-      width: 420px;     /* Image 3 slightly larger + readable */
-      max-width: 48%;
-      margin: 10px 0 12px 18px; /* moved DOWN a bit */
-      border: 1px solid var(--line);
-      background:#fff;
-    }
-    .clearfix::after{
-      content:"";
+    .mediaRow .mediaImg img{
+      width:100%;
+      height:auto;
       display:block;
-      clear:both;
+    }
+    .mediaRow.large{
+      grid-template-columns: 1fr 440px;
+      align-items:start;
+    }
+
+    /* Fill-frame image (for Image 4) */
+    .fillFrame{
+      aspect-ratio: 4 / 3;
+      display:flex;
+    }
+    .fillFrame img{
+      width:100%;
+      height:100%;
+      object-fit: cover; /* removes interior white margins by cropping */
+      display:block;
+    }
+
+    /* Center helper (for image 5) */
+    .centerImage{
+      margin-left:auto !important;
+      margin-right:auto !important;
     }
 
     /* Sections */
     section{
       padding: 44px 0;
       border-bottom: 1px solid var(--line);
+      scroll-margin-top: 84px; /* anchor offset */
     }
     section.band{ background: var(--band); }
 
@@ -259,7 +283,7 @@
       margin-bottom: 16px;
     }
     .copy p{
-      margin: 0 0 14px;
+      margin: 0 0 14px; /* consistent spacing between all paragraphs */
       max-width: 88ch;
       font-size: 15.5px;
     }
@@ -301,12 +325,7 @@
       .heroText{text-align:left;}
       .heroOverlay{justify-content:flex-start;}
       .cols{grid-template-columns: 1fr;}
-      .floatRight, .floatRightLarge{
-        float:none;
-        width:100%;
-        max-width:100%;
-        margin: 10px 0 14px;
-      }
+      .mediaRow, .mediaRow.large{grid-template-columns: 1fr;}
     }
 
     .panel{
@@ -407,8 +426,6 @@
             <span>Convening • June 16–18, 2026</span>
           </div>
         </a>
-
-        <!-- Top navigation removed per request -->
       </div>
     </div>
   </header>
@@ -417,7 +434,7 @@
     <!-- HERO -->
     <div class="hero">
       <div class="heroFrame">
-        <div class="heroPhoto" role="img" aria-label="Hero image placeholder">
+        <div class="heroPhoto" aria-hidden="true">
           <div class="heroOverlay">
             <div class="heroText">
               <div class="kicker">IN AN AGE OF AI, POLARIZATION, & A CRISIS OF MEANING</div>
@@ -429,7 +446,6 @@
                 Creating the foundations for an interdisciplinary field of study — and a pedagogy of connectedness
                 that centers connection with self, others, and life.
               </p>
-              <!-- Hero tags removed per request -->
             </div>
           </div>
         </div>
@@ -582,14 +598,18 @@
             sustains resilience, empathy, and purpose.
           </p>
 
-          <!-- Image 2: float right so text spacing stays consistent -->
-          <p class="clearfix">
-            <img class="floatRight" src="images/image2.png" alt="Whole child and connectedness" />
-            This initiative seeks to deepen the understanding of the “whole child”—not as a collection of parts to be supported separately,
-            but as an integrated, relational individual whose wellbeing depends on a foundation of connectedness to self, others, and life.
-            Wholeness emerges as a byproduct of connectedness; it is foundational to human development and grounds what makes us uniquely
-            human in an age of artificial intelligence.
-          </p>
+          <!-- Image 2: now aligned without floats; spacing matches paragraph rhythm -->
+          <div class="mediaRow">
+            <p style="margin:0;">
+              This initiative seeks to deepen the understanding of the “whole child”—not as a collection of parts to be supported separately,
+              but as an integrated, relational individual whose wellbeing depends on a foundation of connectedness to self, others, and life.
+              Wholeness emerges as a byproduct of connectedness; it is foundational to human development and grounds what makes us uniquely
+              human in an age of artificial intelligence.
+            </p>
+            <div class="mediaImg">
+              <img src="images/image2.png" alt="Whole child and connectedness" />
+            </div>
+          </div>
 
           <p>
             By galvanizing a community of educational leaders across disciplines, we aim to
@@ -611,20 +631,26 @@
         <p class="lede"><strong>Towards a Pedagogy of Wholeness</strong></p>
 
         <div class="copy">
-          <!-- Image 3: larger + aligned with this paragraph, and less disruptive -->
-          <p class="clearfix">
-            <img class="floatRightLarge" src="images/image3.png" alt="Framework diagram" />
-            Wholeness and Connection: Wholeness is the foundation for individual and
-            societal well-being, yet existing programs often address aspects or
-            parts rather than the underlying wholeness. This new interdisciplinary
-            field of study seeks to redefine the whole child as an integrated, relational
-            being. At the heart of this field building approach lies a guiding framework designed to expand our
-            understanding of the “whole child". It centers on three interconnected domains: Connection with Self, Connection with
-            Others, and Connection with Life. Each domain of connection is animated by <strong>agency</strong>—the
-            capacity to consciously and intentionally engage with and express our experience in relation
-            to ourselves, others, and life. This field situates connection as the generative core of human
-            wholeness that forms the foundation for personal flourishing and collective health.
-          </p>
+          <!-- Image 3: now aligned without floats -->
+          <div class="mediaRow large">
+            <div>
+              <p style="margin-top:0;">
+                Wholeness and Connection: Wholeness is the foundation for individual and
+                societal well-being, yet existing programs often address aspects or
+                parts rather than the underlying wholeness. This new interdisciplinary
+                field of study seeks to redefine the whole child as an integrated, relational
+                being. At the heart of this field building approach lies a guiding framework designed to expand our
+                understanding of the “whole child". It centers on three interconnected domains: Connection with Self, Connection with
+                Others, and Connection with Life. Each domain of connection is animated by <strong>agency</strong>—the
+                capacity to consciously and intentionally engage with and express our experience in relation
+                to ourselves, others, and life. This field situates connection as the generative core of human
+                wholeness that forms the foundation for personal flourishing and collective health.
+              </p>
+            </div>
+            <div class="mediaImg">
+              <img src="images/image3.png" alt="Framework diagram" />
+            </div>
+          </div>
 
           <h3>1. Connection with Self</h3>
           <p>
@@ -651,7 +677,6 @@
             citizenship and appreciation for the shared human journey.
           </p>
 
-          <!-- Image 4 stays as-is -->
           <div class="cols" style="grid-template-columns: 1.15fr .85fr;">
             <div>
               <p>
@@ -666,7 +691,9 @@
                 but as co-authors.
               </p>
             </div>
-            <figure class="sectionImage" aria-label="Image 4">
+
+            <!-- Image 4: fills the rectangle (no interior white space) -->
+            <figure class="sectionImage fillFrame" aria-label="Image 4">
               <img src="images/image4.png" alt="Agency and Humanity" />
             </figure>
           </div>
@@ -846,7 +873,7 @@
       </div>
     </section>
 
-    <!-- Moved callout here (after participant, before logistics) -->
+    <!-- Callout -->
     <div class="wrap" style="padding: 0 18px;">
       <div class="callout" style="margin: 0 0 44px;">
         Join us in re-envisioning education — to nurture the conscious, connected, and creative
@@ -871,8 +898,8 @@
               <a class="btn orange" href="#register" style="margin-top:14px;">Register</a>
             </div>
 
-            <!-- Image 5: outside the white box, under the register prompt, no caption -->
-            <div class="sectionImage" style="margin-top:16px; max-width:520px;">
+            <!-- Image 5: centered under the box above -->
+            <div class="sectionImage centerImage" style="margin-top:16px; max-width:520px;">
               <img src="images/image5.png" alt="The Fetzer Center" />
             </div>
           </div>
