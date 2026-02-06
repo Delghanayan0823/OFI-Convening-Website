@@ -217,22 +217,12 @@
     }
     .bigImage img{display:block; width:100%; height:auto;}
 
-    /* UPDATED: Intro layout with Image 6 floated so text wraps under it rather than stopping */
+    /* NEW: Intro layout with Image 6 on the right */
     .introGrid{
-      display:block; /* allow normal flow for wrapping */
-    }
-    .introGrid .copy{
-      max-width: 92ch;
-    }
-    .introGrid .bigImage{
-      float:right;
-      width: min(420px, 42%);
-      margin: 0 0 16px 22px;
-    }
-    .introGrid::after{
-      content:"";
-      display:block;
-      clear:both;
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 22px;
+      align-items:start;
     }
 
     /* NEW: Where section layout to make Image 8 look better next to logistics */
@@ -242,14 +232,6 @@
       gap: 22px;
       align-items:start;
       margin-top: 10px;
-    }
-
-    /* UPDATED: Your Contribution layout with Image 9 beside text */
-    .contributionGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 22px;
-      align-items:start;
     }
 
     /* Bullets */
@@ -325,17 +307,8 @@
     @media (max-width: 920px){
       body{font-size:20px;}
       .formgrid{grid-template-columns: 1fr;}
+      .introGrid{grid-template-columns: 1fr;}
       .whereGrid{grid-template-columns: 1fr;}
-
-      /* stack Image 6 above/below on mobile (no float) */
-      .introGrid .bigImage{
-        float:none;
-        width:100%;
-        margin: 0 0 16px 0;
-      }
-
-      /* stack contribution */
-      .contributionGrid{grid-template-columns: 1fr;}
     }
   </style>
 </head>
@@ -381,7 +354,7 @@
       </div>
     </div>
 
-    <!-- FIRST SECTION BELOW IMAGE 1: (TEXT + IMAGE 6 ON RIGHT; TEXT WRAPS UNDER IMAGE) -->
+    <!-- FIRST SECTION BELOW IMAGE 1: (TEXT + IMAGE 6 ON RIGHT) -->
     <section id="intro">
       <div class="wrap">
         <div class="introGrid">
@@ -416,23 +389,16 @@
         <h2>Quotes</h2>
         <div class="quoteStack" aria-label="Stacked quotes">
           <div class="quote">
-            <blockquote>
-              Engaging students’ humanity differs from building social-emotional skills. Social-emotional skills cultivate specific outcomes, but when we engage students’ humanity, we influence the broader arc of their development — touching how they see themselves, relate to others, and move through the world.
-            </blockquote>
+            <blockquote>“[Placeholder quote text]”</blockquote>
+            <div class="who">— Damon</div>
           </div>
-
           <div class="quote">
-            <blockquote>
-              Children move through worlds already alive with wonder, struggle, discovery, and becoming. Each day holds its own depth and meaning. When society relates to education merely as preparation for adult life, it overlooks the profound meaning unfolding in their lived experience.
-            </blockquote>
-            <div class="who">Dr. Joe Duffey</div>
+            <blockquote>“[Placeholder quote text]”</blockquote>
+            <div class="who">— Student (Question Project)</div>
           </div>
-
           <div class="quote">
-            <blockquote>
-              “As students we need help to find out who we are — and what we are meant to do with our lives.”
-            </blockquote>
-            <div class="who">Alvaro Rodriguez, Student, Bronx Center for Science and Mathematics</div>
+            <blockquote>“[Placeholder quote text]”</blockquote>
+            <div class="who">— Founder</div>
           </div>
         </div>
       </div>
@@ -447,27 +413,20 @@
       </div>
     </section>
 
-    <!-- YOUR CONTRIBUTION (TEXT + IMAGE 9 SIDE-BY-SIDE) -->
+    <!-- YOUR CONTRIBUTION -->
     <section id="contribution" class="band">
       <div class="wrap">
         <h2>Your Contribution</h2>
-
-        <div class="contributionGrid">
-          <div class="copy">
-            <p>
-              This convening brings together leaders who sense that something essential is calling to be built. At a moment of profound
-              cultural and technological change, we are here to explore why this work matters now, how each of us is uniquely positioned
-              to contribute, and what becomes possible when we intentionally come together to build a new field.
-            </p>
-            <p>
-              Through open-ended co-exploration, we will align around a shared mission, vision, and strategy—stretching our thinking,
-              naming tensions, and shaping a bold, coherent narrative for What Makes Us Human.
-            </p>
-          </div>
-
-          <div class="bigImage" aria-label="Your contribution supporting image">
-            <img src="images/Image 9.png" alt="Your Contribution" />
-          </div>
+        <div class="copy">
+          <p>
+            This convening brings together leaders who sense that something essential is calling to be built. At a moment of profound
+            cultural and technological change, we are here to explore why this work matters now, how each of us is uniquely positioned
+            to contribute, and what becomes possible when we intentionally come together to build a new field.
+          </p>
+          <p>
+            Through open-ended co-exploration, we will align around a shared mission, vision, and strategy—stretching our thinking,
+            naming tensions, and shaping a bold, coherent narrative for What Makes Us Human.
+          </p>
         </div>
       </div>
     </section>
@@ -513,8 +472,6 @@
               <div class="row"><span class="k">Location</span><span class="v">Fetzer Institute</span></div>
               <div class="row"><span class="k">City</span><span class="v">Kalamazoo, MI</span></div>
               <div class="row"><span class="k">Address</span><span class="v">9292 W KL Ave, Kalamazoo, MI 49009</span></div>
-              <div class="row"><span class="k">Travel, food &amp; accommodation</span><span class="v">Complimentary due to the generosity of Fetzer Institute and Eric &amp; Wendy Schmidt Foundation.</span></div>
-              <div class="row"><span class="k">Attendance</span><span class="v">By invitation only</span></div>
             </div>
           </div>
         </div>
@@ -528,7 +485,91 @@
       </div>
     </section>
 
-    <!-- REGISTER SECTION REMOVED PER REQUEST -->
+    <!-- REGISTER (LAST THING ON SITE) -->
+    <section id="register">
+      <div class="wrap">
+        <h2>Register for the Convening</h2>
+        <p style="max-width: 92ch; color: rgba(31,41,55,.84); margin: 0 0 18px;">
+          (Front-end mockup — connect it to Google Form, Airtable, Typeform, etc.)
+        </p>
+
+        <form onsubmit="event.preventDefault(); alert('Submitted! (Mockup only — connect this form to your registration workflow.)');">
+          <div class="formgrid">
+            <div>
+              <label for="fullName">Full name</label>
+              <input id="fullName" name="fullName" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required />
+            </div>
+
+            <div>
+              <label for="org">Organization / affiliation</label>
+              <input id="org" name="org" />
+            </div>
+            <div>
+              <label for="role">Role / title</label>
+              <input id="role" name="role" />
+            </div>
+
+            <div class="full">
+              <label for="stakeholder">Perspective / lens</label>
+              <select id="stakeholder" name="stakeholder">
+                <option value="">Select one (or closest)</option>
+                <option>Researcher</option>
+                <option>Mental Health expert</option>
+                <option>Educator / school leader</option>
+                <option>Youth advocate / practitioner</option>
+                <option>Student / young person</option>
+                <option>Funder / philanthropy</option>
+                <option>Journalist / storyteller</option>
+                <option>Technologist / product builder</option>
+                <option>Policy / government</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="full">
+              <label for="why">What are you most looking forward to contributing?</label>
+              <textarea id="why" name="why"></textarea>
+            </div>
+
+            <div>
+              <label for="arrival">Arrival date & time (local)</label>
+              <input id="arrival" name="arrival" placeholder="Arrival by 5:00 PM" />
+            </div>
+            <div>
+              <label for="departure">Departure date & time (local)</label>
+              <input id="departure" name="departure" placeholder="Departure after 2:00 PM" />
+            </div>
+
+            <div>
+              <label for="diet">Dietary needs</label>
+              <input id="diet" name="diet" />
+            </div>
+            <div>
+              <label for="access">Accessibility needs</label>
+              <input id="access" name="access" />
+            </div>
+
+            <div class="full">
+              <label for="notes">Any questions or requests?</label>
+              <textarea id="notes" name="notes"></textarea>
+            </div>
+          </div>
+
+          <div class="formActions">
+            <button class="btn orange" type="submit">Submit Registration</button>
+            <a class="btn" href="#top" style="background:#111827; border-color:#111827;">Back to top</a>
+          </div>
+
+          <p class="small" style="margin-top:12px;">
+            Implementation note: Replace this form handler with your registration workflow (Airtable/Typeform/etc.). This mockup currently just shows a success message.
+          </p>
+        </form>
+      </div>
+    </section>
   </main>
 </body>
 </html>
