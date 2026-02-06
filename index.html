@@ -112,11 +112,15 @@
       padding: 22px 0 18px;
     }
     .heroInner{ padding: 10px 0 0; }
+
+    /* UPDATED: left-aligned hero text */
     .heroCenter{
-      text-align:center;
+      text-align:left;
       max-width: 1180px;
       margin: 0 auto;
     }
+
+    /* UPDATED: "Prioritizing" on its own line */
     .heroCenter h1{
       margin: 10px 0 12px;
       font-size: clamp(44px, 5.6vw, 72px);
@@ -124,21 +128,25 @@
       letter-spacing: -1px;
       font-weight: 950;
     }
-    .heroCenter h1 .accent{color: var(--orange); font-weight: 950;}
-
-    /* UPDATED: subtitle still larger than original, but 2 sizes smaller than the previous "much larger" version */
-    .heroSub{
-      margin: 0 auto 14px;
-      max-width: 80ch;
-      font-size: clamp(26px, 2.7vw, 34px);
-      line-height: 1.25;
-      color: rgba(31,41,55,.92);
+    .heroCenter h1 .accent{
+      color: var(--orange);
+      font-weight: 950;
+      display:block; /* puts Prioritizing on its own line */
+      margin-bottom: 4px;
     }
-    /* keep date large (as previously requested) */
+
+    /* UPDATED: subtitle is noticeably smaller than the date line */
+    .heroSub{
+      margin: 0 0 10px;
+      max-width: 76ch;
+      font-size: clamp(18px, 1.55vw, 22px);
+      color: rgba(31,41,55,.84);
+      line-height: 1.35;
+    }
     .heroDate{
-      margin: 0 auto 22px;
-      max-width: 80ch;
-      font-size: clamp(22px, 2.2vw, 28px);
+      margin: 0 0 18px;
+      max-width: 76ch;
+      font-size: clamp(24px, 2.2vw, 30px);
       font-weight: 950;
       color: rgba(31,41,55,.80);
       letter-spacing: .02em;
@@ -209,16 +217,21 @@
     }
     .bigImage img{display:block; width:100%; height:auto;}
 
-    /* UPDATED: Image 6 half-width + centered */
-    .bigImage.half{
-      max-width: 50%;
-      margin: 0 auto;
+    /* NEW: Intro layout with Image 6 on the right */
+    .introGrid{
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 22px;
+      align-items:start;
     }
 
-    /* UPDATED: Image 8 smaller than half so it pairs better with logistics */
-    .bigImage.smaller{
-      max-width: 38%;
-      margin: 0 auto;
+    /* NEW: Where section layout to make Image 8 look better next to logistics */
+    .whereGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items:start;
+      margin-top: 10px;
     }
 
     /* Bullets */
@@ -294,8 +307,8 @@
     @media (max-width: 920px){
       body{font-size:20px;}
       .formgrid{grid-template-columns: 1fr;}
-      .bigImage.half{max-width: 100%;}
-      .bigImage.smaller{max-width: 100%;}
+      .introGrid{grid-template-columns: 1fr;}
+      .whereGrid{grid-template-columns: 1fr;}
     }
   </style>
 </head>
@@ -323,7 +336,10 @@
       <div class="wrap">
         <div class="heroInner">
           <div class="heroCenter">
-            <h1><span class="accent">Prioritizing</span> What Makes Us Human</h1>
+            <h1>
+              <span class="accent">Prioritizing</span>
+              What Makes Us Human
+            </h1>
             <p class="heroSub">
               Creating the foundations for an interdisciplinary field in an Age of AI, Polarization, and a Crisis of Meaning
             </p>
@@ -338,25 +354,31 @@
       </div>
     </div>
 
-    <!-- FIRST SECTION BELOW IMAGE 1: (TEXT ONLY) -->
+    <!-- FIRST SECTION BELOW IMAGE 1: (TEXT + IMAGE 6 ON RIGHT) -->
     <section id="intro">
       <div class="wrap">
-        <div class="copy">
-          <p>
-            In a world rapidly reshaped by artificial intelligence, deepening polarization, and a growing crisis of meaning and
-            connection, schools continue to emphasize achievement, performance, and outcomes—college, career, success—while many
-            young people feel increasingly disconnected from themselves, from one another, and from a deeper sense of purpose in
-            their lives.
-          </p>
-          <p>
-            In response to this moment, building on more than a decade of success serving thousands of NYC public high school
-            students and engaging hundreds of educators, we aim to co-create the foundational elements of a new interdisciplinary
-            field centered on What Makes Us Human.
-          </p>
-          <p>
-            We will host the first convening at the Fetzer Institute June 16–18, bringing together leaders from across fields to
-            begin shaping shared language, a unifying framework, guiding principles, and strategy.
-          </p>
+        <div class="introGrid">
+          <div class="copy">
+            <p>
+              In a world rapidly reshaped by artificial intelligence, deepening polarization, and a growing crisis of meaning and
+              connection, schools continue to emphasize achievement, performance, and outcomes—college, career, success—while many
+              young people feel increasingly disconnected from themselves, from one another, and from a deeper sense of purpose in
+              their lives.
+            </p>
+            <p>
+              In response to this moment, building on more than a decade of success serving thousands of NYC public high school
+              students and engaging hundreds of educators, we aim to co-create the foundational elements of a new interdisciplinary
+              field centered on What Makes Us Human.
+            </p>
+            <p>
+              We will host the first convening at the Fetzer Institute June 16–18, bringing together leaders from across fields to
+              begin shaping shared language, a unifying framework, guiding principles, and strategy.
+            </p>
+          </div>
+
+          <div class="bigImage" aria-label="Intro supporting image">
+            <img src="images/Image 6.JPG" alt="Convening moment" />
+          </div>
         </div>
       </div>
     </section>
@@ -382,11 +404,11 @@
       </div>
     </section>
 
-    <!-- PICTURE BETWEEN QUOTES AND YOUR CONTRIBUTION: IMAGE 6 -->
+    <!-- PICTURE BETWEEN QUOTES AND YOUR CONTRIBUTION: IMAGE 7 -->
     <section id="moment">
       <div class="wrap">
-        <div class="bigImage half" aria-label="Large image">
-          <img src="images/Image 6.JPG" alt="Convening moment" />
+        <div class="bigImage" aria-label="Large image">
+          <img src="images/Image 7.JPG" alt="Convening moment" />
         </div>
       </div>
     </section>
@@ -436,27 +458,29 @@
       <div class="wrap">
         <h2>A Place for Connection &amp; Co-Creation</h2>
 
-        <div class="copy">
-          <div class="bigImage smaller" aria-label="Fetzer Institute image">
+        <div class="whereGrid">
+          <div class="bigImage" aria-label="Fetzer Institute image">
             <img src="images/Image 8.png" alt="Fetzer Institute" />
           </div>
 
-          <p style="margin-top:18px;">
+          <div class="panel" aria-label="Key details">
+            <h3>Convening Logistics</h3>
+            <div class="kv">
+              <div class="row"><span class="k">Dates</span><span class="v">June 16–18, 2026</span></div>
+              <div class="row"><span class="k">Arrival</span><span class="v">Arrival by 5:00 PM</span></div>
+              <div class="row"><span class="k">Departure</span><span class="v">After 2:00 PM</span></div>
+              <div class="row"><span class="k">Location</span><span class="v">Fetzer Institute</span></div>
+              <div class="row"><span class="k">City</span><span class="v">Kalamazoo, MI</span></div>
+              <div class="row"><span class="k">Address</span><span class="v">9292 W KL Ave, Kalamazoo, MI 49009</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="copy" style="margin-top:18px;">
+          <p>
             We’re grateful to gather at the Fetzer Institute in Kalamazoo, Michigan—an environment designed for reflection,
             relationship, and long-horizon thinking.
           </p>
-        </div>
-
-        <div class="panel" aria-label="Key details" style="margin-top:18px;">
-          <h3>Convening Logistics</h3>
-          <div class="kv">
-            <div class="row"><span class="k">Dates</span><span class="v">June 16–18, 2026</span></div>
-            <div class="row"><span class="k">Arrival</span><span class="v">Arrival by 5:00 PM</span></div>
-            <div class="row"><span class="k">Departure</span><span class="v">After 2:00 PM</span></div>
-            <div class="row"><span class="k">Location</span><span class="v">Fetzer Institute</span></div>
-            <div class="row"><span class="k">City</span><span class="v">Kalamazoo, MI</span></div>
-            <div class="row"><span class="k">Address</span><span class="v">9292 W KL Ave, Kalamazoo, MI 49009</span></div>
-          </div>
         </div>
       </div>
     </section>
