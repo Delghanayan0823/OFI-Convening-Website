@@ -17,7 +17,7 @@
       --max: 1040px;
       --serif: Georgia, "Times New Roman", Times, serif;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      scroll-padding-top: 84px; /* prevents sticky header covering anchors */
+      scroll-padding-top: 84px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;}
@@ -31,10 +31,8 @@
     a{color:inherit}
     img{max-width:100%; height:auto;}
     .wrap{max-width: var(--max); margin:0 auto; padding:0 18px;}
-    .topbar{
-      height: 4px;
-      background: linear-gradient(90deg, var(--orange), var(--teal));
-    }
+    .topbar{height: 4px;background: linear-gradient(90deg, var(--orange), var(--teal));}
+
     header{
       position: sticky;
       top: 0;
@@ -47,6 +45,7 @@
       display:flex; align-items:center; justify-content:space-between;
       padding: 14px 0;
       gap: 14px;
+      flex-wrap:wrap;
     }
     .brand{
       display:flex; align-items:center; gap: 10px;
@@ -75,6 +74,25 @@
       margin-top: 3px;
     }
 
+    .navlinks{
+      display:flex;
+      gap: 14px;
+      flex-wrap:wrap;
+      align-items:center;
+      font-size: 13px;
+      color: rgba(31,41,55,.78);
+    }
+    .navlinks a{
+      text-decoration:none;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    .navlinks a:hover{
+      border-color: var(--line);
+      background:#fff;
+    }
+
     .btn{
       border: 1px solid var(--ink);
       background: var(--ink);
@@ -91,7 +109,6 @@
     .btn:hover{background:#111827; border-color:#111827;}
     .btn:active{transform: translateY(1px);}
 
-    /* Force orange buttons to always have white text (anchors + buttons) */
     .btn.orange{
       border-color: var(--orange);
       background: var(--orange);
@@ -131,22 +148,17 @@
         radial-gradient(700px 340px at 80% 30%, rgba(242,107,58,.16), transparent 58%),
         #f6f7f8;
       overflow:hidden;
-
-      /* shorter hero */
       aspect-ratio: 16/5;
-      min-height: 200px;
+      min-height: 210px;
     }
     .heroOverlay{
       position:absolute; inset:0;
       padding: clamp(18px, 3vw, 34px);
       display:flex;
-      align-items:center;       /* vertically centered */
+      align-items:center;
       justify-content:flex-end;
     }
-    .heroText{
-      max-width: 520px;
-      text-align:right;
-    }
+    .heroText{max-width: 560px;text-align:right;}
     .kicker{
       color: var(--teal);
       letter-spacing: .12em;
@@ -161,10 +173,7 @@
       line-height: 1.05;
       letter-spacing: -.6px;
     }
-    .heroText h1 .accent{
-      color: var(--orange);
-      font-weight: 850;
-    }
+    .heroText h1 .accent{color: var(--orange);font-weight: 850;}
     .heroText p{
       margin: 0 0 16px;
       color: rgba(31,41,55,.80);
@@ -191,7 +200,6 @@
       background:#fff;
     }
 
-    /* Image 1 (bigger) directly under hero square */
     .heroBelowImage{
       margin: 16px auto 0;
       max-width: 980px;
@@ -202,70 +210,6 @@
       display:block;
       border: 1px solid var(--line);
       background:#fff;
-    }
-
-    /* Generic image frame */
-    .sectionImage{
-      border: 1px solid var(--line);
-      background:#fff;
-      overflow:hidden;
-    }
-    .sectionImage img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
-    /* Media row (replaces floats) */
-    .mediaRow{
-      display:grid;
-      grid-template-columns: 1fr 360px;
-      gap: 18px;
-
-      /* IMPORTANT: align to top so the text doesn’t get “pushed down” (fixes the big gap you’re seeing) */
-      align-items:start;
-
-      /* matches normal paragraph spacing */
-      margin: 0 0 14px;
-    }
-    .mediaRow .mediaText{
-      /* behave like normal paragraph flow */
-      margin: 0;
-      max-width: 88ch;
-      font-size: 15.5px;
-    }
-    .mediaRow .mediaImg{
-      border: 1px solid var(--line);
-      background:#fff;
-      overflow:hidden;
-    }
-    .mediaRow .mediaImg img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-    .mediaRow.large{
-      grid-template-columns: 1fr 440px;
-      align-items:start;
-    }
-
-    /* Image 4: show the whole graphic (no cropping) */
-    .fillFrame{
-      /* no forced aspect ratio; let the image determine height so we can see all kids */
-      display:block;
-      background:#fff;
-    }
-    .fillFrame img{
-      width:100%;
-      height:auto;
-      object-fit: contain; /* ensure full image is visible */
-      display:block;
-    }
-
-    /* Center helper (for image 5) */
-    .centerImage{
-      margin-left:auto !important;
-      margin-right:auto !important;
     }
 
     /* Sections */
@@ -294,7 +238,7 @@
       margin-bottom: 16px;
     }
     .copy p{
-      margin: 0 0 14px; /* consistent spacing between all paragraphs */
+      margin: 0 0 14px;
       max-width: 88ch;
       font-size: 15.5px;
     }
@@ -319,21 +263,24 @@
       letter-spacing: .01em;
     }
 
-    .ol{
-      margin: 0;
-      padding-left: 20px;
-      max-width: 92ch;
+    .grid3{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
     }
-    .ol li{
-      margin: 0 0 12px;
-      font-size: 15.5px;
+    .card{
+      border:1px solid var(--line);
+      background:#fff;
+      padding: 16px;
+      border-radius: 14px;
     }
-    .subnote{
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 10px;
-      max-width: 92ch;
-    }
+    .card strong{display:block;margin-bottom:6px;}
+    .card p{margin:0;color: rgba(31,41,55,.78);font-size: 14.5px;line-height:1.5;}
+
+    .ol{margin: 0;padding-left: 20px;max-width: 92ch;}
+    .ol li{margin: 0 0 12px;font-size: 15.5px;}
+    .subnote{color: var(--muted);font-size: 13px;margin-top: 10px;max-width: 92ch;}
 
     .cols{
       display:grid;
@@ -344,7 +291,8 @@
       .heroText{text-align:left;}
       .heroOverlay{justify-content:flex-start;}
       .cols{grid-template-columns: 1fr;}
-      .mediaRow, .mediaRow.large{grid-template-columns: 1fr;}
+      .grid3{grid-template-columns: 1fr;}
+      .navlinks{display:none;}
     }
 
     .panel{
@@ -353,11 +301,7 @@
       padding: 18px;
     }
     .panel h3{margin-top:0;}
-    .kv{
-      display:grid;
-      gap: 10px;
-      font-size: 14px;
-    }
+    .kv{display:grid;gap: 10px;font-size: 14px;}
     .kv .row{
       display:flex; justify-content:space-between; gap:12px;
       border-bottom: 1px solid var(--line);
@@ -366,6 +310,23 @@
     .kv .row:last-child{border-bottom:none; padding-bottom:0;}
     .k{color: var(--muted);}
     .v{font-weight: 700;}
+
+    /* FAQ */
+    details{
+      border:1px solid var(--line);
+      border-radius: 14px;
+      background:#fff;
+      padding: 14px 14px;
+      margin: 10px 0;
+    }
+    summary{
+      cursor:pointer;
+      font-weight: 800;
+      letter-spacing: -.1px;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none;}
+    details p{margin:10px 0 0;color: rgba(31,41,55,.78);max-width: 92ch;font-size: 15px;}
 
     form{ margin-top: 12px; }
     .formgrid{
@@ -445,6 +406,19 @@
             <span>Convening • June 16–18, 2026</span>
           </div>
         </a>
+
+        <nav class="navlinks" aria-label="Page navigation">
+          <a href="#overview">Overview</a>
+          <a href="#expect">What to expect</a>
+          <a href="#agenda">Agenda</a>
+          <a href="#where">Where we’ll be</a>
+          <a href="#faq">FAQs</a>
+        </nav>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <a class="btn ghost" href="#logistics">Logistics</a>
+          <a class="btn orange" href="#register">Register / Interest</a>
+        </div>
       </div>
     </div>
   </header>
@@ -462,14 +436,18 @@
                 <span class="accent">WHAT MAKES US HUMAN</span>
               </h1>
               <p>
-                Creating the foundations for an interdisciplinary field of study — and a pedagogy of connectedness
-                that centers connection with self, others, and life.
+                A small, invite-forward gathering to deepen relationships, break silos, and shape next steps toward
+                a pedagogy of connectedness—connection with self, others, and life.
               </p>
+              <div style="display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap;">
+                <a class="btn orange" href="#register">Register / Interest</a>
+                <a class="btn ghost" href="#expect">What to expect</a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Image 1 bigger -->
+        <!-- Keep your existing hero image -->
         <div class="heroBelowImage" aria-label="Hero supporting image">
           <img src="images/image1.png" alt="Supporting image" />
         </div>
@@ -481,446 +459,146 @@
             <span class="metaChip"><strong>Arrival:</strong> 5:00 PM</span>
           </div>
           <div>
-            <a class="btn ghost" href="#logistics">View logistics</a>
+            <a class="btn ghost" href="#faq">FAQs</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- CURRENT STATE -->
-    <section id="current">
+    <!-- OVERVIEW -->
+    <section id="overview">
       <div class="wrap">
-        <h2>The Current State of Education</h2>
-        <div class="copy">
-          <p>
-            In an age increasingly defined by artificial intelligence, technological acceleration, a culture
-            of achievement, and growing social fragmentation and polarization, education faces a
-            defining challenge: how to nurture what makes us human. Across classrooms and policy
-            agendas, students are prepared to compete, achieve, and succeed—often framed in terms
-            of “college, career, and success.” While these aims have value, their dominance has tilted
-            education toward the outer dimensions of life—performance, productivity, and measurable
-            outcomes—at the expense of the inner dimensions that connect students to their own lives
-            and give those pursuits meaning.
-          </p>
-          <p>
-            We are living through a broad crisis of connection—reflected in rising anxiety, isolation, and
-            polarization—that points to a fundamental gap in how education has approached human
-            development. We have not cultivated the inner capacities that allow individuals to relate
-            authentically to themselves, to others, and to the world.
-          </p>
-          <p>
-            Although many social-emotional learning (SEL) and related programs seek to address
-            wellbeing, they often do so by focusing on parts—skills, traits, or competencies—without
-            engaging the underlying wholeness that is the foundation of health and development for
-            both individuals and society.
-          </p>
-          <p>
-            We lack a shared language or framework for addressing wholeness directly, so efforts to
-            foster wellbeing frequently remain fragmented. Yet wholeness is not abstract or “soft.” It can
-            be approached concretely through creating outlets for students to develop their connection
-            with self, others, and life—connections that integrate the inner and outer dimensions of
-            learning and give coherence to their experience. SEL skills and competencies no doubt have
-            importance, but they need to be anchored in the connectivity that engages their whole self,
-            otherwise students will experience those skills and competencies as fragmented parts that
-            do not interrelate with the core of who they are.
-          </p>
-        </div>
-      </div>
-    </section>
+        <h2>Overview</h2>
+        <p class="lede">
+          What do young people—and those who support them—need to reclaim and evolve connection in an age of AI?
+          This convening is designed to surface shared insight, strengthen coherence, and catalyze practical next steps.
+        </p>
 
-    <!-- HOW DID WE GET HERE -->
-    <section id="history" class="band">
-      <div class="wrap">
-        <h2>How Did We Get Here?</h2>
         <div class="copy">
           <p>
-            It’s easy to blame the rapid advance of technology for an intensifying crisis of disconnection and
-            mental health in our youth. While technological advances and social media have been profound
-            accelerants, complicating the journey of connection with self, others, and life, a host of other forces
-            have combined to bring us to this point. To fully appreciate what our youth are dealing with, it is
-            helpful to consider the historical and cultural context in which today's adolescents are growing up.
+            Today’s young people are coming of age amid rising loneliness, anxiety, and polarization. Technology has accelerated
+            these trends—pulling attention to screens, reshaping identity and belonging, and complicating what “real” means.
+            Generative AI raises the stakes even further: it blurs authenticity, changes trust, and introduces new forms of relationship
+            through technology—and with technology itself.
           </p>
           <p>
-            A few generations prior, society would dictate and hand us an understanding and roadmap of
-            “reality.” Whether commendable or lamentable, this "map" outlined what it meant to be a boy, a girl,
-            a man, a woman, what was expected of us, and what our future held for us. Although these cultural
-            narratives imposed limitations, they also offered a sense of certainty and stability.
-          </p>
-          <p>
-            Today, these prescribed narratives no longer hold the same weight and certainty in defining who we
-            are and our direction in life. As a result, adolescents are largely left to their own devices to
-            understand themselves, life, and their place in it. This shift has left many youth feeling lost, confused,
-            and in the dark, without the means needed to chart a path to their future. Consequently, teenagers
-            grapple with intense feelings of disconnection, anxiety, and isolation, struggling to find their way in a
-            world that seems increasingly chaotic and uncertain.
-          </p>
-          <p>
-            Atop these challenges, youth are bombarded with images and messages that fuel concerns about
-            self-image and drive them to project inauthentic versions of themselves on social media and in their
-            lives. The struggle for authenticity is further complicated by a growing distrust in media's portrayal
-            of facts and events, leaving young people uncertain about what information they can rely on as they
-            form their identities and worldviews.
-          </p>
-          <p>
-            The rapid advancement of AI technology is set to amplify these challenges exponentially. As
-            AI-generated content becomes more sophisticated, we will face increasing difficulty in distinguishing
-            between genuine human expression and artificial creations. This blurring of lines will further
-            complicate teens’ journey toward authentic connection with themselves, others, and the world
-            around them.
-          </p>
-          <p>
-            In this new landscape, the role of parents and educators is crucial, especially during the pivotal
-            transition from adolescence to independent adulthood. Our most promising solution lies in providing
-            teens with opportunities to develop an internal compass that helps to ground them as they find and
-            chart their unique path. This guidance from within can replace the outdated scripts of the past,
-            enabling young people to uncover their authentic selves and determine their own directions in life.
-          </p>
-          <p>
-            In this way, we not only address the immediate mental health crisis but also empower the next
-            generation to thrive in an increasingly complex and rapidly changing world.
+            But it’s not only a crisis. It’s a crossroads. Young people are also already forging new ways to use digital spaces for
+            expression, belonging, and community. The question is: how do we equip them with the inner and relational capacities
+            to choose a future where technology strengthens relationships rather than replaces them?
           </p>
         </div>
 
-        <!-- UPDATED QUOTE -->
+        <div class="grid3" role="list" aria-label="Three pillars">
+          <div class="card" role="listitem">
+            <strong>Break silos</strong>
+            <p>Bring educators, researchers, practitioners, and builders into one room—shared language, shared reality, shared action.</p>
+          </div>
+          <div class="card" role="listitem">
+            <strong>Practice connection</strong>
+            <p>We’ll “walk the walk”: relationship-first design, courageous dialogue, and grounded reflection.</p>
+          </div>
+          <div class="card" role="listitem">
+            <strong>Build next steps</strong>
+            <p>Clarify what matters most, pressure-test the framework, and identify concrete collaborations to carry forward.</p>
+          </div>
+        </div>
+
         <div class="callout">
-          ‘The biggest problem growing up today is not actually stress; it’s meaninglessness.’
-          <span class="attrib">—William Damon, Stanford University</span>
+          “What if this isn’t only a crisis—but a crossroads?”
+          <span class="attrib">—A question guiding our time together</span>
         </div>
       </div>
     </section>
 
-    <!-- CREATING A NEW FIELD -->
-    <section id="field">
+    <!-- WHAT TO EXPECT -->
+    <section id="expect" class="band">
       <div class="wrap">
-        <h2>Creating a new Interdisciplinary field of study</h2>
-        <div class="copy">
-          <p>
-            This initiative seeks to place “What Makes Us Human?” at the center of educational
-            thought and practice. By supporting educators, researchers, and leaders to explore and
-            advance a pedagogy of connectedness—one that engages students’ whole selves—we can
-            counter the prevailing pedagogy that atomizes the self into discrete parts: academic, social,
-            emotional, behavioral. A pedagogy of connectedness reorients learning around human
-            agency and authentic relationship rather than control, conformity, or performance alone.
-          </p>
-          <p>
-            Anchoring the many promising strands of educational innovation—identity development,
-            purpose learning, character education, agency and social-emotional learning—in the deeper
-            foundation of what makes us human creates the possibility of moving beyond fixed and
-            externally imposed definitions of success. It allows us to cultivate the inner ground
-            from which real growth emerges: the ability to relate meaningfully to one’s own experience,
-            to others, and to life itself.
-          </p>
-          <p>
-            Connection is not an abstract ideal; it is a concrete developmental process that can be
-            fostered in any context—from classroom learning to athletics, from community engagement
-            to higher education. When students consciously explore how they relate to their experience,
-            to others, and to life, they strengthen the ethical, emotional, and existential core that
-            sustains resilience, empathy, and purpose.
-          </p>
-
-          <!-- Image 2: spacing now matches normal paragraph rhythm (no vertical centering gap) -->
-          <div class="mediaRow">
-            <p class="mediaText">
-              This initiative seeks to deepen the understanding of the “whole child”—not as a collection of parts to be supported separately,
-              but as an integrated, relational individual whose wellbeing depends on a foundation of connectedness to self, others, and life.
-              Wholeness emerges as a byproduct of connectedness; it is foundational to human development and grounds what makes us uniquely
-              human in an age of artificial intelligence.
-            </p>
-            <div class="mediaImg">
-              <img src="images/image2.png" alt="Whole child and connectedness" />
-            </div>
-          </div>
-
-          <p>
-            By galvanizing a community of educational leaders across disciplines, we aim to
-            collectively lay the foundations for a new interdisciplinary field of study, expanding the
-            narrative of education beyond college and career readiness toward preparedness for life, for
-            relationship, and for the shared human journey. Addressing disconnection at its roots is
-            essential not only for individual wellbeing but also for the flourishing and cohesion of society
-            itself.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONCEPTUAL FRAMEWORK -->
-    <section id="framework" class="band">
-      <div class="wrap">
-        <h2>Conceptual Framework</h2>
-
-        <p class="lede"><strong>Towards a Pedagogy of Wholeness</strong></p>
-
-        <div class="copy">
-          <!-- Image 3: aligned without floats -->
-          <div class="mediaRow large">
-            <div>
-              <p style="margin-top:0;">
-                Wholeness and Connection: Wholeness is the foundation for individual and
-                societal well-being, yet existing programs often address aspects or
-                parts rather than the underlying wholeness. This new interdisciplinary
-                field of study seeks to redefine the whole child as an integrated, relational
-                being. At the heart of this field building approach lies a guiding framework designed to expand our
-                understanding of the “whole child". It centers on three interconnected domains: Connection with Self, Connection with
-                Others, and Connection with Life. Each domain of connection is animated by <strong>agency</strong>—the
-                capacity to consciously and intentionally engage with and express our experience in relation
-                to ourselves, others, and life. This field situates connection as the generative core of human
-                wholeness that forms the foundation for personal flourishing and collective health.
-              </p>
-            </div>
-            <div class="mediaImg">
-              <img src="images/image3.png" alt="Framework diagram" />
-            </div>
-          </div>
-
-          <h3>1. Connection with Self</h3>
-          <p>
-            This domain cultivates the agency to explore and express who we
-            are. Central to this connection is students being able to explore how they relate to and
-            make sense of their experience. This connection fosters authenticity and grounds
-            students in the conviction required to act from their inner compass rather than external
-            validation.
-          </p>
-
-          <h3>2. Connection with Others</h3>
-          <p>
-            This domain cultivates the agency to form intimate and trusting
-            relationships. Central to this connection is creating opportunities for students to truly see
-            and connect with one another as human beings. This dimension is crucial for reducing
-            polarization and restoring a sense of shared humanity across differences.
-          </p>
-
-          <h3>3. Connection with Life</h3>
-          <p>
-            This domain cultivates the agency to embrace life with purpose
-            and possibility by supporting students to make sense of their lives, their future, and their
-            place in the world and their communities. This connection nurtures character, authentic
-            citizenship and appreciation for the shared human journey.
-          </p>
-
-          <!-- WIDEN IMAGE 4 COLUMN so it has more room -->
-          <div class="cols" style="grid-template-columns: 1fr 1fr;">
-            <div>
-              <p>
-                Agency and Humanity: Agency and humanity are inextricably linked. Agency is not merely choice or motivation,
-                but the capacity to consciously author how we relate to our experiences, to others, and to life itself.
-                This capacity is a defining human capability — one that differentiates us from both animals and artificial intelligence.
-              </p>
-              <p>
-                Supporting students in reflecting intentionally on how they relate to their experience—through reflection, relational practice,
-                and authentic meaning-making—whether in collaboration or conflict, profoundly deepens their sense of connectedness.
-                When students are supported in developing this agency, they begin to see themselves not merely as participants in life’s unfolding
-                but as co-authors.
-              </p>
-            </div>
-
-            <!-- Image 4: widened + no cropping so you can see all of the kids -->
-            <figure class="sectionImage fillFrame" aria-label="Image 4">
-              <img src="images/image4.png" alt="Agency and Humanity" />
-            </figure>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- STRATEGY -->
-    <section id="strategy">
-      <div class="wrap">
-        <h2>Field Building Strategy</h2>
-
-        <div class="copy">
-          <p>
-            Prioritizing what makes us human is a comprehensive, collaborative, and interdisciplinary
-            approach to forming a shared vision that requires both conceptual clarity and structural
-            coordination. The work unfolds through five interdependent phases:
-          </p>
-
-          <ol class="ol">
-            <li>
-              Collaborate with and convene an interdisciplinary working group of educators,
-              researchers, practitioners, and thought leaders to co-create shared language,
-              intellectual coherence, and long-term stewardship for the field. The centerpiece of this
-              strategy is building a trusted and aligned steering committee, culminating in an initial
-              convening on June 16–18, 2026. Approximately 20 key stakeholders representing
-              research institutions, innovative programs, media, and foundations will gather at the
-              Fetzer Institute in Kalamazoo, Michigan. This convening will serve as the first step to
-              formalize shared language and intention, identify priority areas for collaboration, and
-              build momentum for broader coalition development and next steps in shaping the
-              field. Potential participants/advisors will include Researchers; Mental Health experts; High school Educators and students; Program Leaders/Weaver (bringing theory and practice together); Network of Organizations; Foundations; Government Officials; Journalists.
-            </li>
-            <li>
-              Refine the framework to clearly convey what it means to prioritize What Makes Us
-              Human means, why it matters, and how it functions as a foundation for human
-              development and societal wellbeing.
-            </li>
-            <li>
-              Co-Develop core pedagogical principles to highlight best practices, and identify
-              misconceptions to ensure rigor of application – clarifying both effective approaches
-              and common practices that can unintentionally undermine human development.
-            </li>
-            <li>
-              Demonstrate and communicate the foundational relevance of prioritizing students’
-              humanity across multiple domains of learning and growth to bring light to the impact
-              possible. Examples include: Character Development/Ethics, Mental Health, SEL,
-              Identity development, Polarization, Agency development, Purpose development,
-              Belonging and Connectedness. Collaborate with experts across domains to align terminology,
-              frameworks, pedagogical principles, and measures; and publish findings and guidance through
-              accessible articles, podcasts, conferences and open-source resources to reach diverse audiences.
-            </li>
-            <li>
-              Catalyze a broader movement to shift educational narratives, priorities, and
-              investments from an exclusive focus on performance and outcomes toward cultivating
-              human connection, agency, and flourishing in an age of AI. This includes coalition development to
-              unite key stakeholders around the mission; a coordinated strategy for movement building that centers
-              collective ownership and collaboration; thought leadership through conferences, philanthropic convenings,
-              media opportunities, and writing projects focused on collaborative messaging; and a plan to inform and
-              influence public policy later in the process.
-            </li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONVENING -->
-    <section id="convening" class="band">
-      <div class="wrap">
-        <h2>Goals for the first Convening (June 16–18)</h2>
-        <p class="lede">Convening objectives and outcomes through a community of stewardship</p>
+        <h2>What you can expect</h2>
+        <p class="lede">
+          An intentional gathering that balances relationships, sensemaking, and solution-building.
+        </p>
 
         <div class="copy">
           <ol class="ol">
-            <li>
-              <strong>Align around the mission, vision, framework, strategy, approach, and metrics.</strong> This
-              convening will serve as a space to test core ideas, surface tensions, and strengthen
-              intellectual coherence.<br/>
-              <strong>Outcome:</strong> A shared and coherent narrative for the field-building effort, with key
-              inconsistencies addressed and resolved.
-            </li>
-
-            <li>
-              <strong>Review and further develop foundational content</strong><br/>
-              a. Guiding principles for connection with self, others, life<br/>
-              Outcome: Diverse input to inform a first draft of core pedagogical principles<br/><br/>
-              b. Common misconceptions and implementation pitfalls related to connection with
-              self, others, and life<br/>
-              Outcome: Diverse input to inform a first draft of common misconceptions and
-              ineffective practices<br/><br/>
-              c. Applications across key domains of learning and growth (e.g., mental health,
-              character, purpose, belonging, agency, etc.)<br/>
-              Outcome: Input across domains to inform a first draft outlining how prioritizing
-              What Makes Us Human applies to different areas of development
-            </li>
-
-            <li>
-              Heather Malin will present a synthesis of more than a dozen existing frameworks
-              focused on students’ inner development, enabling participants to identify areas of
-              convergence, clarify core priorities, and explore how disparate approaches can be
-              integrated into a coherent field
-            </li>
-
-            <li>
-              Explore inroads for this work in broader culture and across key domains of learning
-              and growth<br/>
-              Outcome: A phased and prioritized set of strategies for integrating What Makes Us
-              Human into education and related domains over time
-            </li>
-
-            <li>
-              Build a coalition to galvanize key stakeholders across education, academia,
-              philanthropy, media, and policy<br/>
-              Outcome: Clear commitments from participants on how they will contribute to the
-              initiative<br/>
-              Outcome: A curated list of additional potential early contributors and allies for the
-              movement
-            </li>
-
-            <li>
-              Define next steps<br/>
-              Outcome: Agreement on short term and mid-term priorities and working groups to
-              advance the next phase of field building
-            </li>
+            <li><strong>Deep connection, not networking.</strong> Structured and unstructured time to build trust and real relationship.</li>
+            <li><strong>Fresh insights across perspectives.</strong> Guided dialogue to surface tensions, assumptions, and shared ground.</li>
+            <li><strong>Imagination + rigor.</strong> Activities that help us see beyond the familiar and sharpen what’s at stake.</li>
+            <li><strong>A clear path forward.</strong> Prioritized next steps, working groups, and commitments aligned to real-world constraints.</li>
           </ol>
 
           <p class="subnote">
-            Rather than presuming a single, predetermined trajectory, this convening is designed as a
-            space for collective discernment—examining where there is the greatest alignment,
-            readiness, leverage, and need—and to clarify which directions make the most sense to
-            prioritize at this stage of field building. A core goal of the convening is to surface shared
-            insight about how this work can most meaningfully grow, spread, and be stewarded in ways
-            that are authentic, rigorous, and responsive to the current educational and cultural
-            landscape.
+            This is a “big question” convening—guided by a roadmap, not a rigid destination.
+            We’re designing for emergence: the right people, rich fodder, and a shared aspiration.
           </p>
+        </div>
+
+        <!-- Optional: keep / swap with your existing image assets -->
+        <div class="heroBelowImage" aria-label="Supporting image">
+          <img src="images/image2.png" alt="Whole child and connectedness" />
         </div>
       </div>
     </section>
 
-    <!-- ROLE OF PARTICIPANT -->
-    <section id="participant">
+    <!-- AGENDA -->
+    <section id="agenda">
       <div class="wrap">
-        <h2>Role of Convening Participant</h2>
+        <h2>Agenda (high-level)</h2>
+        <p class="lede">A simple arc: arrive → orient → explore → weave → commit.</p>
+
         <div class="copy">
-          <ol class="ol">
-            <li>
-              We want you here for your experience and perspective as we embark upon
-              creating this new field to strengthen the overall approach and contribute to a
-              new interdisciplinary field of study.
-            </li>
-            <li>
-              This is an invitation to a community of Stewardship for a nascent field
-            </li>
-            <li>
-              Theoretical framework that anchors what makes us uniquely human
-            </li>
-            <li>
-              Further Develop a strategy to co-create and expand this nascent field
-            </li>
-          </ol>
+          <h3>Day 1 — Arrival & grounding</h3>
+          <p>
+            Arrive in the late afternoon. We’ll begin by building community and rooting ourselves in why connection matters—
+            to us, to young people, and to this moment in time.
+          </p>
 
+          <h3>Day 2 — Sensemaking</h3>
           <p>
-            Our collective journey as we enter an age of AI calls for an evolution in education’s
-            purpose—from information transmission to human integration.
+            Explore how AI and broader cultural forces are reshaping identity, trust, and relationship. We’ll map what supports
+            connection—and what erodes it—across settings that matter (schools, families, communities, digital life).
           </p>
+
+          <h3>Day 3 — Integration & next steps</h3>
           <p>
-            Its ultimate aim is to create a lasting educational paradigm that honors the uniqueness
-            of being human and cultivates the inner- and inter-connectedness that technology
-            cannot replicate.
+            We’ll weave insights into shared language and concrete pathways: priorities, collaborations, and early outputs
+            (principles, research questions, prototypes, stories, or convening follow-ons).
           </p>
-          <p>
-            By addressing the underlying crisis of disconnection and Prioritizing What Makes Us
-            Human, we prepare students for meaning, flourishing, and wise coexistence with
-            technology and nature. This educational shift frames connection as both preventive
-            (reducing violence and conflict) and promotive (leading to a healthy society).
-          </p>
+
+          <div class="callout" style="margin-top:18px;">
+            Want a one-page “why / what / so what” summary for invitees?
+            <div style="margin-top:14px;">
+              <a class="btn ghost" href="#register">Request it in the form</a>
+            </div>
+            <span class="attrib">Tip: add a PDF link here when ready</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Callout -->
-    <div class="wrap" style="padding: 0 18px;">
-      <div class="callout" style="margin: 0 0 44px;">
-        Join us in re-envisioning education — to nurture the conscious, connected, and creative
-        capacities that foster exploration of what it means to be <span class="orange">human</span>.
-      </div>
-    </div>
-
-    <!-- LOGISTICS + QUICK INFO -->
-    <section id="logistics" class="band">
+    <!-- WHERE -->
+    <section id="where" class="band">
       <div class="wrap">
-        <h2>Logistics</h2>
+        <h2>Where we’ll be</h2>
 
         <div class="cols">
           <div class="copy">
             <p class="lede">
-              Convening at the Fetzer Institute in Kalamazoo, Michigan. Final schedule, arrival window, and
-              address details will be shared with confirmed participants.
+              We’re honored to gather at the Fetzer Institute in Kalamazoo, Michigan—an environment designed for reflection,
+              relationship, and long-horizon thinking.
+            </p>
+            <p>
+              Final schedule details, arrival/departure windows, and on-site specifics will be shared with confirmed participants.
             </p>
 
             <div class="callout" style="margin-top:18px;">
-              Would you like to register for the convening?<br/>
-              <a class="btn orange" href="#register" style="margin-top:14px;">Register</a>
+              Ready to join or want to nominate someone?
+              <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+                <a class="btn orange" href="#register">Register / Interest</a>
+                <a class="btn ghost" href="#faq">Read FAQs</a>
+              </div>
             </div>
 
-            <!-- Image 5: centered under the box above -->
-            <div class="sectionImage centerImage" style="margin-top:16px; max-width:520px;">
+            <div class="heroBelowImage" aria-label="Location image" style="max-width:560px;">
               <img src="images/image5.png" alt="The Fetzer Center" />
             </div>
           </div>
@@ -935,19 +613,97 @@
               <div class="row"><span class="k">Address</span><span class="v">9292 W KL Ave, Kalamazoo, MI 49009</span></div>
             </div>
             <p class="small" style="margin-top:12px;">
-              If you have accessibility or travel needs, please note them in the registration form.
+              If you have accessibility or travel needs, please note them in the form.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- REGISTER -->
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="wrap">
+        <h2>FAQs</h2>
+        <p class="lede">Quick answers. If you don’t see yours, add it in the form and we’ll follow up.</p>
+
+        <details>
+          <summary>Who will attend?</summary>
+          <p>
+            A curated group of leaders across education, research, youth development, mental health, philanthropy, media, and technology.
+            We’re designing for both deep expertise and low ego—people who can learn together and act on what we discover.
+          </p>
+        </details>
+
+        <details>
+          <summary>Is this invite-only?</summary>
+          <p>
+            It is invite-forward. If you’re not sure whether you’re in scope, share your interest and perspective below. We’ll respond with next steps.
+          </p>
+        </details>
+
+        <details>
+          <summary>Do I need to attend the full convening?</summary>
+          <p>
+            Yes—this is designed as an arc. Shared context and trust compound across the days, and partial attendance breaks the container.
+          </p>
+        </details>
+
+        <details>
+          <summary>What does it cost?</summary>
+          <p>
+            Add your current approach here (e.g., subsidized, sliding scale, travel covered/not covered). If you’re still deciding,
+            you can say: “Details will be shared with confirmed participants.”
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I nominate someone?</summary>
+          <p>
+            Yes—use the form below to nominate, and include why they’re a great fit and what “piece of the puzzle” they bring.
+          </p>
+        </details>
+
+        <details>
+          <summary>What are travel details?</summary>
+          <p>
+            Once you’re confirmed, we’ll share recommended arrival/departure windows and local logistics. If you have constraints,
+            note them in the form so we can plan accordingly.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- LOGISTICS (kept as anchor target for header buttons) -->
+    <section id="logistics" class="band">
+      <div class="wrap">
+        <h2>Logistics</h2>
+        <p class="lede">
+          Convening at the Fetzer Institute in Kalamazoo, Michigan. Final schedule, arrival window, and address details will be shared with confirmed participants.
+        </p>
+
+        <div class="grid3" style="margin-top:0;">
+          <div class="card">
+            <strong>Arrival</strong>
+            <p>June 16 • 5:00 PM (recommended). We’ll start with community-building and grounding.</p>
+          </div>
+          <div class="card">
+            <strong>Departure</strong>
+            <p>June 18 • afternoon. Plan travel once you’re confirmed and we share the window.</p>
+          </div>
+          <div class="card">
+            <strong>Accessibility</strong>
+            <p>Please share needs in the form so we can plan support proactively.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGISTER / INTEREST -->
     <section id="register">
       <div class="wrap">
-        <h2>Register</h2>
+        <h2>Register / Interest</h2>
         <p class="lede">
-          Please complete the form below. (This page is a front-end mockup; connect it to your preferred system later—Google Form, Airtable, Typeform, etc.)
+          Use this form to confirm attendance, express interest, or nominate someone. (Front-end mockup — connect it to Google Form, Airtable, Typeform, etc.)
         </p>
 
         <form onsubmit="event.preventDefault(); alert('Submitted! (Mockup only — connect this form to your registration workflow.)');">
@@ -960,6 +716,7 @@
               <label for="email">Email</label>
               <input id="email" name="email" type="email" required />
             </div>
+
             <div>
               <label for="org">Organization / affiliation</label>
               <input id="org" name="org" />
@@ -970,25 +727,35 @@
             </div>
 
             <div class="full">
-              <label for="stakeholder">Stakeholder lens</label>
+              <label for="interestType">I’m reaching out to…</label>
+              <select id="interestType" name="interestType" required>
+                <option value="">Select one</option>
+                <option>Confirm attendance (invited)</option>
+                <option>Express interest (not sure if invited)</option>
+                <option>Nominate someone</option>
+              </select>
+            </div>
+
+            <div class="full">
+              <label for="stakeholder">Perspective / lens</label>
               <select id="stakeholder" name="stakeholder">
                 <option value="">Select one (or closest)</option>
                 <option>Researcher</option>
                 <option>Mental Health expert</option>
-                <option>High school Educator</option>
-                <option>Student</option>
-                <option>Program Leader/Weaver (bringing theory and practice together)</option>
-                <option>Network of Organizations</option>
-                <option>Foundation</option>
-                <option>Government Official</option>
-                <option>Journalist</option>
+                <option>Educator / school leader</option>
+                <option>Youth advocate / practitioner</option>
+                <option>Student / young person</option>
+                <option>Funder / philanthropy</option>
+                <option>Journalist / storyteller</option>
+                <option>Technologist / product builder</option>
+                <option>Policy / government</option>
                 <option>Other</option>
               </select>
             </div>
 
             <div class="full">
-              <label for="contribution">What contribution are you most interested in making?</label>
-              <textarea id="contribution" name="contribution"></textarea>
+              <label for="why">What “piece of the puzzle” do you bring? (and what do you hope to learn?)</label>
+              <textarea id="why" name="why"></textarea>
             </div>
 
             <div>
@@ -1010,23 +777,30 @@
             </div>
 
             <div class="full">
-              <label for="notes">Anything else we should know?</label>
+              <label for="notes">Any questions, nominations, or requests (e.g., one-page summary PDF)?</label>
               <textarea id="notes" name="notes"></textarea>
             </div>
           </div>
 
           <div class="formActions">
-            <button class="btn orange" type="submit">Submit registration</button>
+            <button class="btn orange" type="submit">Submit</button>
             <a class="btn ghost" href="#top">Back to top</a>
           </div>
 
           <p class="small" style="margin-top:10px;">
-            Implementation note: Replace the form action with your registration workflow (Airtable/Typeform/etc.). This mockup currently just shows a success message.
+            Implementation note: Replace this form handler with your registration workflow (Airtable/Typeform/etc.). This mockup currently just shows a success message.
           </p>
         </form>
       </div>
     </section>
 
+    <!-- FINAL CALL -->
+    <div class="wrap" style="padding: 0 18px;">
+      <div class="callout" style="margin: 0 0 44px;">
+        Join us in shaping a future where technology strengthens relationships—by prioritizing what makes us
+        <span class="orange">human</span>.
+      </div>
+    </div>
   </main>
 
   <footer>
@@ -1037,9 +811,10 @@
         <span style="font-size:12.5px; opacity:.8;">© 2026 • All rights reserved</span>
       </div>
       <div class="footLinks" aria-label="Footer links">
-        <a href="#current">Current State</a>
-        <a href="#framework">Framework</a>
-        <a href="#convening">Convening Goals</a>
+        <a href="#overview">Overview</a>
+        <a href="#expect">What to expect</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#faq">FAQs</a>
         <a href="#register">Register</a>
       </div>
     </div>
