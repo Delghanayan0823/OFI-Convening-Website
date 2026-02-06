@@ -126,14 +126,15 @@
     }
     .heroCenter h1 .accent{color: var(--orange); font-weight: 950;}
 
-    /* UPDATED: larger hero subtitle + date */
+    /* UPDATED: subtitle still larger than original, but 2 sizes smaller than the previous "much larger" version */
     .heroSub{
-      margin: 0 auto 16px;
+      margin: 0 auto 14px;
       max-width: 80ch;
-      font-size: clamp(30px, 3.2vw, 38px);
+      font-size: clamp(26px, 2.7vw, 34px);
       line-height: 1.25;
       color: rgba(31,41,55,.92);
     }
+    /* keep date large (as previously requested) */
     .heroDate{
       margin: 0 auto 22px;
       max-width: 80ch;
@@ -206,14 +207,19 @@
       background:#fff;
       overflow:hidden;
     }
+    .bigImage img{display:block; width:100%; height:auto;}
 
-    /* UPDATED: images 6 + 8 half-width + centered (via class) */
+    /* UPDATED: Image 6 half-width + centered */
     .bigImage.half{
       max-width: 50%;
       margin: 0 auto;
     }
 
-    .bigImage img{display:block; width:100%; height:auto;}
+    /* UPDATED: Image 8 smaller than half so it pairs better with logistics */
+    .bigImage.smaller{
+      max-width: 38%;
+      margin: 0 auto;
+    }
 
     /* Bullets */
     .bullets{
@@ -289,6 +295,7 @@
       body{font-size:20px;}
       .formgrid{grid-template-columns: 1fr;}
       .bigImage.half{max-width: 100%;}
+      .bigImage.smaller{max-width: 100%;}
     }
   </style>
 </head>
@@ -430,7 +437,7 @@
         <h2>A Place for Connection &amp; Co-Creation</h2>
 
         <div class="copy">
-          <div class="bigImage half" aria-label="Fetzer Institute image">
+          <div class="bigImage smaller" aria-label="Fetzer Institute image">
             <img src="images/Image 8.png" alt="Fetzer Institute" />
           </div>
 
@@ -441,7 +448,7 @@
         </div>
 
         <div class="panel" aria-label="Key details" style="margin-top:18px;">
-          <h3>At a glance</h3>
+          <h3>Convening Logistics</h3>
           <div class="kv">
             <div class="row"><span class="k">Dates</span><span class="v">June 16–18, 2026</span></div>
             <div class="row"><span class="k">Arrival</span><span class="v">Arrival by 5:00 PM</span></div>
@@ -457,9 +464,9 @@
     <!-- REGISTER (LAST THING ON SITE) -->
     <section id="register">
       <div class="wrap">
-        <h2>Register / Interest</h2>
+        <h2>Register for the Convening</h2>
         <p style="max-width: 92ch; color: rgba(31,41,55,.84); margin: 0 0 18px;">
-          Use this form to confirm attendance or express interest. (Front-end mockup — connect it to Google Form, Airtable, Typeform, etc.)
+          (Front-end mockup — connect it to Google Form, Airtable, Typeform, etc.)
         </p>
 
         <form onsubmit="event.preventDefault(); alert('Submitted! (Mockup only — connect this form to your registration workflow.)');">
