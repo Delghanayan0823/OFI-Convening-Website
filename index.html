@@ -125,18 +125,21 @@
       font-weight: 950;
     }
     .heroCenter h1 .accent{color: var(--orange); font-weight: 950;}
+
+    /* UPDATED: larger hero subtitle + date */
     .heroSub{
-      margin: 0 auto 12px;
-      max-width: 76ch;
-      font-size: 23px;
-      color: rgba(31,41,55,.86);
+      margin: 0 auto 16px;
+      max-width: 80ch;
+      font-size: clamp(30px, 3.2vw, 38px);
+      line-height: 1.25;
+      color: rgba(31,41,55,.92);
     }
     .heroDate{
-      margin: 0 auto 18px;
-      max-width: 76ch;
-      font-size: 18px;
+      margin: 0 auto 22px;
+      max-width: 80ch;
+      font-size: clamp(22px, 2.2vw, 28px);
       font-weight: 950;
-      color: rgba(31,41,55,.70);
+      color: rgba(31,41,55,.80);
       letter-spacing: .02em;
     }
 
@@ -203,6 +206,13 @@
       background:#fff;
       overflow:hidden;
     }
+
+    /* UPDATED: images 6 + 8 half-width + centered (via class) */
+    .bigImage.half{
+      max-width: 50%;
+      margin: 0 auto;
+    }
+
     .bigImage img{display:block; width:100%; height:auto;}
 
     /* Bullets */
@@ -278,6 +288,7 @@
     @media (max-width: 920px){
       body{font-size:20px;}
       .formgrid{grid-template-columns: 1fr;}
+      .bigImage.half{max-width: 100%;}
     }
   </style>
 </head>
@@ -307,7 +318,7 @@
           <div class="heroCenter">
             <h1><span class="accent">Prioritizing</span> What Makes Us Human</h1>
             <p class="heroSub">
-              Creating the foundations for an interdisciplinary field of study in an Age of AI, Polarization, and a Crisis of Meaning
+              Creating the foundations for an interdisciplinary field in an Age of AI, Polarization, and a Crisis of Meaning
             </p>
             <p class="heroDate">Inaugural Field Building Convening • June 16–18, 2026</p>
           </div>
@@ -367,7 +378,7 @@
     <!-- PICTURE BETWEEN QUOTES AND YOUR CONTRIBUTION: IMAGE 6 -->
     <section id="moment">
       <div class="wrap">
-        <div class="bigImage" aria-label="Large image">
+        <div class="bigImage half" aria-label="Large image">
           <img src="images/Image 6.JPG" alt="Convening moment" />
         </div>
       </div>
@@ -419,7 +430,7 @@
         <h2>A Place for Connection &amp; Co-Creation</h2>
 
         <div class="copy">
-          <div class="bigImage" aria-label="Fetzer Institute image">
+          <div class="bigImage half" aria-label="Fetzer Institute image">
             <img src="images/Image 8.png" alt="Fetzer Institute" />
           </div>
 
