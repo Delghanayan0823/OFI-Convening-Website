@@ -14,7 +14,7 @@
       --teal: #1f6f8b;
       --orange: #f26b3a;
       --orange2:#ff7a45;
-      --max: 1320px; /* wider */
+      --max: 1320px;
       --serif: Georgia, "Times New Roman", Times, serif;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       scroll-padding-top: 84px;
@@ -27,7 +27,7 @@
       color: var(--ink);
       background: var(--bg);
       line-height: 1.7;
-      font-size: 22px; /* body 2 sizes bigger */
+      font-size: 22px;
     }
     a{color:inherit}
     img{max-width:100%; height:auto;}
@@ -76,17 +76,34 @@
       margin-top: 4px;
     }
 
-    /* Float image so text wraps */
-    .floatImg{
-      float: right;
-      width: min(560px, 46vw);
-      margin: 6px 0 16px 20px;
-      border: 1px solid var(--line);
-      background:#fff;
+    /* Buttons */
+    .btn{
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #fff;
+      font-weight: 900;
+      font-size: 16px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex; align-items:center; justify-content:center;
+      transition: transform .08s ease, background .12s ease, border-color .12s ease;
+      white-space: nowrap;
     }
-    .floatImg.left{
-      float:left;
-      margin: 6px 20px 16px 0;
+    .btn:hover{background:#111827; border-color:#111827;}
+    .btn:active{transform: translateY(1px);}
+
+    .btn.orange{
+      border-color: var(--orange);
+      background: var(--orange);
+      color:#fff !important;
+    }
+    .btn.orange:visited{color:#fff !important;}
+    .btn.orange:hover{
+      background: var(--orange2);
+      border-color: var(--orange2);
+      color:#fff !important;
     }
 
     /* HERO */
@@ -108,24 +125,21 @@
       font-weight: 950;
     }
     .heroCenter h1 .accent{color: var(--orange); font-weight: 950;}
-
-    /* Make the two subtext lines slightly larger */
     .heroSub{
       margin: 0 auto 12px;
       max-width: 76ch;
-      font-size: 23px; /* larger */
+      font-size: 23px;
       color: rgba(31,41,55,.86);
     }
     .heroDate{
       margin: 0 auto 18px;
       max-width: 76ch;
-      font-size: 18px; /* larger */
+      font-size: 18px;
       font-weight: 950;
       color: rgba(31,41,55,.70);
       letter-spacing: .02em;
     }
 
-    /* Large image under hero */
     .heroBelowImage{
       margin: 18px auto 0;
       max-width: 1180px;
@@ -263,7 +277,6 @@
 
     @media (max-width: 920px){
       body{font-size:20px;}
-      .floatImg{float:none; width:100%; margin: 14px 0; }
       .formgrid{grid-template-columns: 1fr;}
     }
   </style>
@@ -307,11 +320,10 @@
       </div>
     </div>
 
-    <!-- FIRST SECTION BELOW IMAGE 1: (TEXT WRAPS AROUND IMAGE 6) -->
+    <!-- FIRST SECTION BELOW IMAGE 1: (TEXT ONLY) -->
     <section id="intro">
       <div class="wrap">
         <div class="copy">
-          <img class="floatImg" src="images/image6.png" alt="Convening image" />
           <p>
             In a world rapidly reshaped by artificial intelligence, deepening polarization, and a growing crisis of meaning and
             connection, schools continue to emphasize achievement, performance, and outcomes—college, career, success—while many
@@ -327,7 +339,6 @@
             We will host the first convening at the Fetzer Institute June 16–18, bringing together leaders from across fields to
             begin shaping shared language, a unifying framework, guiding principles, and strategy.
           </p>
-          <div style="clear:both;"></div>
         </div>
       </div>
     </section>
@@ -402,18 +413,20 @@
       </div>
     </section>
 
-    <!-- LOCATION (NO "final schedule details..." TEXT) -->
+    <!-- LOCATION -->
     <section id="where" class="band">
       <div class="wrap">
         <h2>A Place for Connection &amp; Co-Creation</h2>
 
         <div class="copy">
-          <img class="floatImg" src="images/image8.png" alt="Fetzer Institute" />
-          <p style="margin-top:0;">
+          <div class="bigImage" aria-label="Fetzer Institute image">
+            <img src="images/image8.png" alt="Fetzer Institute" />
+          </div>
+
+          <p style="margin-top:18px;">
             We’re grateful to gather at the Fetzer Institute in Kalamazoo, Michigan—an environment designed for reflection,
             relationship, and long-horizon thinking.
           </p>
-          <div style="clear:both;"></div>
         </div>
 
         <div class="panel" aria-label="Key details" style="margin-top:18px;">
@@ -514,7 +527,7 @@
           </div>
 
           <div class="formActions">
-            <button class="btn orange big" type="submit" style="border:none;">Submit</button>
+            <button class="btn orange" type="submit">Submit Registration</button>
             <a class="btn" href="#top" style="background:#111827; border-color:#111827;">Back to top</a>
           </div>
 
