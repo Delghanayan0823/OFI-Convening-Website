@@ -19,6 +19,8 @@
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       --paleBlueBox: #eaf4f7;
       --paleBlueLine: #cfe6ee;
+      --paleGreyBox: #eef1f4;
+      --paleGreyLine: #dbe2ea;
       scroll-padding-top: 84px;
     }
     *{box-sizing:border-box}
@@ -125,6 +127,7 @@
       text-align:left;
       max-width: 1180px;
       margin: 0 auto;
+      position: relative;
     }
     .heroCenter h1{
       margin: 10px 0 12px;
@@ -151,10 +154,26 @@
     .heroDate{
       margin: 0 0 18px;
       max-width: 76ch;
-      font-size: clamp(24px, 2.2vw, 30px);
+      font-size: clamp(34px, 3.2vw, 46px); /* MUCH bigger */
       font-weight: 950;
       color: rgba(31,41,55,.80);
       letter-spacing: .02em;
+    }
+
+    /* Field Building Vision & Strategy button top-right of hero */
+    .heroTopRightCta{
+      position: absolute;
+      top: 0;
+      right: 0;
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      z-index: 2;
+    }
+    .heroTopRightCta .btn{
+      font-size: 16px;
+      padding: 14px 22px;
+      box-shadow: 0 10px 22px rgba(31,41,55,.12);
     }
 
     .heroBelowImage{
@@ -215,26 +234,26 @@
     .wrapImgRight img{display:block; width:100%; height:auto;}
     .clearfix::after{content:""; display:block; clear:both;}
 
-    /* QUOTES: pale blue box + smaller type + clear separation */
-    .quoteBox{
-      background: var(--paleBlueBox);
-      border: 1px solid var(--paleBlueLine);
-      border-radius: 18px;
-      padding: 26px;
-      max-width: 1080px;
-    }
+    /* QUOTES: alternating color blocks */
     .quoteStack{
       display:flex;
       flex-direction: column;
-      gap: 0;
+      gap: 18px;
       margin-top: 18px;
     }
     .quote{
-      padding: 18px 0;
-      max-width: 92ch;
+      padding: 26px;
+      max-width: 1080px;
+      border-radius: 18px;
+      border: 1px solid rgba(31,41,55,.10);
     }
-    .quote + .quote{
-      border-top: 1px solid rgba(31,41,55,.12);
+    .quote.blue{
+      background: var(--paleBlueBox);
+      border-color: var(--paleBlueLine);
+    }
+    .quote.grey{
+      background: var(--paleGreyBox);
+      border-color: var(--paleGreyLine);
     }
     .quote blockquote{
       margin: 0;
@@ -258,7 +277,7 @@
       color: rgba(31,41,55,.70);
     }
 
-    /* CTA block above quotes */
+    /* CTA block above quotes (kept styles, but not used in intro anymore) */
     .ctaRow{
       display:flex;
       align-items:center;
@@ -329,7 +348,12 @@
         max-width: 100%;
         margin: 14px 0 14px;
       }
-      .quoteBox{padding: 20px;}
+      .quote{padding: 20px;}
+      .heroTopRightCta{
+        position: static;
+        margin: 0 0 12px;
+        justify-content:flex-start;
+      }
     }
   </style>
 </head>
@@ -357,6 +381,14 @@
       <div class="wrap">
         <div class="heroInner">
           <div class="heroCenter">
+
+            <!-- TOP-RIGHT BUTTON (parallel to Prioritizing, on right side) -->
+            <div class="heroTopRightCta" aria-label="Field Building Vision and Strategy">
+              <a class="btn orange" href="fieldbuildingvisionandstrategy/">
+                Field Building Vision and Strategy
+              </a>
+            </div>
+
             <h1>
               <span class="accent">Prioritizing</span>
               What Makes Us Human
@@ -403,58 +435,11 @@
             begin shaping shared language, a unifying framework, guiding principles, and strategy.
           </p>
 
-          <!-- PROMINENT BUTTON ABOVE QUOTES -->
-          <div class="ctaRow" aria-label="Field Building Vision and Strategy">
-            <a class="btn orange" href="fieldbuildingvisionandstrategy/">
-              Field Building Vision and Strategy
-            </a>
-          </div>
-
         </div>
       </div>
     </section>
 
-    <!-- QUOTES -->
-    <section id="quotes" class="band">
-      <div class="wrap">
-        <h2>Quotes</h2>
-
-        <div class="quoteBox" aria-label="Quotes box">
-          <div class="quoteStack" aria-label="Quotes">
-
-            <!-- 1) Alvaro Rodriguez -->
-            <div class="quote">
-              <blockquote>
-                “As students we need help to find out who we are — and what we are meant to do with our lives.”
-              </blockquote>
-              <div class="rule" aria-hidden="true"></div>
-              <div class="who">Alvaro Rodriguez, Student, Bronx Center for Science and Mathematics</div>
-            </div>
-
-            <!-- 2) Dr. Joe Duffey -->
-            <div class="quote">
-              <blockquote>
-                "Children move through worlds already alive with wonder, struggle, discovery, and becoming. Each day holds its own depth and meaning. When society relates to education merely as preparation for adult life, it overlooks the profound meaning unfolding in their lived experience."
-              </blockquote>
-              <div class="rule" aria-hidden="true"></div>
-              <div class="who">Dr. Joe Duffey</div>
-            </div>
-
-            <!-- 3) Gerard Senehi -->
-            <div class="quote">
-              <blockquote>
-                "Engaging students’ humanity differs from building social-emotional skills. Social-emotional skills cultivate specific outcomes, but when we engage students’ humanity, we influence the broader arc of their development — touching how they see themselves, relate to others, and move through the world."
-              </blockquote>
-              <div class="rule" aria-hidden="true"></div>
-              <div class="who">Gerard Senehi, Co-Founder of the Question Project</div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- IMAGE BETWEEN QUOTES AND YOUR CONTRIBUTION: IMAGE 7 -->
+    <!-- IMAGE BETWEEN INTRO AND YOUR CONTRIBUTION: IMAGE 7 -->
     <section id="moment">
       <div class="wrap">
         <div class="bigImage" aria-label="Large image">
@@ -543,6 +528,44 @@
             Travel, food &amp; accommodation are complimentary due to the generosity of the Fetzer Institute and the Eric &amp; Wendy Schmidt Foundation.
             Attendance is by invitation only.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUOTES (MOVED TO END) -->
+    <section id="quotes" class="band">
+      <div class="wrap">
+        <h2>Quotes</h2>
+
+        <div class="quoteStack" aria-label="Quotes">
+
+          <!-- 1) Alvaro Rodriguez -->
+          <div class="quote blue">
+            <blockquote>
+              “As students we need help to find out who we are — and what we are meant to do with our lives.”
+            </blockquote>
+            <div class="rule" aria-hidden="true"></div>
+            <div class="who">Alvaro Rodriguez, Student, Bronx Center for Science and Mathematics</div>
+          </div>
+
+          <!-- 2) Dr. Joe Duffey -->
+          <div class="quote grey">
+            <blockquote>
+              "Children move through worlds already alive with wonder, struggle, discovery, and becoming. Each day holds its own depth and meaning. When society relates to education merely as preparation for adult life, it overlooks the profound meaning unfolding in their lived experience."
+            </blockquote>
+            <div class="rule" aria-hidden="true"></div>
+            <div class="who">Dr. Joe Duffey</div>
+          </div>
+
+          <!-- 3) Gerard Senehi -->
+          <div class="quote blue">
+            <blockquote>
+              "Engaging students’ humanity differs from building social-emotional skills. Social-emotional skills cultivate specific outcomes, but when we engage students’ humanity, we influence the broader arc of their development — touching how they see themselves, relate to others, and move through the world."
+            </blockquote>
+            <div class="rule" aria-hidden="true"></div>
+            <div class="who">Gerard Senehi, Co-Founder of the Question Project</div>
+          </div>
+
         </div>
       </div>
     </section>
