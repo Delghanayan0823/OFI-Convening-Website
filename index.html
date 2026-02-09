@@ -211,6 +211,19 @@
       color: rgba(31,41,55,.92);
     }
 
+    /* Inset link (subtle) */
+    .insetLink{
+      text-decoration: none;
+      border-bottom: 2px solid rgba(31,111,139,.35);
+      padding: 0 2px;
+      border-radius: 6px;
+      background: rgba(31,111,139,.08);
+    }
+    .insetLink:hover{
+      background: rgba(31,111,139,.14);
+      border-bottom-color: rgba(31,111,139,.55);
+    }
+
     /* Big image */
     .bigImage{
       border: 1px solid var(--line);
@@ -277,20 +290,6 @@
       color: rgba(31,41,55,.70);
     }
 
-    /* CTA block above quotes (kept styles, but not used in intro anymore) */
-    .ctaRow{
-      display:flex;
-      align-items:center;
-      justify-content:flex-start;
-      gap: 12px;
-      margin-top: 18px;
-    }
-    .ctaRow .btn{
-      font-size: 16px;
-      padding: 14px 22px;
-      box-shadow: 0 10px 22px rgba(31,41,55,.12);
-    }
-
     /* Bullets */
     .bullets{
       margin: 12px 0 0;
@@ -329,19 +328,9 @@
       margin-top: 10px;
     }
 
-    /* CONTRIBUTION: text + Image 10 side-by-side */
-    .contribGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 22px;
-      align-items:start;
-      margin-top: 10px;
-    }
-
     @media (max-width: 920px){
       body{font-size:20px;}
       .whereGrid{grid-template-columns: 1fr;}
-      .contribGrid{grid-template-columns: 1fr;}
       .wrapImgRight{
         float:none;
         width: 100%;
@@ -425,9 +414,9 @@
           </p>
 
           <p>
-            In response to this moment, building on more than a decade of success serving thousands of NYC public high school
-            students and engaging hundreds of educators, we aim to co-create the foundational elements of a new interdisciplinary
-            field centered on What Makes Us Human.
+            In response to this moment, building on more than a decade of success serving thousands of NYC public high school students and engaging hundreds of educators through
+            <a class="insetLink" href="https://www.questionproject.org" target="_blank" rel="noopener">The Question Project</a>,
+            we aim to co-create the foundational elements of a new interdisciplinary field centered on What Makes Us Human.
           </p>
 
           <p>
@@ -439,45 +428,27 @@
       </div>
     </section>
 
-    <!-- IMAGE BETWEEN INTRO AND YOUR CONTRIBUTION: IMAGE 7 -->
+    <!-- IMAGE 10 LARGE ACROSS SITE (replacing Image 7 placement) -->
     <section id="moment">
       <div class="wrap">
         <div class="bigImage" aria-label="Large image">
-          <img src="images/Image%207.jpg" alt="Convening moment" />
+          <img src="images/Image%2010.jpg" alt="Students in conversation" />
         </div>
       </div>
     </section>
 
-    <!-- YOUR CONTRIBUTION -->
-    <section id="contribution" class="band">
+    <!-- WHAT WE WILL ACCOMPLISH TOGETHER (merged sections) -->
+    <section id="accomplish" class="band">
       <div class="wrap">
-        <h2>Your Contribution</h2>
+        <h2>What We Will Accomplish Together</h2>
 
-        <div class="contribGrid">
-          <div class="copy">
-            <p>
-              This convening brings together a small group of leaders who sense that something essential is calling to be built. At a moment of profound cultural and technological change, we are here to explore why this work matters now, how each of us is uniquely positioned to contribute, and what becomes possible when we intentionally come together to build a new field.
-            </p>
-            <p>
-              Through structured and open co-exploration, we will align around a shared mission, vision, and strategy—stretching our thinking, naming tensions, and shaping a bold, coherent narrative for What Makes Us Human.
-            </p>
-          </div>
-
-          <!-- Image 10 (URL-encoded space to help it load on GitHub Pages) -->
-          <div class="bigImage" aria-label="Contribution supporting image">
-            <img src="images/Image%2010.jpg" alt="Students in conversation" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHAT WE AIM TO ACCOMPLISH -->
-    <section id="aim">
-      <div class="wrap">
-        <h2>What We Aim to Accomplish</h2>
         <div class="copy">
           <p>
-            We will move from imagination to action—dreaming without limits while grounding our work in practice and rigor of inquiry. Together, we will outline some guiding principles, common misconceptions, and how this field create impact across multiple domains of learning and growth.
+            This convening will bring together a focused group of leaders who sense that something essential is calling to be built. At a moment of profound cultural and technological change, we will explore why this work matters now, how each of us is uniquely positioned to contribute, and what becomes possible when we intentionally come together to build a new field. Through structured and open co-exploration, we will align around a shared mission, vision, and strategy—stretching our thinking, naming tensions, and shaping a bold, coherent narrative for What Makes Us Human.
+          </p>
+
+          <p>
+            We will move from vision to action—dreaming without limits while grounding our work in practice and rigor of inquiry. Together, we will outline some guiding principles, common misconceptions, and how this field create impact across multiple domains of learning and growth.
           </p>
 
           <p style="margin-top:18px; font-weight:950;">Together, we aim to:</p>
@@ -496,11 +467,16 @@
       <div class="wrap">
         <h2>A Place for Connection &amp; Co-Creation</h2>
 
-        <!-- This text now appears directly below header and above image/table -->
+        <!-- Text below header and above image/table -->
         <div class="copy" style="margin-top:10px;">
           <p>
             We’re grateful to gather at the Fetzer Institute in Kalamazoo, Michigan—an environment designed for reflection,
             relationship, and long-horizon thinking.
+          </p>
+
+          <p>
+            Travel, food &amp; accommodation are complimentary due to the generosity of the Fetzer Institute and the Eric &amp; Wendy Schmidt Foundation.
+            Attendance is by invitation only.
           </p>
         </div>
 
@@ -522,17 +498,10 @@
           </div>
         </div>
 
-        <!-- This text now appears below the image and logistics table -->
-        <div class="copy" style="margin-top:18px;">
-          <p>
-            Travel, food &amp; accommodation are complimentary due to the generosity of the Fetzer Institute and the Eric &amp; Wendy Schmidt Foundation.
-            Attendance is by invitation only.
-          </p>
-        </div>
       </div>
     </section>
 
-    <!-- QUOTES (MOVED TO END) -->
+    <!-- QUOTES (AT END) -->
     <section id="quotes" class="band">
       <div class="wrap">
         <h2>Quotes</h2>
