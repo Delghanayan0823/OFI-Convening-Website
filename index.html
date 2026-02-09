@@ -192,56 +192,46 @@
     }
     .bigImage img{display:block; width:100%; height:auto;}
 
-    /* INTRO: Image 6 sits next to ONLY the first paragraph */
-    .introP1Wrap{
-      display:flex;
-      gap: 18px;
-      align-items:flex-start;
-    }
-    .introP1Wrap .introP1Text{
-      flex: 1 1 auto;
-      min-width: 280px;
-    }
-    .introP1Wrap .introP1Image{
-      flex: 0 0 38%;
-      max-width: 38%;
-    }
-
-    /* QUOTES: more aesthetic */
-    .quoteStack{display:grid; gap: 18px; margin-top: 16px;}
-    .quote{
+    /* INTRO: float image so text wraps (no gap) */
+    .wrapImgRight{
+      float:right;
+      width: 38%;
+      max-width: 520px;
+      margin: 6px 0 14px 18px;
       border: 1px solid var(--line);
       background:#fff;
-      border-radius: 18px;
-      padding: 26px 26px 22px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 1px 0 rgba(0,0,0,.02);
     }
-    .quote:before{
-      content:"“";
-      position:absolute;
-      top: -18px;
-      left: 14px;
-      font-family: var(--serif);
-      font-size: 110px;
-      line-height: 1;
-      color: rgba(31,41,55,.10);
-      pointer-events:none;
+    .wrapImgRight img{display:block; width:100%; height:auto;}
+    .clearfix::after{content:""; display:block; clear:both;}
+
+    /* QUOTES: clean, open, OFI-like (no chunky cards) */
+    .quoteStack{display:grid; gap: 26px; margin-top: 18px;}
+    .quote{
+      padding: 0;
+      border: none;
+      background: transparent;
+      max-width: 92ch;
     }
     .quote blockquote{
-      margin:0;
+      margin: 0;
       font-family: var(--serif);
-      font-size: 24px;
+      font-size: clamp(24px, 2.0vw, 30px);
       line-height: 1.55;
       color: rgba(31,41,55,.92);
     }
+    .quote .rule{
+      height: 2px;
+      width: 82px;
+      margin: 14px 0 10px;
+      background: linear-gradient(90deg, var(--orange), rgba(31,111,139,.65));
+      border-radius: 999px;
+    }
     .quote .who{
-      margin-top: 12px;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 950;
-      color: rgba(31,41,55,.72);
-      letter-spacing: .01em;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(31,41,55,.70);
     }
 
     /* Bullets */
@@ -285,53 +275,29 @@
       border-radius: 18px;
     }
 
-    /* Forms */
-    form{ margin-top: 12px; }
-    .formgrid{
+    /* CONTRIBUTION: text + Image 10 side-by-side */
+    .contribGrid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      max-width: 1100px;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items:start;
+      margin-top: 10px;
     }
-    label{
-      display:block;
-      font-size: 12px;
-      letter-spacing:.02em;
-      font-weight: 950;
-      color: rgba(31,41,55,.78);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-    }
-    input, select, textarea{
-      width:100%;
-      padding: 14px 16px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      font: inherit;
-      background: #fff;
-      font-size: 18px;
-    }
-    textarea{min-height: 130px; resize: vertical;}
-    .full{grid-column: 1/-1;}
-    .formActions{
-      margin-top: 16px;
-      display:flex;
-      gap: 10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .small{
-      font-size: 15px;
-      color: var(--muted);
-      max-width: 96ch;
+    .contribGrid .bigImage{
+      border-radius: 18px;
+      overflow:hidden;
     }
 
     @media (max-width: 920px){
       body{font-size:20px;}
-      .formgrid{grid-template-columns: 1fr;}
-      .introP1Wrap{display:block;}
-      .introP1Wrap .introP1Image{max-width: 100%; margin-top: 14px;}
       .whereGrid{grid-template-columns: 1fr;}
+      .contribGrid{grid-template-columns: 1fr;}
+      .wrapImgRight{
+        float:none;
+        width: 100%;
+        max-width: 100%;
+        margin: 14px 0 14px;
+      }
     }
   </style>
 </head>
@@ -380,28 +346,26 @@
     <!-- INTRO -->
     <section id="intro">
       <div class="wrap">
-        <div class="copy">
+        <div class="copy clearfix">
 
-          <!-- Paragraph 1 + Image 6 on right -->
-          <div class="introP1Wrap">
-            <div class="introP1Text">
-              <p>
-                In a world rapidly reshaped by artificial intelligence, deepening polarization, and a growing crisis of meaning and
-                connection, schools continue to emphasize achievement, performance, and outcomes—college, career, success—while many
-                young people feel increasingly disconnected from themselves, from one another, and from a deeper sense of purpose in
-                their lives.
-              </p>
-            </div>
-            <div class="bigImage introP1Image" aria-label="Intro supporting image">
-              <img src="images/Image 6.JPG" alt="Convening moment" />
-            </div>
+          <!-- Image 6 floats right so text wraps smoothly (no big gap) -->
+          <div class="wrapImgRight" aria-label="Intro supporting image">
+            <img src="images/Image 6.JPG" alt="Convening moment" />
           </div>
+
+          <p>
+            In a world rapidly reshaped by artificial intelligence, deepening polarization, and a growing crisis of meaning and
+            connection, schools continue to emphasize achievement, performance, and outcomes—college, career, success—while many
+            young people feel increasingly disconnected from themselves, from one another, and from a deeper sense of purpose in
+            their lives.
+          </p>
 
           <p>
             In response to this moment, building on more than a decade of success serving thousands of NYC public high school
             students and engaging hundreds of educators, we aim to co-create the foundational elements of a new interdisciplinary
             field centered on What Makes Us Human.
           </p>
+
           <p>
             We will host the first convening at the Fetzer Institute June 16–18, bringing together leaders from across fields to
             begin shaping shared language, a unifying framework, guiding principles, and strategy.
@@ -414,18 +378,28 @@
     <section id="quotes" class="band">
       <div class="wrap">
         <h2>Quotes</h2>
-        <div class="quoteStack" aria-label="Stacked quotes">
+
+        <div class="quoteStack" aria-label="Quotes">
           <div class="quote">
-            <blockquote>“[Placeholder quote text]”</blockquote>
-            <div class="who">— Damon</div>
+            <blockquote>
+              "Engaging students’ humanity differs from building social-emotional skills. Social-emotional skills cultivate specific outcomes, but when we engage students’ humanity, we influence the broader arc of their development — touching how they see themselves, relate to others, and move through the world."
+            </blockquote>
           </div>
+
           <div class="quote">
-            <blockquote>“[Placeholder quote text]”</blockquote>
-            <div class="who">— Student (Question Project)</div>
+            <blockquote>
+              "Children move through worlds already alive with wonder, struggle, discovery, and becoming. Each day holds its own depth and meaning. When society relates to education merely as preparation for adult life, it overlooks the profound meaning unfolding in their lived experience."
+            </blockquote>
+            <div class="rule" aria-hidden="true"></div>
+            <div class="who">Dr. Joe Duffey</div>
           </div>
+
           <div class="quote">
-            <blockquote>“[Placeholder quote text]”</blockquote>
-            <div class="who">— Founder</div>
+            <blockquote>
+              “As students we need help to find out who we are — and what we are meant to do with our lives.”
+            </blockquote>
+            <div class="rule" aria-hidden="true"></div>
+            <div class="who">Alvaro Rodriguez, Student, Bronx Center for Science and Mathematics</div>
           </div>
         </div>
       </div>
@@ -435,7 +409,6 @@
     <section id="moment">
       <div class="wrap">
         <div class="bigImage" aria-label="Large image">
-          <!-- NOTE: you said the file is Image 7.jpg -->
           <img src="images/Image 7.jpg" alt="Convening moment" />
         </div>
       </div>
@@ -445,13 +418,21 @@
     <section id="contribution" class="band">
       <div class="wrap">
         <h2>Your Contribution</h2>
-        <div class="copy">
-          <p>
-            This convening brings together a small group of leaders who sense that something essential is calling to be built. At a moment of profound cultural and technological change, we are here to explore why this work matters now, how each of us is uniquely positioned to contribute, and what becomes possible when we intentionally come together to build a new field.
-          </p>
-          <p>
-            Through structured and open co-exploration, we will align around a shared mission, vision, and strategy—stretching our thinking, naming tensions, and shaping a bold, coherent narrative for What Makes Us Human.
-          </p>
+
+        <div class="contribGrid">
+          <div class="copy">
+            <p>
+              This convening brings together a small group of leaders who sense that something essential is calling to be built. At a moment of profound cultural and technological change, we are here to explore why this work matters now, how each of us is uniquely positioned to contribute, and what becomes possible when we intentionally come together to build a new field.
+            </p>
+            <p>
+              Through structured and open co-exploration, we will align around a shared mission, vision, and strategy—stretching our thinking, naming tensions, and shaping a bold, coherent narrative for What Makes Us Human.
+            </p>
+          </div>
+
+          <!-- Image 10 replaces Image 9 -->
+          <div class="bigImage" aria-label="Contribution supporting image">
+            <img src="images/Image 10.jpg" alt="Students in conversation" />
+          </div>
         </div>
       </div>
     </section>
@@ -510,91 +491,7 @@
       </div>
     </section>
 
-    <!-- REGISTER (LAST THING ON SITE) -->
-    <section id="register">
-      <div class="wrap">
-        <h2>Register for the Convening</h2>
-        <p style="max-width: 92ch; color: rgba(31,41,55,.84); margin: 0 0 18px;">
-          (Front-end mockup — connect it to Google Form, Airtable, Typeform, etc.)
-        </p>
-
-        <form onsubmit="event.preventDefault(); alert('Submitted! (Mockup only — connect this form to your registration workflow.)');">
-          <div class="formgrid">
-            <div>
-              <label for="fullName">Full name</label>
-              <input id="fullName" name="fullName" required />
-            </div>
-            <div>
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" required />
-            </div>
-
-            <div>
-              <label for="org">Organization / affiliation</label>
-              <input id="org" name="org" />
-            </div>
-            <div>
-              <label for="role">Role / title</label>
-              <input id="role" name="role" />
-            </div>
-
-            <div class="full">
-              <label for="stakeholder">Perspective / lens</label>
-              <select id="stakeholder" name="stakeholder">
-                <option value="">Select one (or closest)</option>
-                <option>Researcher</option>
-                <option>Mental Health expert</option>
-                <option>Educator / school leader</option>
-                <option>Youth advocate / practitioner</option>
-                <option>Student / young person</option>
-                <option>Funder / philanthropy</option>
-                <option>Journalist / storyteller</option>
-                <option>Technologist / product builder</option>
-                <option>Policy / government</option>
-                <option>Other</option>
-              </select>
-            </div>
-
-            <div class="full">
-              <label for="why">What are you most looking forward to contributing?</label>
-              <textarea id="why" name="why"></textarea>
-            </div>
-
-            <div>
-              <label for="arrival">Arrival date & time (local)</label>
-              <input id="arrival" name="arrival" placeholder="Arrival by 5:00 PM" />
-            </div>
-            <div>
-              <label for="departure">Departure date & time (local)</label>
-              <input id="departure" name="departure" placeholder="Departure after 2:00 PM" />
-            </div>
-
-            <div>
-              <label for="diet">Dietary needs</label>
-              <input id="diet" name="diet" />
-            </div>
-            <div>
-              <label for="access">Accessibility needs</label>
-              <input id="access" name="access" />
-            </div>
-
-            <div class="full">
-              <label for="notes">Any questions or requests?</label>
-              <textarea id="notes" name="notes"></textarea>
-            </div>
-          </div>
-
-          <div class="formActions">
-            <button class="btn orange" type="submit">Submit Registration</button>
-            <a class="btn" href="#top" style="background:#111827; border-color:#111827;">Back to top</a>
-          </div>
-
-          <p class="small" style="margin-top:12px;">
-            Implementation note: Replace this form handler with your registration workflow (Airtable/Typeform/etc.). This mockup currently just shows a success message.
-          </p>
-        </form>
-      </div>
-    </section>
+    <!-- Registration form removed per request -->
   </main>
 </body>
 </html>
