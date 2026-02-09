@@ -1,1 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Field Building Vision and Strategy — Prioritizing What Makes Us Human</title>
+  <style>
+    :root{
+      --bg: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --band: #f3f6f7;
+      --teal: #1f6f8b;
+      --orange: #f26b3a;
+      --orange2:#ff7a45;
+      --max: 1320px;
+      --serif: Georgia, "Times New Roman", Times, serif;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --paleBlueBox: #eaf4f7;
+      --paleBlueLine: #cfe6ee;
+      scroll-padding-top: 92px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.7;
+      font-size: 22px;
+
+      /* 1-inch-ish breathing room around the entire site */
+      padding: clamp(18px, 3vw, 1in);
+    }
+
+    a{color:inherit}
+    img{max-width:100%; height:auto;}
+    .wrap{max-width: var(--max); margin:0 auto; padding:0 22px;}
+    .topbar{height: 4px;background: linear-gradient(90deg, var(--orange), var(--teal)); border-radius: 999px;}
+
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      border-radius: 18px;
+      overflow:hidden;
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex; align-items:center; gap: 10px;
+      text-decoration:none;
+      min-width: 260px;
+    }
+    .brandmark{
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(12px 12px at 30% 35%, rgba(242,107,58,.55), transparent 60%),
+        radial-gradient(14px 14px at 65% 65%, rgba(31,111,139,.40), transparent 65%),
+        #fff;
+    }
+    .brandtext{ line-height: 1.1; }
+    .brandtext strong{
+      font-weight: 900;
+      letter-spacing: .2px;
+      display:block;
+      font-size: 15px;
+    }
+    .brandtext span{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .btn{
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #fff;
+      font-weight: 900;
+      font-size: 16px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex; align-items:center; justify-content:center;
+      transition: transform .08s ease, background .12s ease, border-color .12s ease;
+      white-space: nowrap;
+    }
+    .btn:hover{background:#111827; border-color:#111827;}
+    .btn:active{transform: translateY(1px);}
+
+    .btn.orange{
+      border-color: var(--orange);
+      background: var(--orange);
+      color:#fff !important;
+    }
+    .btn.orange:hover{
+      background: var(--orange2);
+      border-color: var(--orange2);
+    }
+
+    .hero{
+      border-bottom: 1px solid var(--line);
+      padding: 26px 0 18px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      align-items:start;
+    }
+    .hero h1{
+      margin: 10px 0 10px;
+      font-size: clamp(36px, 4.4vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -1px;
+      font-weight: 950;
+      max-width: 26ch;
+    }
+    .hero .sub{
+      margin: 0 0 12px;
+      max-width: 92ch;
+      font-size: clamp(18px, 1.55vw, 22px);
+      color: rgba(31,41,55,.84);
+      line-height: 1.45;
+    }
+    .heroActions{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    section{
+      padding: 46px 0;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 92px;
+    }
+
+    h2{
+      margin: 0 0 14px;
+      font-size: 38px;
+      letter-spacing: -.7px;
+      font-weight: 950;
+      line-height: 1.1;
+    }
+
+    .copy p{
+      margin: 0 0 16px;
+      max-width: 96ch;
+      font-size: 22px;
+      color: rgba(31,41,55,.92);
+    }
+
+    .paleBox{
+      background: var(--paleBlueBox);
+      border: 1px solid var(--paleBlueLine);
+      border-radius: 18px;
+      padding: 22px;
+      max-width: 1160px;
+    }
+
+    .bigImage{
+      border: 1px solid var(--line);
+      background:#fff;
+      border-radius: 18px;
+      overflow:hidden;
+    }
+    .bigImage img{display:block; width:100%; height:auto;}
+
+    .imageBlock{
+      margin-top: 18px;
+      max-width: 1160px;
+    }
+
+    .pull{
+      font-family: var(--serif);
+      font-size: 22px;
+      line-height: 1.55;
+      padding: 16px 18px;
+      border-left: 4px solid rgba(242,107,58,.6);
+      background: rgba(255,255,255,.65);
+      border-radius: 12px;
+      margin: 14px 0 18px;
+      max-width: 96ch;
+    }
+
+    .endNote{
+      margin-top: 10px;
+      font-size: 16px;
+      color: rgba(31,41,55,.70);
+      max-width: 96ch;
+    }
+
+    @media (max-width: 980px){
+      body{font-size:20px;}
+      .paleBox{padding: 18px;}
+      .heroGrid{grid-template-columns: 1fr;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar"></div>
+
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="../">
+          <div class="brandmark" aria-hidden="true"></div>
+          <div class="brandtext">
+            <strong>Prioritizing What Makes Us Human</strong>
+            <span>Field Building Vision and Strategy</span>
+          </div>
+        </a>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="../">Home</a>
+          <a class="btn orange" href="../#quotes">Back to main page</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <div class="hero">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div>
+            <h1>Field Building Vision and Strategy</h1>
+            <p class="sub">
+              Creating the foundations for an interdisciplinary field of study in an age of AI, polarization, and a crisis of meaning
+            </p>
+            <div class="heroActions">
+              <a class="btn orange" href="#current-state">Start reading</a>
+              <a class="btn" href="#strategy">Jump to Field Building Strategy</a>
+            </div>
+          </div>
+
+          <!-- Top image: Image 11.png -->
+          <div class="bigImage" aria-label="Top image">
+            <img src="../images/Image%2011.png" alt="Field building vision and strategy" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Current State of Education -->
+    <section id="current-state">
+      <div class="wrap">
+        <h2>The Current State of Education</h2>
+        <div class="copy">
+          <div class="paleBox">
+            <p>
+              In an age increasingly defined by artificial intelligence, technological acceleration, a culture of achievement, and growing social fragmentation and polarization, education faces a defining challenge: how to nurture what makes us human. Across classrooms and policy agendas, students are prepared to compete, achieve, and succeed—often framed in terms of “college, career, and success.” While these aims have value, their dominance has tilted education toward the outer dimensions of life—performance, productivity, and measurable outcomes—at the expense of the inner dimensions that connect students to their own lives and give those pursuits meaning.
+            </p>
+            <p>
+              We are living through a broad crisis of connection—reflected in rising anxiety, isolation, and polarization—that points to a fundamental gap in how education has approached human development. We have not cultivated the inner capacities that allow individuals to relate authentically to themselves, to others, and to the world.
+            </p>
+            <p>
+              Although many social-emotional learning (SEL) and related programs seek to address wellbeing, they often do so by focusing on parts—skills, traits, or competencies—without engaging the underlying humanity that is the foundation of health and development for both individuals and society.
+            </p>
+            <p>
+              We lack a shared language or framework for addressing what makes us human directly. Yet what makes us human is not abstract or intangible; it is our capacity for conscious relationship — with ourselves, with others, and with life — through which meaning, ethics, identity, and agency unfold.
+            </p>
+            <p>
+              Education can nurture this capacity by directly supporting these forms of connection, integrating the inner and outer dimensions of learning and bringing greater coherence to students’ lives. Social-emotional skills and competencies remain important, but without this relational grounding they often feel disconnected from the core of students’ experience.
+            </p>
+          </div>
+
+          <!-- Second image: image 2.png -->
+          <div class="imageBlock bigImage" aria-label="Second image">
+            <img src="../images/image%202.png" alt="Supporting image 2" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How Did We Get Here? -->
+    <section id="how">
+      <div class="wrap">
+        <h2>How Did We Get Here?</h2>
+        <div class="copy">
+          <div class="paleBox">
+            <p>
+              It’s easy to blame the rapid advance of technology for an intensifying crisis of disconnection and mental health in our youth. While technological advances and social media have been profound accelerants, complicating the journey of connection with self, others, and life, a host of other forces have combined to bring us to this point. To fully appreciate what our youth are dealing with, it is helpful to consider the historical and cultural context in which they are growing up.
+            </p>
+            <p>
+              A few generations ago, society largely handed young people a roadmap of “reality.” These narratives defined expectations around identity, roles, and future pathways. While often restrictive, they also provided a sense of stability and direction.
+            </p>
+            <p>
+              Today, these prescribed narratives no longer carry the same certainty or authority. Adolescents are increasingly left to make sense of themselves, life, and their future largely on their own. This shift has left many young people feeling disoriented, anxious, and disconnected, struggling to find meaning and direction in a world that feels increasingly complex and uncertain,
+            </p>
+            <p>
+              At the same time, youth are immersed in digital environments that intensify concerns about self-image and drive them to project inauthentic versions of themselves on social media and in their lives. A growing distrust in media and information further complicates how young people form identities and worldviews.
+            </p>
+            <p>
+              The rapid advancement of artificial intelligence is poised to amplify these challenges. As AI-generated content becomes increasingly indistinguishable from human expression, the lines between authenticity and fabrication will continue to blur — further complicating adolescents’ efforts to connect meaningfully with themselves, others, and the world.
+            </p>
+            <p>
+              In this landscape, the role of schools and caregivers is more critical than ever. One of the most promising ways to support students lies in providing them with opportunities to develop an internal compass that helps to ground them as they find and chart their unique path. This guidance from within can replace the outdated scripts of the past, enabling young people to uncover their authentic selves and determine their own directions in life.
+            </p>
+            <p>
+              In this way, we not only address the immediate mental health crisis but also empower the next generation to thrive in an increasingly complex and rapidly changing world.
+            </p>
+          </div>
+
+          <!-- Third image: image 3.png -->
+          <div class="imageBlock bigImage" aria-label="Third image">
+            <img src="../images/image%203.png" alt="Supporting image 3" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Case for a New Interdisciplinary Field of Study -->
+    <section id="case">
+      <div class="wrap">
+        <h2>The Case for a New Interdisciplinary Field of Study</h2>
+        <div class="copy">
+          <div class="paleBox">
+            <p>
+              This initiative seeks to place “What Makes Us Human?” at the center of educational thought and practice. By supporting educators, researchers, and leaders to explore and advance a pedagogy of connectedness—one that engages students’ whole selves—we can counter the prevailing pedagogy that atomizes the self into discrete parts: academic, social, emotional, behavioral. A pedagogy of connectedness reorients learning around human agency and authentic relationship rather than control, conformity, or performance alone.
+            </p>
+            <p>
+              However, without a unifying interdisciplinary field to integrate these efforts, education continues to address human development in fragmented ways. Anchoring the many promising strands of educational innovation—identity development, purpose learning, character education, agency and social-emotional learning—in the deeper foundation of what makes us human creates the possibility of expanding beyond fixed and externally imposed definitions of success. It allows us to cultivate the inner ground from which real growth emerges: the ability to relate meaningfully to one’s own experience, to others, and to life itself.
+            </p>
+            <p>
+              Connection is not an abstract ideal; it is a concrete developmental process that can be fostered across contexts — from classrooms and athletics to community engagement and higher education. When students consciously explore how they relate to their experiences, to others, and to life itself, they strengthen the ethical, emotional, and existential core that sustains resilience, empathy, purpose, and agency.
+            </p>
+            <p>
+              This initiative seeks to deepen the understanding of the “whole child”—not as a collection of parts to be supported separately, but as an integrated, relational individual whose wellbeing depends on a foundation of connectedness to self, others, and life. Wholeness emerges as a byproduct of connectedness; it is foundational to human development and grounds what makes us uniquely human in an age of artificial intelligence.
+            </p>
+            <p>
+              By galvanizing a community of leaders across disciplines, the initiative aims to collectively lay the foundations for a new interdisciplinary field of study. This field will expand the narrative of education beyond college and career readiness toward preparation for life, for relationship, and for engaging in a shared human journey. Addressing disconnection at its roots not only supports the wellbeing of the individual but also the flourishing and cohesion of society.
+            </p>
+          </div>
+
+          <!-- Fourth image: image 4.png -->
+          <div class="imageBlock bigImage" aria-label="Fourth image">
+            <img src="../images/image%204.png" alt="Supporting image 4" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conceptual Framework -->
+    <section id="framework">
+      <div class="wrap">
+        <h2>Conceptual Framework</h2>
+        <div class="copy">
+          <div class="paleBox">
+            <p>
+              At the heart of this field building approach is a guiding framework that concretizes what it means to support the “whole child". It centers on three interconnected domains: Connection with Self, Connection with Others, and Connection with Life. Each domain is animated by agency—the capacity to consciously and intentionally engage with and express our experience in relation to ourselves, others, and life. This field situates connection as the generative core of human development, forming the foundation for both personal flourishing and collective health. This framework is not intended to replace existing developmental priorities—such as empathy, self-awareness, or social-emotional learning—but to integrate and ground them within a shared relational foundation that strengthens both pedagogy and practice.
+            </p>
+            <p>
+              <strong>Connection with Self:</strong> This domain cultivates the agency to explore and express who we are. Central to this connection is supporting students in reflecting on how they relate to and make sense of their own experience. This connection fosters authenticity and grounds students in the inner conviction required to act from their values and understanding rather than external validation alone.
+            </p>
+            <p>
+              <strong>Connection with Others:</strong> This domain cultivates the agency to form trusting and meaningful relationships. Central to this connection is creating opportunities for students to truly see and engage with one another as human beings. This dimension is essential for reducing polarization and restoring a sense of shared humanity across differences.
+            </p>
+            <p>
+              <strong>Connection with Life:</strong> This domain cultivates the agency to engage life with purpose and possibility by supporting students in making sense of their lives, their futures, and their place in the world and their communities. This connection nurtures character, authentic citizenship, and appreciation for the shared human journey.
+            </p>
+            <p>
+              <strong>Agency and Humanity:</strong> Agency and humanity are inextricably linked. Agency is not merely choice or motivation, but the capacity to consciously author how we relate to our experiences, to others, and to life itself. This capacity is a defining human capability — one that differentiates us from both animals and artificial intelligence.
+            </p>
+            <p>
+              When students are empowered with this agency, their sense of connection deepens. They begin to see themselves not merely as participants in life’s unfolding, but as active co-authors of their lives and communities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- A Framework Grounded in Real-World Experience -->
+    <section id="grounded">
+      <div class="wrap">
+        <h2>A Framework Grounded in Real-World Experience</h2>
+        <div class="copy">
+          <div class="paleBox">
+            <p>
+              The framework emerged reflecting on the experience on-the-ground supporting NYC public high school students the last 11 years with the QUESTion Project. During a semester long daily class, the QUESTion Class, students are given structured space to explore some of the most important questions about life and their future together.
+            </p>
+            <p>
+              In this environment, we found students deepen their connection with self by exercising agency to reflect on their experiences. They strengthen their connection with others through vulnerable dialogue and collective inquiry, forming authentic relationships grounded in shared humanity. They also deepen their connection with life by engaging with fundamental questions about meaning, purpose, identity, and their future — making sense of life for themselves rather than relying on predetermined answers.
+            </p>
+            <p>
+              While the QUESTion Project represents one model of connection-centered practice, the field will demonstrate that there are many concrete ways to cultivate connectedness across educational contexts — through dedicated programs as well as by integrating connection-focused approaches into core academics, the arts, athletics, and community engagement.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Field Building Strategy (ends exactly where you requested) -->
+    <section id="strategy">
+      <div class="wrap">
+        <h2>Field Building Strategy</h2>
+        <div class="copy">
+          <div class="paleBox">
+            <p>
+              Prioritizing what makes us human is a comprehensive, collaborative, and interdisciplinary approach to forming a shared vision that requires both conceptual clarity and structural coordination. The work unfolds through five interdependent phases:
+            </p>
+
+            <p>
+              <strong>Conceptual Coherence &amp; Stewardship:</strong> Collaborate with and convene an interdisciplinary working group of educators, researchers, practitioners, and thought leaders to co-create shared language, intellectual coherence, and long-term stewardship for the field. The centerpiece of this strategy is building a trusted and aligned steering committee, culminating in an initial convening on June 16–18, 2026. Approximately 20 key stakeholders representing research institutions, innovative programs, media, and foundations will gather at the Fetzer Institute in Kalamazoo, Michigan. This convening will serve as the first step to formalize shared language and intention, identify priority areas for collaboration, and build momentum for broader coalition development and next steps in shaping the field.
+            </p>
+
+            <p class="endNote"><strong>Potential participants/advisors will include:</strong></p>
+            <p class="endNote">
+              Researchers • Mental Health experts • High school Educators and students • Program Leaders/Weavers (bringing theory and practice together) • Network of Organizations • Foundations • Government Officials • Journalists
+            </p>
+
+            <p>
+              <strong>Framework &amp; Pedagogy Development:</strong> Refine the framework to clearly convey what it means to prioritize What Makes Us Human means, why it matters, and how it functions as a foundation for human development and societal wellbeing.
+            </p>
+
+            <p>
+              <strong>Developing a Body of Knowledge:</strong> Co-Develop core pedagogical principles to highlight best practices, and surface common misunderstandings and support consistent, rigorous application—clarifying both effective approaches and practices that may unintentionally limit their impact on human development.
+            </p>
+
+            <p>
+              <strong>Domain Integration:</strong> Demonstrate and communicate the foundational relevance of prioritizing students’ humanity across multiple domains of learning and growth to bring light to the impact possible. Examples include: Character Development/Ethics, Mental Health, SEL, Identity development, Polarization, Agency development, Purpose development, Belonging and Connectedness.
+            </p>
+
+            <p>
+              Collaborate with experts across domains to align terminology, frameworks, pedagogical principles, and measures.
+            </p>
+
+            <p>
+              <strong>Thought Leadership:</strong> Publish findings and guidance through accessible articles, podcasts, conferences and open-source resources to reach diverse audiences.
+            </p>
+
+            <p>
+              <strong>Movement Building:</strong> Catalyze a broader movement to shift educational narratives, priorities, and investments from an exclusive focus on performance and outcomes toward cultivating human connection, agency, and flourishing in an age of AI
+            </p>
+
+            <p>
+              <strong>Coalition Development:</strong> an important part of field building is galvanizing key stakeholders in Education, Academia, philanthropy and media around the mission, by uniting in a coalition to center What Makes Us Human? In education
+            </p>
+
+            <p>
+              Develop a coordinated strategy for movement building that centers collective ownership and collaboration.
+            </p>
+
+            <p>
+              <strong>Thought leadership:</strong> In the initial stages, we will develop thought leadership through collaborative participation in conferences, philanthropic convenings, media opportunities, and writing projects. These engagements focus on collaborative messaging rather than organizational promotion.
+            </p>
+
+            <p>
+              <strong>Develop a plan to inform and influence public policy (later in the process)</strong>
+            </p>
+
+            <p class="pull">
+              Join us in re-envisioning education—to nurture the conscious, connected, and creative capacities that foster exploration of what it means to be human.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer / end -->
+    <section id="end">
+      <div class="wrap">
+        <div class="copy">
+          <p style="margin:0;">
+            <a class="btn orange" href="../">Return to the main page</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
 
