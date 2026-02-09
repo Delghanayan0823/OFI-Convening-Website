@@ -31,8 +31,6 @@
       background: var(--bg);
       line-height: 1.7;
       font-size: 22px;
-
-      /* 1-inch-ish breathing room around the entire site */
       padding: clamp(18px, 3vw, 1in);
     }
 
@@ -85,63 +83,42 @@
       margin-top: 4px;
     }
 
-    .btn{
-      border: 1px solid var(--ink);
-      background: var(--ink);
-      color: #fff;
-      font-weight: 900;
-      font-size: 16px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      cursor:pointer;
-      text-decoration:none;
-      display:inline-flex; align-items:center; justify-content:center;
-      transition: transform .08s ease, background .12s ease, border-color .12s ease;
-      white-space: nowrap;
-    }
-    .btn:hover{background:#111827; border-color:#111827;}
-    .btn:active{transform: translateY(1px);}
-
-    .btn.orange{
-      border-color: var(--orange);
-      background: var(--orange);
-      color:#fff !important;
-    }
-    .btn.orange:hover{
-      background: var(--orange2);
-      border-color: var(--orange2);
-    }
-
+    /* HERO (big image like main page) */
     .hero{
       border-bottom: 1px solid var(--line);
-      padding: 26px 0 18px;
+      padding: 22px 0 18px;
     }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 22px;
-      align-items:start;
+    .heroInner{ padding: 10px 0 0; }
+    .heroCenter{
+      text-align:left;
+      max-width: 1180px;
+      margin: 0 auto;
     }
-    .hero h1{
-      margin: 10px 0 10px;
-      font-size: clamp(36px, 4.4vw, 58px);
+    .heroCenter h1{
+      margin: 10px 0 12px;
+      font-size: clamp(38px, 4.8vw, 64px);
       line-height: 1.05;
       letter-spacing: -1px;
       font-weight: 950;
-      max-width: 26ch;
     }
-    .hero .sub{
-      margin: 0 0 12px;
-      max-width: 92ch;
+    .heroSub{
+      margin: 0 0 10px;
+      max-width: 76ch;
       font-size: clamp(18px, 1.55vw, 22px);
       color: rgba(31,41,55,.84);
-      line-height: 1.45;
+      line-height: 1.35;
     }
-    .heroActions{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      margin-top: 14px;
+    .heroBelowImage{
+      margin: 18px auto 0;
+      max-width: 1180px;
+    }
+    .heroBelowImage img{
+      width: 100%;
+      height: auto;
+      display:block;
+      border: 1px solid var(--line);
+      background:#fff;
+      border-radius: 18px;
     }
 
     section{
@@ -149,6 +126,7 @@
       border-bottom: 1px solid var(--line);
       scroll-margin-top: 92px;
     }
+    section.band{ background: var(--band); border-radius: 18px; }
 
     h2{
       margin: 0 0 14px;
@@ -173,42 +151,46 @@
       max-width: 1160px;
     }
 
-    .bigImage{
+    /* Wrapped images like Image 6 on the home page */
+    .wrapImgRight{
+      float:right;
+      width: 38%;
+      max-width: 520px;
+      margin: 6px 0 14px 18px;
       border: 1px solid var(--line);
       background:#fff;
       border-radius: 18px;
       overflow:hidden;
     }
-    .bigImage img{display:block; width:100%; height:auto;}
+    .wrapImgRight img{display:block; width:100%; height:auto;}
+    .clearfix::after{content:""; display:block; clear:both;}
 
-    .imageBlock{
-      margin-top: 18px;
+    /* Final quote box */
+    .pullBox{
       max-width: 1160px;
+      background: var(--paleBlueBox);
+      border: 1px solid var(--paleBlueLine);
+      border-radius: 18px;
+      padding: 22px;
     }
-
     .pull{
+      margin:0;
       font-family: var(--serif);
       font-size: 22px;
       line-height: 1.55;
-      padding: 16px 18px;
-      border-left: 4px solid rgba(242,107,58,.6);
-      background: rgba(255,255,255,.65);
-      border-radius: 12px;
-      margin: 14px 0 18px;
-      max-width: 96ch;
+      color: rgba(31,41,55,.92);
     }
 
-    .endNote{
-      margin-top: 10px;
-      font-size: 16px;
-      color: rgba(31,41,55,.70);
-      max-width: 96ch;
-    }
-
-    @media (max-width: 980px){
+    @media (max-width: 920px){
       body{font-size:20px;}
       .paleBox{padding: 18px;}
-      .heroGrid{grid-template-columns: 1fr;}
+      .pullBox{padding: 18px;}
+      .wrapImgRight{
+        float:none;
+        width: 100%;
+        max-width: 100%;
+        margin: 14px 0 14px;
+      }
     }
   </style>
 </head>
@@ -219,6 +201,7 @@
   <header>
     <div class="wrap">
       <div class="nav">
+        <!-- Keep brand as the only nav element (no buttons) -->
         <a class="brand" href="../">
           <div class="brandmark" aria-hidden="true"></div>
           <div class="brandtext">
@@ -226,11 +209,6 @@
             <span>Field Building Vision and Strategy</span>
           </div>
         </a>
-
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="btn" href="../">Home</a>
-          <a class="btn orange" href="../#quotes">Back to main page</a>
-        </div>
       </div>
     </div>
   </header>
@@ -239,21 +217,17 @@
     <!-- HERO -->
     <div class="hero">
       <div class="wrap">
-        <div class="heroGrid">
-          <div>
+        <div class="heroInner">
+          <div class="heroCenter">
             <h1>Field Building Vision and Strategy</h1>
-            <p class="sub">
+            <p class="heroSub">
               Creating the foundations for an interdisciplinary field of study in an age of AI, polarization, and a crisis of meaning
             </p>
-            <div class="heroActions">
-              <a class="btn orange" href="#current-state">Start reading</a>
-              <a class="btn" href="#strategy">Jump to Field Building Strategy</a>
-            </div>
           </div>
 
-          <!-- Top image: Image 11.png -->
-          <div class="bigImage" aria-label="Top image">
-            <img src="../images/Image%2011.png" alt="Field building vision and strategy" />
+          <!-- Top image: Image 11.png (big, full-width like main hero image) -->
+          <div class="heroBelowImage" aria-label="Hero supporting image">
+            <img src="../images/Image%2011.png" alt="Field Building Vision and Strategy" />
           </div>
         </div>
       </div>
@@ -263,7 +237,12 @@
     <section id="current-state">
       <div class="wrap">
         <h2>The Current State of Education</h2>
-        <div class="copy">
+        <div class="copy clearfix">
+          <!-- Image 2 wrapped like Image 6 on home page -->
+          <div class="wrapImgRight" aria-label="Supporting image 2">
+            <img src="../images/image2.png" alt="Supporting image 2" />
+          </div>
+
           <div class="paleBox">
             <p>
               In an age increasingly defined by artificial intelligence, technological acceleration, a culture of achievement, and growing social fragmentation and polarization, education faces a defining challenge: how to nurture what makes us human. Across classrooms and policy agendas, students are prepared to compete, achieve, and succeed—often framed in terms of “college, career, and success.” While these aims have value, their dominance has tilted education toward the outer dimensions of life—performance, productivity, and measurable outcomes—at the expense of the inner dimensions that connect students to their own lives and give those pursuits meaning.
@@ -281,11 +260,6 @@
               Education can nurture this capacity by directly supporting these forms of connection, integrating the inner and outer dimensions of learning and bringing greater coherence to students’ lives. Social-emotional skills and competencies remain important, but without this relational grounding they often feel disconnected from the core of students’ experience.
             </p>
           </div>
-
-          <!-- Second image: image 2.png -->
-          <div class="imageBlock bigImage" aria-label="Second image">
-            <img src="../images/image%202.png" alt="Supporting image 2" />
-          </div>
         </div>
       </div>
     </section>
@@ -294,7 +268,12 @@
     <section id="how">
       <div class="wrap">
         <h2>How Did We Get Here?</h2>
-        <div class="copy">
+        <div class="copy clearfix">
+          <!-- Image 3 wrapped like Image 6 on home page -->
+          <div class="wrapImgRight" aria-label="Supporting image 3">
+            <img src="../images/image3.png" alt="Supporting image 3" />
+          </div>
+
           <div class="paleBox">
             <p>
               It’s easy to blame the rapid advance of technology for an intensifying crisis of disconnection and mental health in our youth. While technological advances and social media have been profound accelerants, complicating the journey of connection with self, others, and life, a host of other forces have combined to bring us to this point. To fully appreciate what our youth are dealing with, it is helpful to consider the historical and cultural context in which they are growing up.
@@ -318,11 +297,6 @@
               In this way, we not only address the immediate mental health crisis but also empower the next generation to thrive in an increasingly complex and rapidly changing world.
             </p>
           </div>
-
-          <!-- Third image: image 3.png -->
-          <div class="imageBlock bigImage" aria-label="Third image">
-            <img src="../images/image%203.png" alt="Supporting image 3" />
-          </div>
         </div>
       </div>
     </section>
@@ -331,7 +305,12 @@
     <section id="case">
       <div class="wrap">
         <h2>The Case for a New Interdisciplinary Field of Study</h2>
-        <div class="copy">
+        <div class="copy clearfix">
+          <!-- Image 4 wrapped like Image 6 on home page -->
+          <div class="wrapImgRight" aria-label="Supporting image 4">
+            <img src="../images/image4.png" alt="Supporting image 4" />
+          </div>
+
           <div class="paleBox">
             <p>
               This initiative seeks to place “What Makes Us Human?” at the center of educational thought and practice. By supporting educators, researchers, and leaders to explore and advance a pedagogy of connectedness—one that engages students’ whole selves—we can counter the prevailing pedagogy that atomizes the self into discrete parts: academic, social, emotional, behavioral. A pedagogy of connectedness reorients learning around human agency and authentic relationship rather than control, conformity, or performance alone.
@@ -348,11 +327,6 @@
             <p>
               By galvanizing a community of leaders across disciplines, the initiative aims to collectively lay the foundations for a new interdisciplinary field of study. This field will expand the narrative of education beyond college and career readiness toward preparation for life, for relationship, and for engaging in a shared human journey. Addressing disconnection at its roots not only supports the wellbeing of the individual but also the flourishing and cohesion of society.
             </p>
-          </div>
-
-          <!-- Fourth image: image 4.png -->
-          <div class="imageBlock bigImage" aria-label="Fourth image">
-            <img src="../images/image%204.png" alt="Supporting image 4" />
           </div>
         </div>
       </div>
@@ -407,7 +381,7 @@
       </div>
     </section>
 
-    <!-- Field Building Strategy (ends exactly where you requested) -->
+    <!-- Field Building Strategy (ends at “(later in the process)”) -->
     <section id="strategy">
       <div class="wrap">
         <h2>Field Building Strategy</h2>
@@ -421,9 +395,8 @@
               <strong>Conceptual Coherence &amp; Stewardship:</strong> Collaborate with and convene an interdisciplinary working group of educators, researchers, practitioners, and thought leaders to co-create shared language, intellectual coherence, and long-term stewardship for the field. The centerpiece of this strategy is building a trusted and aligned steering committee, culminating in an initial convening on June 16–18, 2026. Approximately 20 key stakeholders representing research institutions, innovative programs, media, and foundations will gather at the Fetzer Institute in Kalamazoo, Michigan. This convening will serve as the first step to formalize shared language and intention, identify priority areas for collaboration, and build momentum for broader coalition development and next steps in shaping the field.
             </p>
 
-            <p class="endNote"><strong>Potential participants/advisors will include:</strong></p>
-            <p class="endNote">
-              Researchers • Mental Health experts • High school Educators and students • Program Leaders/Weavers (bringing theory and practice together) • Network of Organizations • Foundations • Government Officials • Journalists
+            <p>
+              <strong>Potential participants/advisors will include:</strong> Researchers; Mental Health experts; High school Educators and students; Program Leaders/Weavers (bringing theory and practice together); Network of Organizations; Foundations; Government Officials; Journalists
             </p>
 
             <p>
@@ -465,26 +438,22 @@
             <p>
               <strong>Develop a plan to inform and influence public policy (later in the process)</strong>
             </p>
-
-            <p class="pull">
-              Join us in re-envisioning education—to nurture the conscious, connected, and creative capacities that foster exploration of what it means to be human.
-            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer / end -->
-    <section id="end">
+    <!-- Final quote: its own separate box BELOW the strategy section -->
+    <section id="join" class="band">
       <div class="wrap">
-        <div class="copy">
-          <p style="margin:0;">
-            <a class="btn orange" href="../">Return to the main page</a>
+        <div class="pullBox" aria-label="Closing statement">
+          <p class="pull">
+            Join us in re-envisioning education—to nurture the conscious, connected, and creative capacities that foster exploration of what it means to be human.
           </p>
         </div>
       </div>
     </section>
+
   </main>
 </body>
 </html>
-
