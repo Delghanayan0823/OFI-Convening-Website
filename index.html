@@ -17,8 +17,6 @@
       --max: 1320px;
       --serif: Georgia, "Times New Roman", Times, serif;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      --paleBlueBox: #eaf4f7;
-      --paleBlueLine: #cfe6ee;
       scroll-padding-top: 84px;
     }
     *{box-sizing:border-box}
@@ -30,14 +28,11 @@
       background: var(--bg);
       line-height: 1.7;
       font-size: 22px;
-
-      /* ~1 inch whitespace around the entire perimeter (responsive) */
-      padding: clamp(18px, 3vw, 1in);
     }
     a{color:inherit}
     img{max-width:100%; height:auto;}
     .wrap{max-width: var(--max); margin:0 auto; padding:0 22px;}
-    .topbar{height: 4px;background: linear-gradient(90deg, var(--orange), var(--teal)); border-radius: 999px;}
+    .topbar{height: 4px;background: linear-gradient(90deg, var(--orange), var(--teal));}
 
     header{
       position: sticky;
@@ -46,8 +41,6 @@
       background: rgba(255,255,255,.92);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--line);
-      border-radius: 18px;
-      overflow:hidden;
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
@@ -167,7 +160,6 @@
       display:block;
       border: 1px solid var(--line);
       background:#fff;
-      border-radius: 18px;
     }
 
     /* Sections */
@@ -176,7 +168,7 @@
       border-bottom: 1px solid var(--line);
       scroll-margin-top: 84px;
     }
-    section.band{ background: var(--band); border-radius: 18px; }
+    section.band{ background: var(--band); }
 
     h2{
       margin: 0 0 14px;
@@ -197,7 +189,6 @@
       border: 1px solid var(--line);
       background:#fff;
       overflow:hidden;
-      border-radius: 18px;
     }
     .bigImage img{display:block; width:100%; height:auto;}
 
@@ -209,37 +200,22 @@
       margin: 6px 0 14px 18px;
       border: 1px solid var(--line);
       background:#fff;
-      border-radius: 18px;
-      overflow:hidden;
     }
     .wrapImgRight img{display:block; width:100%; height:auto;}
     .clearfix::after{content:""; display:block; clear:both;}
 
-    /* QUOTES: pale blue box + smaller type + clear separation */
-    .quoteBox{
-      background: var(--paleBlueBox);
-      border: 1px solid var(--paleBlueLine);
-      border-radius: 18px;
-      padding: 26px;
-      max-width: 1080px;
-    }
-    .quoteStack{
-      display:flex;
-      flex-direction: column;
-      gap: 0;
-      margin-top: 18px;
-    }
+    /* QUOTES: clean, open, OFI-like (no chunky cards) */
+    .quoteStack{display:grid; gap: 26px; margin-top: 18px;}
     .quote{
-      padding: 18px 0;
+      padding: 0;
+      border: none;
+      background: transparent;
       max-width: 92ch;
-    }
-    .quote + .quote{
-      border-top: 1px solid rgba(31,41,55,.12);
     }
     .quote blockquote{
       margin: 0;
       font-family: var(--serif);
-      font-size: 22px; /* smaller to match rest of site */
+      font-size: clamp(24px, 2.0vw, 30px);
       line-height: 1.55;
       color: rgba(31,41,55,.92);
     }
@@ -256,20 +232,6 @@
       letter-spacing: .08em;
       text-transform: uppercase;
       color: rgba(31,41,55,.70);
-    }
-
-    /* CTA block above quotes */
-    .ctaRow{
-      display:flex;
-      align-items:center;
-      justify-content:flex-start;
-      gap: 12px;
-      margin-top: 18px;
-    }
-    .ctaRow .btn{
-      font-size: 16px;
-      padding: 14px 22px;
-      box-shadow: 0 10px 22px rgba(31,41,55,.12);
     }
 
     /* Bullets */
@@ -309,6 +271,9 @@
       align-items:start;
       margin-top: 10px;
     }
+    .whereGrid .bigImage{
+      border-radius: 18px;
+    }
 
     /* CONTRIBUTION: text + Image 10 side-by-side */
     .contribGrid{
@@ -317,6 +282,10 @@
       gap: 22px;
       align-items:start;
       margin-top: 10px;
+    }
+    .contribGrid .bigImage{
+      border-radius: 18px;
+      overflow:hidden;
     }
 
     @media (max-width: 920px){
@@ -329,7 +298,6 @@
         max-width: 100%;
         margin: 14px 0 14px;
       }
-      .quoteBox{padding: 20px;}
     }
   </style>
 </head>
@@ -382,7 +350,7 @@
 
           <!-- Image 6 floats right so text wraps smoothly (no big gap) -->
           <div class="wrapImgRight" aria-label="Intro supporting image">
-            <img src="images/Image%206.JPG" alt="Convening moment" />
+            <img src="images/Image 6.JPG" alt="Convening moment" />
           </div>
 
           <p>
@@ -402,14 +370,6 @@
             We will host the first convening at the Fetzer Institute June 16–18, bringing together leaders from across fields to
             begin shaping shared language, a unifying framework, guiding principles, and strategy.
           </p>
-
-          <!-- PROMINENT BUTTON ABOVE QUOTES -->
-          <div class="ctaRow" aria-label="Field Building Vision and Strategy">
-            <a class="btn orange" href="docs/field-building-vision-strategy.pdf" target="_blank" rel="noopener">
-              Field Building Vision and Strategy
-            </a>
-          </div>
-
         </div>
       </div>
     </section>
@@ -419,36 +379,27 @@
       <div class="wrap">
         <h2>Quotes</h2>
 
-        <div class="quoteBox" aria-label="Quotes box">
-          <div class="quoteStack" aria-label="Quotes">
+        <div class="quoteStack" aria-label="Quotes">
+          <div class="quote">
+            <blockquote>
+              "Engaging students’ humanity differs from building social-emotional skills. Social-emotional skills cultivate specific outcomes, but when we engage students’ humanity, we influence the broader arc of their development — touching how they see themselves, relate to others, and move through the world."
+            </blockquote>
+          </div>
 
-            <!-- 1) Alvaro Rodriguez -->
-            <div class="quote">
-              <blockquote>
-                “As students we need help to find out who we are — and what we are meant to do with our lives.”
-              </blockquote>
-              <div class="rule" aria-hidden="true"></div>
-              <div class="who">Alvaro Rodriguez, Student, Bronx Center for Science and Mathematics</div>
-            </div>
+          <div class="quote">
+            <blockquote>
+              "Children move through worlds already alive with wonder, struggle, discovery, and becoming. Each day holds its own depth and meaning. When society relates to education merely as preparation for adult life, it overlooks the profound meaning unfolding in their lived experience."
+            </blockquote>
+            <div class="rule" aria-hidden="true"></div>
+            <div class="who">Dr. Joe Duffey</div>
+          </div>
 
-            <!-- 2) Dr. Joe Duffey -->
-            <div class="quote">
-              <blockquote>
-                "Children move through worlds already alive with wonder, struggle, discovery, and becoming. Each day holds its own depth and meaning. When society relates to education merely as preparation for adult life, it overlooks the profound meaning unfolding in their lived experience."
-              </blockquote>
-              <div class="rule" aria-hidden="true"></div>
-              <div class="who">Dr. Joe Duffey</div>
-            </div>
-
-            <!-- 3) Gerard Senehi -->
-            <div class="quote">
-              <blockquote>
-                "Engaging students’ humanity differs from building social-emotional skills. Social-emotional skills cultivate specific outcomes, but when we engage students’ humanity, we influence the broader arc of their development — touching how they see themselves, relate to others, and move through the world."
-              </blockquote>
-              <div class="rule" aria-hidden="true"></div>
-              <div class="who">Gerard Senehi, Co-Founder of the Question Project</div>
-            </div>
-
+          <div class="quote">
+            <blockquote>
+              “As students we need help to find out who we are — and what we are meant to do with our lives.”
+            </blockquote>
+            <div class="rule" aria-hidden="true"></div>
+            <div class="who">Alvaro Rodriguez, Student, Bronx Center for Science and Mathematics</div>
           </div>
         </div>
       </div>
@@ -458,7 +409,7 @@
     <section id="moment">
       <div class="wrap">
         <div class="bigImage" aria-label="Large image">
-          <img src="images/Image%207.jpg" alt="Convening moment" />
+          <img src="images/Image 7.jpg" alt="Convening moment" />
         </div>
       </div>
     </section>
@@ -478,9 +429,9 @@
             </p>
           </div>
 
-          <!-- Image 10 (URL-encoded space to help it load on GitHub Pages) -->
+          <!-- Image 10 replaces Image 9 -->
           <div class="bigImage" aria-label="Contribution supporting image">
-            <img src="images/Image%2010.jpg" alt="Students in conversation" />
+            <img src="images/Image 10.jpg" alt="Students in conversation" />
           </div>
         </div>
       </div>
@@ -511,17 +462,9 @@
       <div class="wrap">
         <h2>A Place for Connection &amp; Co-Creation</h2>
 
-        <!-- This text now appears directly below header and above image/table -->
-        <div class="copy" style="margin-top:10px;">
-          <p>
-            We’re grateful to gather at the Fetzer Institute in Kalamazoo, Michigan—an environment designed for reflection,
-            relationship, and long-horizon thinking.
-          </p>
-        </div>
-
         <div class="whereGrid">
           <div class="bigImage" aria-label="Fetzer Institute image">
-            <img src="images/Image%208.png" alt="Fetzer Institute" />
+            <img src="images/Image 8.png" alt="Fetzer Institute" />
           </div>
 
           <div class="panel" aria-label="Key details">
@@ -537,9 +480,10 @@
           </div>
         </div>
 
-        <!-- This text now appears below the image and logistics table -->
         <div class="copy" style="margin-top:18px;">
           <p>
+            We’re grateful to gather at the Fetzer Institute in Kalamazoo, Michigan—an environment designed for reflection,
+            relationship, and long-horizon thinking.
             Travel, food &amp; accommodation are complimentary due to the generosity of the Fetzer Institute and the Eric &amp; Wendy Schmidt Foundation.
             Attendance is by invitation only.
           </p>
