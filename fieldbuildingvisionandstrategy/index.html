@@ -184,7 +184,7 @@
       color: rgba(31,41,55,.92);
     }
 
-    /* Wrapped images — aligned to the right edge of the content column */
+    /* Wrapped images — constrained so they never protrude past margins */
     .wrapImgRight{
       float:right;
       width: min(38%, 520px);
@@ -193,15 +193,17 @@
       background:#fff;
       border-radius: 18px;
       overflow:hidden;
+
+      /* hard safety: never exceed the content width */
       max-width: 100%;
     }
     .wrapImgRight img{display:block; width:100%; height:auto;}
-    .clearfix::after{content:""; display:block; clear:both;}
 
-    /* Ensure clearfix blocks align cleanly with left/right margins */
+    /* ✅ ONLY CHANGE: contain floats so spacing below doesn't jump */
     .clearfix{
       overflow: auto;
     }
+    .clearfix::after{content:""; display:block; clear:both;}
 
     /* Pull quote (separate box at bottom) */
     .pullWrap{
