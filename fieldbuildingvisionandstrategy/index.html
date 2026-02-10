@@ -19,7 +19,7 @@
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       scroll-padding-top: 92px;
     }
-    
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;}
     body{
@@ -184,7 +184,7 @@
       color: rgba(31,41,55,.92);
     }
 
-    /* Wrapped images — constrained so they never protrude past margins */
+    /* Wrapped images — aligned to the right edge of the content column */
     .wrapImgRight{
       float:right;
       width: min(38%, 520px);
@@ -193,12 +193,15 @@
       background:#fff;
       border-radius: 18px;
       overflow:hidden;
-
-      /* hard safety: never exceed the content width */
       max-width: 100%;
     }
     .wrapImgRight img{display:block; width:100%; height:auto;}
     .clearfix::after{content:""; display:block; clear:both;}
+
+    /* Ensure clearfix blocks align cleanly with left/right margins */
+    .clearfix{
+      overflow: auto;
+    }
 
     /* Pull quote (separate box at bottom) */
     .pullWrap{
@@ -266,7 +269,7 @@
             <div class="heroCenter">
               <h1>Field Building Vision and Strategy</h1>
               <p class="heroSub">
-                Creating the foundations for an interdisciplinary field of study in an age of AI, polarization, and a crisis of meaning
+                Creating the foundations for an interdisciplinary field in an Age of AI, Polarization, and a Crisis of Meaning.
               </p>
             </div>
 
